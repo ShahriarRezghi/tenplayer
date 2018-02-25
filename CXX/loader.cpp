@@ -2,12 +2,20 @@
 
 QSqlQuery *Loader::Query = nullptr;
 QString Loader::ArtworkPath = QString();
+ActiveInfo *Loader::Active = nullptr;
+
+PathManager *Loader::Path = nullptr;
+StatusManager *Loader::Status = nullptr;
+
+QueueLoader *Loader::Queue = nullptr;
+TrackManager *Loader::Track = nullptr;
+RecentlyPlayedLoader *Loader::RecentlyPlayed = nullptr;
 
 Loader::Loader(QObject *parent) : QObject(parent) { m_model = nullptr; }
 
 void Loader::sortModel(int role, bool asc)
 {
-	if (m_model)
+    if (m_model)
 	{
 		m_model->setSortRole(role);
 		m_model->sort(0, asc ? Qt::AscendingOrder : Qt::DescendingOrder);
@@ -64,3 +72,5 @@ QString Loader::getArtwork(const QString &album, const QString &albumArtist)
 
 	return QFile(A).exists() ? A : "";
 }
+
+QmlModel *Loader::getModel() const { return m_model; }

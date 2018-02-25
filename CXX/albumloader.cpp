@@ -3,8 +3,8 @@
 AlbumLoader::AlbumLoader(QObject *parent) : Loader(parent)
 {
 	m_model = new QmlModel(this);
-	m_model->addRoles(
-		{Add(AlbumRole), Add(AlbumartistRole), Add(GenreRole), Add(YearRole)});
+	m_model->addRoles({Add(AlbumRole), Add(AlbumartistRole), Add(GenreRole),
+					   Add(YearRole), Add(ArtworkRole)});
 }
 
 void AlbumLoader::load()

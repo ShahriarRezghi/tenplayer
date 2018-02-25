@@ -1,7 +1,7 @@
 #ifndef ARTISTLOADER_H
 #define ARTISTLOADER_H
 
-#include <loader.h>
+#include "loader.h"
 
 class ArtistLoader : public Loader
 {

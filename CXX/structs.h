@@ -14,7 +14,8 @@ enum Roles
 	GenreRole = Qt::UserRole + 7,
 	YearRole = Qt::UserRole + 8,
 	PathRole = Qt::UserRole + 9,
-	ArtworkRole = Qt::UserRole + 10
+	ArtworkRole = Qt::UserRole + 10,
+	RowRole = Qt::UserRole + 11
 };
 
 enum Actions

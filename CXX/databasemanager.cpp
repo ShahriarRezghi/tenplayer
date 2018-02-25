@@ -28,8 +28,8 @@ void DatabaseManager::createTables()
 	//	if (!x) qDebug() << "Couldn't Create Playlist Table!";
 
 	//	x = m_query->exec(
-	//		"CREATE TABLE IF NOT EXISTS join(pid INTEGER, mid INTEGER, row "
-	//		"INTEGER);");
+	//		"CREATE TABLE IF NOT EXISTS mpjoin(pid INTEGER, mid INTEGER, row
+	//" 		"INTEGER);");
 
 	//	if (!x) qDebug() << "Couldn't Create Join Table!";
 }

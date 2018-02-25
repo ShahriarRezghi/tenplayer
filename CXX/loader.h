@@ -1,13 +1,20 @@
 #ifndef LOADER_H
 #define LOADER_H
 
+#include "activeinfo.h"
 #include "model.h"
+#include "pathmanager.h"
+#include "statusmanager.h"
 #include "structs.h"
 
 #include <QDebug>
 #include <QObject>
 #include <QtSql>
 #include <functional>
+
+class QueueLoader;
+class TrackManager;
+class RecentlyPlayedLoader;
 
 class Loader : public QObject
 {
@@ -29,13 +36,23 @@ protected:
 
 public:
 	static QSqlQuery *Query;
+	static ActiveInfo *Active;
 	static QString ArtworkPath;
+
+	static PathManager *Path;
+	static StatusManager *Status;
+
+	static QueueLoader *Queue;
+	static TrackManager *Track;
+	static RecentlyPlayedLoader *RecentlyPlayed;
 
 public:
 	explicit Loader(QObject *parent = nullptr);
 
 	virtual void load() = 0;
 	virtual void clear();
+
+	QmlModel *getModel() const;
 };
 
 #endif  // LOADER_H

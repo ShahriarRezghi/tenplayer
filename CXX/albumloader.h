@@ -1,7 +1,7 @@
 #ifndef ALBUMLOADER_H
 #define ALBUMLOADER_H
 
-#include <loader.h>
+#include "loader.h"
 
 class AlbumLoader : public Loader
 {

@@ -18,7 +18,14 @@ SOURCES += main.cpp \
     CXX/databasemanager.cpp \
     CXX/loader.cpp \
     CXX/queueloader.cpp \
-    CXX/songloader.cpp
+    CXX/songloader.cpp \
+    CXX/activeinfo.cpp \
+    CXX/playlistloader.cpp \
+    CXX/recentlyaddedloader.cpp \
+    CXX/recentlyplayedloader.cpp \
+    CXX/pathmanager.cpp \
+    CXX/statusmanager.cpp \
+    CXX/trackmanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -43,4 +50,11 @@ HEADERS += \
     CXX/model.h \
     CXX/queueloader.h \
     CXX/songloader.h \
-    CXX/structs.h
+    CXX/structs.h \
+    CXX/activeinfo.h \
+    CXX/playlistloader.h \
+    CXX/recentlyaddedloader.h \
+    CXX/recentlyplayedloader.h \
+    CXX/pathmanager.h \
+    CXX/statusmanager.h \
+    CXX/trackmanager.h
