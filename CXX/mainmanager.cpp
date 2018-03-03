@@ -1,6 +1,6 @@
 #include "mainmanager.h"
 
-MainManager::MainManager(QObject *parent) : QObject(parent) {}
+MainManager::MainManager(QObject *parent) : QObject(parent) { setupLoaders(); }
 
 void MainManager::setupLoaders()
 {
@@ -15,5 +15,6 @@ void MainManager::setupLoaders()
 	Loader::Queue = Queue;
 	Loader::Track = TrackMgr;
 	Loader::Query = DatabaseMgr->query();
-	Loader::RecentlyPlayed = (RecentlyPlayedLoader *)Loaders[RecentlyPlayedLdr];
+	Loader::RecentlyPlayed =
+		static_cast<RecentlyPlayedLoader *>(Loaders[RecentlyPlayedLdr]);
 }

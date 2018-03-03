@@ -19,7 +19,6 @@ int main(int argc, char *argv[])
 	QQmlApplicationEngine engine;
 	auto *RC = engine.rootContext();
 
-	RC->setContextProperty("MainManager", &M);
 	RC->setContextProperty("AlbumModel", M.Loaders[AlbumLdr]->model());
 	RC->setContextProperty("ArtistModel", M.Loaders[ArtistLdr]->model());
 	RC->setContextProperty("SongModel", M.Loaders[SongLdr]->model());
@@ -27,10 +26,17 @@ int main(int argc, char *argv[])
 	RC->setContextProperty("PlaylistModel", M.Loaders[PlaylistLdr]->model());
 	RC->setContextProperty("TrackModel", M.TrackMgr->model());
 
+	RC->setContextProperty("RecentlyAddedModel",
+						   M.Loaders[RecentlyAddedLdr]->model());
+	RC->setContextProperty("RecentlyPlayedModel",
+						   M.Loaders[RecentlyPlayedLdr]->model());
+
 	RC->setContextProperty("MusicPlayer", M.Queue->player());
 	RC->setContextProperty("MusicPlaylist", (M.Queue->playlist()));
 	RC->setContextProperty("ActiveInfo", M.Active);
 	RC->setContextProperty("StatusManager", M.Status);
+
+	RC->setContextProperty("MainManager", &M);
 
 	engine.load(QUrl(QStringLiteral("qrc:/QML/main.qml")));
 	if (engine.rootObjects().isEmpty()) return -1;
