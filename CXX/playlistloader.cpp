@@ -51,7 +51,7 @@ QList<QStandardItem *> PlaylistLoader::getSubItems(QStandardItem *item)
 	while (Query->next())
 	{
 		auto *item = recordToItem(Query->record());
-		item->setData(Query->value('row'), RowRole);
+		item->setData(Query->value("row"), RowRole);
 		items << item;
 	}
 
@@ -60,10 +60,8 @@ QList<QStandardItem *> PlaylistLoader::getSubItems(QStandardItem *item)
 
 int PlaylistLoader::lastRowInPlaylist(const QVariant &pid)
 {
-	m_dbmanager->exec(JT, Select({ROW}), Where({PLAYLISTID}, {pid}),
-					  Order({ROW}, false), Limit(1));
-
-	Query->prepare("SELECT row FROM playlist ORDER BY row DESC LIMIT 1;");
+	Query->prepare(
+		"SELECT row FROM mpjoin WHERE pid=? ORDER BY row DESC LIMIT 1;");
 	Query->bindValue(0, pid);
 	qDebug() << Query->exec();
 
@@ -90,7 +88,7 @@ void PlaylistLoader::deletePlaylist(const int &index)
 void PlaylistLoader::addItem(const int &row, QStandardItem *item)
 {
 	QVariant itemid = item->data(IDRole);
-	QVariant playlistid = data(row, ID);
+	QVariant playlistid = m_model->item(row)->data(IDRole);
 
 	int lastRow = lastRowInPlaylist(playlistid);
 	++lastRow;
@@ -104,7 +102,7 @@ void PlaylistLoader::addItem(const int &row, QStandardItem *item)
 
 void PlaylistLoader::addItems(const int &row, QList<QStandardItem *> &items)
 {
-	QVariant pid = data(row, ID);
+	QVariant pid = m_model->item(row)->data(IDRole);
 	int lastrow = lastRowInPlaylist(row);
 
 	QVariantList playlistids;
@@ -116,7 +114,7 @@ void PlaylistLoader::addItems(const int &row, QList<QStandardItem *> &items)
 		++lastrow;
 		rows.append(lastrow);
 		playlistids.append(pid);
-		musicids.append(item->data(roleFromType(ID)));
+		musicids.append(item->data(IDRole));
 
 		delete item;  // TODO nessesary?
 	}

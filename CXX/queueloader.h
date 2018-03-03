@@ -35,10 +35,10 @@ public:
 
 	void addItem(QStandardItem *item);
 
-	// Loader interface
 public:
-	void load();
+	// Loader interface
 	void clear();
+	void load() {}
 };
 
 #endif  // QUEUELOADER_H

@@ -9,7 +9,6 @@
 
 #include <QDebug>
 #include <QObject>
-#include <QtSql>
 #include <functional>
 
 class QueueLoader;
@@ -52,7 +51,7 @@ public:
 	virtual void load() = 0;
 	virtual void clear();
 
-	QmlModel *getModel() const;
+	QmlModel *model() const;
 };
 
 #endif  // LOADER_H

@@ -1,4 +1,5 @@
 #include "queueloader.h"
+#include "recentlyplayedloader.h"
 
 QueueLoader::QueueLoader(QObject *parent) : Loader(parent)
 {
@@ -172,7 +173,7 @@ void QueueLoader::songPlayed()
 {
 	int row = m_playlist->currentIndex();
 	if (m_playlist->mediaCount() != 0 && row >= 0)
-		m_recentLoader->addPlayedItem(m_model->item(row));
+		RecentlyPlayed->addPlayedItem(m_model->item(row));
 }
 
 void QueueLoader::changeActiveRow(const int &row)

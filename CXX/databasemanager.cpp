@@ -15,23 +15,23 @@ void DatabaseManager::createTables()
 {
 	m_query = new QSqlQuery(m_database);
 
-	//	bool x = m_query->exec(
-	//		"CREATE TABLE IF NOT EXISTS music"
-	//		"(title STRING, album STRING, artist STRING, "
-	//		"albumartist STRING, track INTEGER, genre STRING, "
-	//		"year INTEGER, path STRING);");
+	bool x = m_query->exec(
+		"CREATE TABLE IF NOT EXISTS music"
+		"(title STRING, album STRING, artist STRING, "
+		"albumartist STRING, track INTEGER, genre STRING, "
+		"year INTEGER, path STRING);");
 
-	//	if (!x) qDebug() << "Couldn't Create Music Table!";
+	if (!x) qDebug() << "Couldn't Create Music Table!";
 
-	//	x = m_query->exec("CREATE TABLE IF NOT EXISTS playlist(name STRING);");
+	x = m_query->exec("CREATE TABLE IF NOT EXISTS playlist(name STRING);");
 
-	//	if (!x) qDebug() << "Couldn't Create Playlist Table!";
+	if (!x) qDebug() << "Couldn't Create Playlist Table!";
 
-	//	x = m_query->exec(
-	//		"CREATE TABLE IF NOT EXISTS mpjoin(pid INTEGER, mid INTEGER, row
-	//" 		"INTEGER);");
+	x = m_query->exec(
+		"CREATE TABLE IF NOT EXISTS mpjoin(pid INTEGER, mid INTEGER, row"
+		"INTEGER);");
 
-	//	if (!x) qDebug() << "Couldn't Create Join Table!";
+	if (!x) qDebug() << "Couldn't Create Join Table!";
 }
 
 void DatabaseManager::createDatabase()

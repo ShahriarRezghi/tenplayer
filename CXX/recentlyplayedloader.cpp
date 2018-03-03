@@ -30,8 +30,8 @@ void RecentlyPlayedLoader::addPlayedItem(QStandardItem *I)
 {
 	QVariant id = I->data(IDRole);
 
-	for (int i = 0; i < rowCount(); ++i)
-		if (item(i)->data(IDRole) == id)
+	for (int i = 0; i < m_model->rowCount(); ++i)
+		if (m_model->item(i)->data(IDRole) == id)
 		{
 			m_playedIds.removeAt(i);
 			m_model->removeRow(i);
@@ -43,7 +43,7 @@ void RecentlyPlayedLoader::addPlayedItem(QStandardItem *I)
 
 	if (m_model->rowCount() > m_maxRowCount)
 	{
-		m_model->removeRow(rowCount() - 1);
+		m_model->removeRow(m_model->rowCount() - 1);
 		m_playedIds.removeLast();
 	}
 
@@ -54,16 +54,18 @@ void RecentlyPlayedLoader::load()
 {
 	for (int i = 0; i < m_playedIds.count(); ++i)
 	{
-		m_dbmanager->exec(Select({ROWID, STAR}), Where({ID}, {m_playedIds[i]}));
+		Query->prepare("SELECT rowid, * FROM music WHERE rowid=?");
+		Query->bindValue(0, m_playedIds[i]);
+		qDebug() << Query->exec();
 
-		if (!m_dbmanager->first())
+		if (!Query->first())
 		{
 			m_playedIds.removeAt(i);
 			--i;
 			continue;
 		}
 
-		m_dbmanager->first();
-		m_model->appendRow(recordToItem(m_dbmanager->record()));
+		Query->first();
+		m_model->appendRow(recordToItem(Query->record()));
 	}
 }

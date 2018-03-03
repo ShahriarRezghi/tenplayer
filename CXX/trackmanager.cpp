@@ -19,7 +19,12 @@ void TrackManager::savePlaylistTrackRows()
 		rows << m_model->item(i)->data(RowRole);
 	}
 
-	m_dbmanager->exec(JT, Update({ROW}, {rows}, true), Where({MUSICID}, {ids}));
+	Query->exec("BEGIN TRANSACTION");
+	Query->prepare("UPDATE mpjoin SET row=? WHERE mid=?;");
+	Query->bindValue(0, rows);
+	Query->bindValue(1, ids);
+	qDebug() << Query->execBatch();
+	qDebug() << Query->exec("COMMIT;");
 }
 
 void TrackManager::sortTracksByRow() { sortModel(RowRole); }

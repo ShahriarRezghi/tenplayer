@@ -25,7 +25,8 @@ SOURCES += main.cpp \
     CXX/recentlyplayedloader.cpp \
     CXX/pathmanager.cpp \
     CXX/statusmanager.cpp \
-    CXX/trackmanager.cpp
+    CXX/trackmanager.cpp \
+    CXX/mainmanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -57,4 +58,5 @@ HEADERS += \
     CXX/recentlyplayedloader.h \
     CXX/pathmanager.h \
     CXX/statusmanager.h \
-    CXX/trackmanager.h
+    CXX/trackmanager.h \
+    CXX/mainmanager.h

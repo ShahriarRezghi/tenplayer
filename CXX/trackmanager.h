@@ -14,9 +14,9 @@ public:
 	void sortTracksByRow();
 	void savePlaylistTrackRows();
 
-	// Loader interface
 public:
-	void load();
+	// Loader interface
+	void load() {}
 };
 
 #endif  // TRACKMANAGER_H

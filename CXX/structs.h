@@ -2,6 +2,7 @@
 #define STRUCTS_H
 
 #include <QObject>
+#include <QtSql>
 
 enum Roles
 {
@@ -25,6 +26,17 @@ enum Actions
 	AddToPlaylist = 3,
 	ShowDetails = 4,
 	Remove = 5
+};
+
+enum Loaders
+{
+	AlbumLdr,
+	ArtistLdr,
+	SongLdr,
+	QueueLdr,
+	RecentlyAddedLdr,
+	RecentlyPlayedLdr,
+	PlaylistLdr
 };
 
 #endif  // STRUCTS_H

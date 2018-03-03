@@ -73,4 +73,4 @@ QString Loader::getArtwork(const QString &album, const QString &albumArtist)
 	return QFile(A).exists() ? A : "";
 }
 
-QmlModel *Loader::getModel() const { return m_model; }
+QmlModel *Loader::model() const { return m_model; }
