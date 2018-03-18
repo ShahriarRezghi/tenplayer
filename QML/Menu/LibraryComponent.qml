@@ -30,7 +30,7 @@ ColumnLayout {
 				elide: Text.ElideMiddle
 				Layout.fillWidth: true
 				Layout.alignment: Qt.AlignVCenter
-				font.pointSize: ExtraControls.mediumFont
+				font.pointSize: consts.mediumFont
 			}
 
 			ImageButton {

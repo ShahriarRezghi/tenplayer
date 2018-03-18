@@ -7,7 +7,7 @@ import "../Track"
 StackView {
 	id: stack
 	initialItem: musicView
-	onCurrentItemChanged: applicationWindow.refresh()
+//	onCurrentItemChanged: applicationWindow.refresh() TODO uncomment
 
 	property int stackIndex
 

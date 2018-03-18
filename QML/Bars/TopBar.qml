@@ -29,6 +29,7 @@ ToolBar {
 
 		StackView {
 			id: stack
+			clip: true
 			initialItem: tabBar
 			Layout.fillWidth: true
 			Layout.fillHeight: true

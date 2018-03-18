@@ -40,14 +40,16 @@ Page {
 		mainStack.stackIndex = 0
 	}
 
-	header: TopBar {
+	TopBar {
 		id: appTopBar
 		z: 1
+		width: parent.width
 	}
 
 	MainStackView {
 		id: mainStack
 		anchors.fill: parent
+		anchors.topMargin: appTopBar.height
 		anchors.bottomMargin: appBottomBar.height
 	}
 

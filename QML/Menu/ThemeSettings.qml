@@ -9,14 +9,19 @@ ColumnLayout {
 	id: column
 	spacing: 0
 
+	ImageButton {
+		onClicked: popup.close()
+		source: "qrc:/Images/Close.png"
+	}
+
 	CheckBox {
 		text: "Dark Theme"
-		checked: ColorAlt.lightness(themeChanger.primary) < .5
+		checked: ColorAlt.lightness(theme.primary) < .5
 
 		onClicked: {
 			var prim = checked ? MaterialTheme.primaryDark:MaterialTheme.primary
-			themeChanger.foreground = checked ? "white":"black"
-			themeChanger.primary = prim
+			theme.foreground = checked ? "white":"black"
+			theme.primary = prim
 		}
 	}
 
@@ -46,9 +51,10 @@ ColumnLayout {
 			Layout.fillWidth: true
 			text: "Background Image"
 
-			checked: backgroundSource != "qrc:/Images/background.jpg"
-			onClicked: if (!checked)
-								  backgroundSource = "qrc:/Images/background.jpg"
+			// TODO uncomment
+//			checked: backgroundSource != "qrc:/Images/background.jpg"
+//			onClicked: if (!checked)
+//								  backgroundSource = "qrc:/Images/background.jpg"
 		}
 
 		Button {

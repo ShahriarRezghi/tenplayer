@@ -10,8 +10,8 @@ Popup {
 	modal: true
 	dim: false
 
-	Material.accent: themeChanger.primary == themeChanger.accent ?
-						 themeChanger.foreground:themeChanger.accent
+	Material.accent: theme.primary == theme.accent ?
+						 theme.foreground:theme.accent
 
 	x: (parent.width-width)/2
 	y: (parent.height-height)/2
@@ -20,19 +20,12 @@ Popup {
 		implicitWidth: row.implicitWidth
 		implicitHeight: row.implicitHeight
 
-		ImageButton {
-			onClicked: popup.close()
-			source: "qrc:/Images/Close.png"
-		}
-
 		RowLayout {
 			id: row
 			spacing: 15
 			anchors.fill: parent
 
-			ThemeSettings {
-
-			}
+			ThemeSettings {}
 
 			Rectangle {
 				width: 1
@@ -40,9 +33,7 @@ Popup {
 				color: Material.accent
 			}
 
-			ThemeSettings2 {
-
-			}
+			ThemeSettings2 { }
 		}
 	}
 }

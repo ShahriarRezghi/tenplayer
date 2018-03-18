@@ -1,7 +1,10 @@
 import QtQuick 2.10
-import Qt.labs.settings 1.0
+import Qt.labs.settings 1.0 as S
 
-Settings {
+S.Settings {
+	property real imageOpacity
+	property int minViewSize
+
 	property bool iconFromAccent
 	property bool colorFromArtwork
 	property bool backgroundFromArtwork

@@ -65,7 +65,6 @@ void RecentlyPlayedLoader::load()
 			continue;
 		}
 
-		Query->first();
 		m_model->appendRow(recordToItem(Query->record()));
 	}
 }

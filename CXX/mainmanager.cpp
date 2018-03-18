@@ -4,6 +4,7 @@ MainManager::MainManager(QObject *parent) : QObject(parent) { setupLoaders(); }
 
 void MainManager::setupLoaders()
 {
+	PathMgr = new PathManager(this);
 	TrackMgr = new TrackManager(this);
 	DatabaseMgr = new DatabaseManager(this);
 	Queue = new QueueLoader(this);

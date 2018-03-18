@@ -10,7 +10,7 @@ import "../Playlist"
 StackView {
 	id: stack
 	initialItem: currentView()
-	onCurrentItemChanged: applicationWindow.refresh()
+//	onCurrentItemChanged: applicationWindow.refresh() TODO uncomment
 
 	property int stackIndex
 	property int previousIndex

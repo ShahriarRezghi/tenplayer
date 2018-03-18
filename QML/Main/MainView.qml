@@ -8,7 +8,7 @@ import "../Menu"
 Page {
 	id: page
 
-//	contentItem: MainContents {	}
+	contentItem: MainContents {	}
 
 	MenuDialog {
 		id: mainMenu

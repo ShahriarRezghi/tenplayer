@@ -29,6 +29,7 @@ public:
 	QueueLoader *Queue;
 	StatusManager *Status;
 	TrackManager *TrackMgr;
+	PathManager *PathMgr;
 	QVector<Loader *> Loaders;
 	DatabaseManager *DatabaseMgr;
 

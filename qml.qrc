@@ -71,7 +71,7 @@
         <file>QML/Menu/SettingsDialog.qml</file>
         <file>QML/Menu/ThemeSettings.qml</file>
         <file>QML/Menu/ThemeSettings2.qml</file>
-        <file>QML/AppSettings.qml</file>
         <file>QML/Tools/ColorSelector.qml</file>
+        <file>QML/Settings.qml</file>
     </qresource>
 </RCC>

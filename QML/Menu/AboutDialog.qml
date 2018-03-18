@@ -31,7 +31,7 @@ My Email address is shahriar25.ss@gmail.com"
 			Label {
 				text: "About"
 				color: Material.accent
-				font.pointSize: ExtraControls.largeFont
+				font.pointSize: consts.largeFont
 				anchors.horizontalCenter: parent.horizontalCenter
 			}
 

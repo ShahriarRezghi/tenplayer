@@ -30,24 +30,8 @@ ColumnLayout {
 
 		Slider {
 			Layout.fillWidth: true
-			value: imageOpacity
-			onValueChanged: imageOpacity = value
-		}
-	}
-
-	RowLayout {
-		Layout.fillHeight: false
-
-		Label {
-			padding: 6
-			Layout.fillWidth: true
-			text: "Blur Opacity"
-		}
-
-		Slider {
-			Layout.fillWidth: true
-			value: blurOpacity
-			onPositionChanged: blurOpacity = value
+			value:appSettings.imageOpacity
+			onValueChanged: appSettings.imageOpacity = value
 		}
 	}
 
@@ -62,6 +46,8 @@ ColumnLayout {
 
 		Slider {
 			Layout.fillWidth: true
+			value: appSettings.minViewSize
+			onValueChanged: appSettings.minViewSize = value
 		}
 	}
 
@@ -71,8 +57,8 @@ ColumnLayout {
 		Layout.fillWidth: true
 		Layout.bottomMargin: 12
 
-		currentIndex: model.indexOf(appSettings.background)
-		onCurrentColorChanged: appSettings.background = currentColor
+		currentIndex: model.indexOf(theme.background)
+		onCurrentColorChanged: theme.background = currentColor
 	}
 
 	ColorSelector {
@@ -80,7 +66,7 @@ ColumnLayout {
 		text: "Accent Color"
 		Layout.fillWidth: true
 
-		currentIndex: model.indexOf(appSettings.accent)
-		onCurrentColorChanged: appSettings.accent = currentColor
+		currentIndex: model.indexOf(theme.accent)
+		onCurrentColorChanged: theme.accent = currentColor
 	}
 }

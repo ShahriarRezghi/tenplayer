@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
 	RC->setContextProperty("MusicPlaylist", (M.Queue->playlist()));
 	RC->setContextProperty("ActiveInfo", M.Active);
 	RC->setContextProperty("StatusManager", M.Status);
+	RC->setContextProperty("PathManager", M.PathMgr);
 
 	RC->setContextProperty("MainManager", &M);
 
