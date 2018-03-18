@@ -1,18 +1,18 @@
 import QtQuick 2.10
 
-import "../Track"
-
-TrackView {
+GridView {
 	id: view
 
-	cellWidth: width/2
-	cellHeight: 20 + consts.textSize*3
+	property int type
 
-	model: PlaylistTrackModel {
+	cellWidth: width/2
+	cellHeight: 20 + Math.max(consts.textSize*2, 48)
+
+	model: TrackViewModel {
 		onMenuRequested: {
 			menu.x = x-view.contentX
 			menu.y = y-view.contentY
-			menu.currentIndex = index
+			menu.currentInd = index
 			menu.open()
 		}
 	}

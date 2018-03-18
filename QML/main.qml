@@ -26,6 +26,15 @@ ApplicationWindow {
 		id: theme
 	}
 
+	AppSettings {
+		id: appSettings
+
+		property alias accent: theme.accent
+		property alias primary: theme.primary
+		property alias background: theme.background
+		property alias foreground: theme.foreground
+	}
+
 	MainView {
 		id: mainView
 		anchors.fill: parent

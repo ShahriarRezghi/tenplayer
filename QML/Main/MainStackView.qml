@@ -1,6 +1,9 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 
+import "../Playlist"
+import "../Track"
+
 StackView {
 	id: stack
 	initialItem: musicView
@@ -23,5 +26,15 @@ StackView {
 	Component {
 		id: musicView
 		MusicView { }
+	}
+
+	Component {
+		id: trackView
+		TrackView { }
+	}
+
+	Component {
+		id: playlistTrackView
+		PLaylistTrackView { }
 	}
 }

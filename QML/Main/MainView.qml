@@ -8,9 +8,21 @@ import "../Menu"
 Page {
 	id: page
 
-	contentItem: MainContents {	}
+//	contentItem: MainContents {	}
 
 	MenuDialog {
 		id: mainMenu
+	}
+
+	LibraryDialog {
+		id: libraryDialog
+	}
+
+	SettingsDialog {
+		id: settingsDialog
+	}
+
+	AboutDialog {
+		id: aboutDialog
 	}
 }

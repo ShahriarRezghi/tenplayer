@@ -2,8 +2,7 @@
 
 DatabaseManager::DatabaseManager(QObject *parent) : QObject(parent)
 {
-	m_databasePath =
-		"/home/shahriar/.local/share/TenPlayer/Database";  // TODO set properly
+	m_databasePath = "Database";  // TODO set properly
 
 	createDatabase();
 	createTables();

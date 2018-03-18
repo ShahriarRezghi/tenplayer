@@ -63,5 +63,15 @@
         <file>QML/Theme.qml</file>
         <file>QML/Menu/MenuDialog.qml</file>
         <file>QML/Menu/MenuView.qml</file>
+        <file>QML/Track/TrackView.qml</file>
+        <file>QML/Track/TrackViewModel.qml</file>
+        <file>QML/Menu/AboutDialog.qml</file>
+        <file>QML/Menu/LibraryComponent.qml</file>
+        <file>QML/Menu/LibraryDialog.qml</file>
+        <file>QML/Menu/SettingsDialog.qml</file>
+        <file>QML/Menu/ThemeSettings.qml</file>
+        <file>QML/Menu/ThemeSettings2.qml</file>
+        <file>QML/AppSettings.qml</file>
+        <file>QML/Tools/ColorSelector.qml</file>
     </qresource>
 </RCC>
