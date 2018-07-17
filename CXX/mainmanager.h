@@ -17,12 +17,26 @@
 
 #include <QObject>
 #include <QVector>
+#include <QtConcurrent/QtConcurrent>
 
 class MainManager : public QObject
 {
 	Q_OBJECT
 
 	void setupLoaders();
+
+	void clearAll();
+	void eraseAll();
+
+	void load();
+	void refresh();
+	void loadDir(const QString &dir);
+	void loadFiles(const QStringList &files);
+
+	static void loadStatic(MainManager *manager);
+	static void refreshStatic(MainManager *manager);
+	static void loadDirStatic(MainManager *manager, const QString &path);
+	static void loadFilesStatic(MainManager *manager, const QStringList &list);
 
 public:
 	ActiveInfo *Active;
@@ -34,6 +48,12 @@ public:
 	DatabaseManager *DatabaseMgr;
 
 	explicit MainManager(QObject *parent = nullptr);
+
+public slots:
+	void safeLoad();
+	void safeRefresh();
+	void safeLoadDir(const QString &path);
+	void safeLoadFiles(const QStringList &list);
 };
 
 #endif  // MAINMANAGER_H

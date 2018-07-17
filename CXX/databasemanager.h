@@ -5,6 +5,9 @@
 #include <QObject>
 #include <QtSql>
 
+#include "loader.h"
+#include "tagdata.h"
+
 class DatabaseManager : public QObject
 {
 	Q_OBJECT
@@ -20,7 +23,10 @@ public:
 	explicit DatabaseManager(QObject *parent = nullptr);
 	~DatabaseManager();
 
+	void import(const QSize &artworkSize, const QStringList &files);
+
 	QSqlQuery *query() const;
+	void clearTables();
 };
 
 #endif  // DATABASEMANAGER_H

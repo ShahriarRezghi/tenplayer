@@ -7,6 +7,7 @@
 #include <QObject>
 #include <QRegExp>
 #include <QStringList>
+#include <QUrl>
 
 class PathManager : public QObject
 {
@@ -21,6 +22,7 @@ class PathManager : public QObject
 	QStringList m_sft;
 
 	void load();
+	QString urlToPath(const QString &url);
 
 public:
 	explicit PathManager(QObject *parent = nullptr);
@@ -39,7 +41,7 @@ public slots:
 	void setDirs(const QStringList &dirs);
 	void setFiles(const QStringList &files);
 
-	void addDir(const QString &dir);
+	void addDir(QString dir);
 	QStringList addFiles(QStringList files);
 
 	void removeDir(const int &index);

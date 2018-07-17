@@ -8,6 +8,7 @@ void MainManager::setupLoaders()
 	TrackMgr = new TrackManager(this);
 	DatabaseMgr = new DatabaseManager(this);
 	Queue = new QueueLoader(this);
+	Status = new StatusManager(this);
 
 	Loaders << new AlbumLoader(this) << new ArtistLoader(this)
 			<< new SongLoader(this) << Queue << new RecentlyAddedLoader(this)
@@ -18,4 +19,38 @@ void MainManager::setupLoaders()
 	Loader::Query = DatabaseMgr->query();
 	Loader::RecentlyPlayed =
 		static_cast<RecentlyPlayedLoader *>(Loaders[RecentlyPlayedLdr]);
+}
+
+void MainManager::loadStatic(MainManager *manager) { manager->load(); }
+
+void MainManager::refreshStatic(MainManager *manager) { manager->refresh(); }
+
+void MainManager::loadDirStatic(MainManager *manager, const QString &path)
+{
+	manager->loadDir(path);
+}
+
+void MainManager::loadFilesStatic(MainManager *manager, const QStringList &list)
+{
+	manager->loadFiles(list);
+}
+
+void MainManager::safeLoad()
+{
+	QtConcurrent::run(&MainManager::loadStatic, this);
+}
+
+void MainManager::safeLoadDir(const QString &path)
+{
+	QtConcurrent::run(&MainManager::loadDirStatic, this, path);
+}
+
+void MainManager::safeLoadFiles(const QStringList &list)
+{
+	QtConcurrent::run(&MainManager::loadFilesStatic, this, list);
+}
+
+void MainManager::safeRefresh()
+{
+	QtConcurrent::run(&MainManager::refreshStatic, this);
 }

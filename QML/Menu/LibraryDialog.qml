@@ -23,8 +23,7 @@ Popup {
 			model: PathManager.dirs
 
 			onAddClicked: {
-				fileDialog.selectBackground = false
-				fileDialog.selectDir = true
+				fileDialog.selectFolder = true
 				fileDialog.selectMultiple = false
 				fileDialog.open()
 			}
@@ -35,8 +34,7 @@ Popup {
 			model: PathManager.files
 
 			onAddClicked: {
-				fileDialog.selectBackground = false
-				fileDialog.selectDir = false
+				fileDialog.selectFolder = false
 				fileDialog.selectMultiple = true
 				fileDialog.open()
 			}
@@ -52,12 +50,19 @@ Popup {
 				text: "Reload"
 				Layout.fillWidth: true
 				Material.background: Material.primary
+
+				onClicked: {
+					popup.close()
+					MainManager.safeLoad()
+					loadDialog.open()
+				}
 			}
 
 			Button {
 				text: "Confirm"
 				Layout.fillWidth: true
 				Material.background: Material.primary
+				onClicked: popup.close()
 			}
 		}
 	}

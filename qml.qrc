@@ -73,5 +73,6 @@
         <file>QML/Menu/ThemeSettings2.qml</file>
         <file>QML/Tools/ColorSelector.qml</file>
         <file>QML/Settings.qml</file>
+        <file>QML/Menu/LoadDialog.qml</file>
     </qresource>
 </RCC>

@@ -26,6 +26,11 @@ void PathManager::load()
 	S.endGroup();
 }
 
+QString PathManager::urlToPath(const QString &url)
+{
+	return QUrl(url).toLocalFile();
+}
+
 void PathManager::filterFiles(QStringList &files)
 {
 	QStringList list;
@@ -97,6 +102,7 @@ QStringList PathManager::getAllFiles()
 
 QStringList PathManager::addFiles(QStringList files)
 {
+	for (QString &file : files) file = urlToPath(file);
 	filterFiles(files);
 
 	for (const QString &S : m_files)
@@ -113,8 +119,9 @@ QStringList PathManager::addFiles(QStringList files)
 	return files;
 }
 
-void PathManager::addDir(const QString &dir)
+void PathManager::addDir(QString dir)
 {
+	dir = urlToPath(dir);
 	if (m_dirs.indexOf(dir) != -1) return;
 
 	m_dirs << dir;

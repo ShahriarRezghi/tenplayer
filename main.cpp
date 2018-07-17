@@ -42,5 +42,7 @@ int main(int argc, char *argv[])
 	engine.load(QUrl(QStringLiteral("qrc:/QML/main.qml")));
 	if (engine.rootObjects().isEmpty()) return -1;
 
+	M.safeRefresh();
+
 	return app.exec();
 }

@@ -1,5 +1,6 @@
 QT += quick sql quickcontrols2 multimedia
 CONFIG += c++11
+LIBS += -ltag
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -26,7 +27,9 @@ SOURCES += main.cpp \
     CXX/pathmanager.cpp \
     CXX/statusmanager.cpp \
     CXX/trackmanager.cpp \
-    CXX/mainmanager.cpp
+    CXX/mainmanager.cpp \
+    CXX/tagdata.cpp \
+    CXX/library.cpp
 
 RESOURCES += qml.qrc
 
@@ -59,4 +62,5 @@ HEADERS += \
     CXX/pathmanager.h \
     CXX/statusmanager.h \
     CXX/trackmanager.h \
-    CXX/mainmanager.h
+    CXX/mainmanager.h \
+    CXX/tagdata.h
