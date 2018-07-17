@@ -12,6 +12,7 @@ ApplicationWindow {
 	height: 480
 	title: qsTr("Ten Player")
 
+	// TODO find out where this function is used in the prev version
 	function refresh() {
 		if (StatusManager.needsRefresh)
 		{

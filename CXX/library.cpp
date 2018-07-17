@@ -1,5 +1,7 @@
 #include "mainmanager.h"
 
+#include <QTime>  // TODO remove
+
 void MainManager::clearAll()
 {
 	for (auto loader : Loaders) loader->clear();
@@ -13,7 +15,7 @@ void MainManager::eraseAll()
 			 .remove(Loader::ArtworkPath.length() - 1, 1))
 		.removeRecursively();
 
-	QDir().mkdir("Artworks");
+	QDir().mkdir(Loader::ArtworkPath);
 	DatabaseMgr->clearTables();
 }
 
@@ -37,6 +39,9 @@ void MainManager::load()
 
 void MainManager::refresh()
 {
+	QTime T;
+	T.start();
+
 	Status->setRefreshing(true);
 
 	Status->setStatus("Refreshing");
@@ -46,6 +51,8 @@ void MainManager::refresh()
 
 	for (auto loader : Loaders) loader->load();
 	Status->setRefreshing(false);
+
+	qDebug() << T.elapsed();
 }
 
 void MainManager::loadDir(const QString &dir)

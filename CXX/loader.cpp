@@ -64,6 +64,19 @@ void Loader::clear()
 	if (m_model) m_model->clear();
 }
 
+void Loader::searchClicked(const int &index)
+{
+	clicked(m_searchModel->item(index)->data(Qt::UserRole).toInt());
+}
+
+void Loader::searchActionTriggered(const int &type, const int &index,
+								   const QVariant &extra)
+{
+	actionTriggered(
+		type, m_searchModel->item(index)->data(Qt::UserRole).toInt(), extra);
+	m_searchModel->removeRow(index);
+}
+
 QString Loader::getArtwork(const QString &album, const QString &albumArtist)
 {
 	QString A = ArtworkPath + (album + " " + albumArtist)

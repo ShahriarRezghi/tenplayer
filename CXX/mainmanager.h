@@ -54,6 +54,17 @@ public slots:
 	void safeRefresh();
 	void safeLoadDir(const QString &path);
 	void safeLoadFiles(const QStringList &list);
+
+	void loaderClicked(const int &loader, const int &index);
+	void loaderSearchClicked(const int &loader, const int &index);
+	void trackActionTriggered(const int &type, const int &index,
+							  const QVariant &extra = QVariant());
+	void loaderActionTriggered(const int &loader, const int &type,
+							   const int &index,
+							   const QVariant &extra = QVariant());
+	void loaderSearchActionTriggered(const int &loader, const int &type,
+									 const int &index,
+									 const QVariant &extra = QVariant());
 };
 
 #endif  // MAINMANAGER_H

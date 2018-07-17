@@ -16,8 +16,8 @@ VisualDataModel {
 		onMenuRequested: vdmodel.menuRequested(xx+x, yy+y, index)
 
 		onClicked: {
-			MainManager.loaderClicked(playlistLoader, index)
-			openTrackView(artworkRole, "Title: " + titleRole)
+			MainManager.loaderClicked(consts.playlistLoader, index)
+			openTrackView(artworkRole, "Title: " + titleRole) // TODO right?
 		}
 	}
 }

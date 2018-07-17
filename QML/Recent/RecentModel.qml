@@ -14,6 +14,7 @@ VisualDataModel {
 		image: artworkRole ? "file://" + artworkRole:"qrc:/Images/Note.png"
 
 		onMenuRequested: vdmodel.menuRequested(xx+x, yy+y, index)
-		onClicked: MainManager.loaderClicked(modelType ? raLoader:rpLoader, index)
+		onClicked: MainManager.loaderClicked(
+					   modelType ? consts.recentlyAddedLoader:consts.recentlyPlayedLoader, index)
 	}
 }

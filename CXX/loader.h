@@ -21,6 +21,7 @@ class Loader : public QObject
 
 protected:
 	QmlModel *m_model;
+	QmlModel *m_searchModel;
 
 	void sortModel(int role, bool asc = true);
 	static QStandardItem *recordToItem(const QSqlRecord &record);
@@ -50,6 +51,15 @@ public:
 
 	virtual void load() = 0;
 	virtual void clear();
+	virtual void clicked(const int &index) = 0;
+
+	virtual void actionTriggered(const int &type, const int &index,
+								 const QVariant &extra = QVariant()) = 0;
+
+	virtual void searchActionTriggered(const int &type, const int &index,
+									   const QVariant &extra);
+
+	void searchClicked(const int &index);
 
 	QmlModel *model() const;
 };

@@ -54,7 +54,6 @@ Popup {
 				onClicked: {
 					popup.close()
 					MainManager.safeLoad()
-					loadDialog.open()
 				}
 			}
 

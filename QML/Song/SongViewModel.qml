@@ -16,6 +16,6 @@ VisualDataModel {
 
 		onMenuRequested: vdmodel.menuRequested(xx+x, yy+y, index)
 
-		onClicked: MainManager.loaderClicked(songLoader, index)
+		onClicked: MainManager.loaderClicked(consts.songLoader, index)
 	}
 }

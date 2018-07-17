@@ -9,6 +9,7 @@ StackView {
 	initialItem: musicView
 //	onCurrentItemChanged: applicationWindow.refresh() TODO uncomment
 
+	property int trackType // TODO find out what this is used for
 	property int stackIndex
 
 	onStackIndexChanged: {

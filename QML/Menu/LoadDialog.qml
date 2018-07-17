@@ -4,11 +4,16 @@ import QtQuick.Layouts 1.3
 
 Popup {
 	id: popup
+	modal: true
+	dim: false
+	padding: 20
+	width: parent.width*.6
+	visible: StatusManager.loading
 
 	x: (parent.width-width) / 2
 	y: (parent.height-height) / 2
 
-	width: parent.width*.6
+	closePolicy: Popup.NoAutoClose
 
 	contentItem: ColumnLayout {
 		Label {

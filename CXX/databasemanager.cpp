@@ -91,7 +91,9 @@ void DatabaseManager::import(const QSize &artworkSize, const QStringList &files)
 				img = img.scaled(artworkSize, Qt::IgnoreAspectRatio,
 								 Qt::SmoothTransformation);
 
-				if (img.save(coverPath, "PNG")) artworks += artworkName;
+				bool x = img.save(coverPath, "PNG");
+				qDebug() << coverPath;
+				if (x) artworks += artworkName;
 			}
 		}
 

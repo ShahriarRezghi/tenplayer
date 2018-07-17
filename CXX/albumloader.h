@@ -12,9 +12,16 @@ class AlbumLoader : public Loader
 public:
 	explicit AlbumLoader(QObject *parent = nullptr);
 
-	// Loader interface
 public:
+	// Loader interface
 	void load();
+
+	virtual void clicked(const int &index) {}
+
+	virtual void actionTriggered(const int &type, const int &index,
+								 const QVariant &extra = QVariant())
+	{
+	}
 };
 
 #endif  // ALBUMLOADER_H
