@@ -8,7 +8,6 @@ import "../Tools"
 Popup {
 	id: popup
 	modal: true
-	dim: false
 
 	Material.accent: theme.primary == theme.accent ?
 						 theme.foreground:theme.accent

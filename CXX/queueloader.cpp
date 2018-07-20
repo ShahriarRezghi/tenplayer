@@ -12,6 +12,11 @@ QueueLoader::QueueLoader(QObject *parent) : Loader(parent)
 	m_model->addRoles({Add(AlbumRole), Add(AlbumartistRole), Add(GenreRole),
 					   Add(YearRole), Add(IDRole), Add(TrackRole),
 					   Add(TitleRole), Add(PathRole), Add(ArtworkRole)});
+
+	connect(m_playlist, &QMediaPlaylist::currentIndexChanged, this,
+			&QueueLoader::changeActiveRow);
+	connect(m_player, &QMediaPlayer::currentMediaChanged, this,
+			&QueueLoader::songPlayed);
 }
 
 void QueueLoader::smartSet(const int &row)

@@ -1,4 +1,5 @@
 #include "albumloader.h"
+#include "trackmanager.h"
 
 AlbumLoader::AlbumLoader(QObject *parent) : Loader(parent)
 {
@@ -40,6 +41,11 @@ void AlbumLoader::load()
 	}
 
 	sortModel(AlbumartistRole);
+}
+
+void AlbumLoader::clicked(const int &index)
+{
+	Track->showItems(getSubItems(m_model->item(index)));
 }
 
 QList<QStandardItem *> AlbumLoader::getSubItems(QStandardItem *item)

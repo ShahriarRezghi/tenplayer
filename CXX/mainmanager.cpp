@@ -4,6 +4,7 @@ MainManager::MainManager(QObject *parent) : QObject(parent) { setupLoaders(); }
 
 void MainManager::setupLoaders()
 {
+	Active = new ActiveInfo(this);
 	PathMgr = new PathManager(this);
 	TrackMgr = new TrackManager(this);
 	DatabaseMgr = new DatabaseManager(this);
@@ -14,8 +15,9 @@ void MainManager::setupLoaders()
 			<< new SongLoader(this) << Queue << new RecentlyAddedLoader(this)
 			<< new RecentlyPlayedLoader(this) << new PlaylistLoader(this);
 
-	Loader::Status = Status;
 	Loader::Queue = Queue;
+	Loader::Status = Status;
+	Loader::Active = Active;
 	Loader::Track = TrackMgr;
 	Loader::Query = DatabaseMgr->query();
 	Loader::RecentlyPlayed =
@@ -65,6 +67,8 @@ void MainManager::loaderClicked(const int &loader, const int &index)
 {
 	Loaders[loader]->clicked(index);
 }
+
+void MainManager::trackClicked(const int &index) { TrackMgr->clicked(index); }
 
 void MainManager::loaderSearchClicked(const int &loader, const int &index)
 {

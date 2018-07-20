@@ -12,7 +12,7 @@ StackView {
 	initialItem: currentView()
 //	onCurrentItemChanged: applicationWindow.refresh() TODO uncomment
 
-	property int stackIndex
+	property int stackIndex: appTopBar.currentTab
 	property int previousIndex
 
 	function currentView() {

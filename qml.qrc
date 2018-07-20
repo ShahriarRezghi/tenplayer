@@ -74,5 +74,8 @@
         <file>QML/Tools/ColorSelector.qml</file>
         <file>QML/Settings.qml</file>
         <file>QML/Menu/LoadDialog.qml</file>
+        <file>QML/Search/SearchView.qml</file>
+        <file>QML/Search/SubSearchModel.qml</file>
+        <file>QML/Search/SubSearchView.qml</file>
     </qresource>
 </RCC>

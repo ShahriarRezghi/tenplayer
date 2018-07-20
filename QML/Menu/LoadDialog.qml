@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.3
 Popup {
 	id: popup
 	modal: true
-	dim: false
 	padding: 20
 	width: parent.width*.6
 	visible: StatusManager.loading

@@ -8,8 +8,8 @@ import "Main"
 ApplicationWindow {
 	id: applicationWindow
 	visible: true
-	width: 640
-	height: 480
+	width: 600*16/9
+	height: 600
 	title: qsTr("Ten Player")
 
 	// TODO find out where this function is used in the prev version

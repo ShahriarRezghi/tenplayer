@@ -5,7 +5,6 @@ import QtQuick.Controls.Material 2.3
 Popup {
 	id: popup
 	modal: true
-	dim: false
 	padding: 20
 
 	x: (parent.width-width)/2

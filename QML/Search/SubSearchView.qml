@@ -1,15 +1,17 @@
 import QtQuick 2.10
-import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
-import STools.Extras 1.0
+import ExtraControls 1.0
+import QtQuick.Layouts 1.3
+
+import "../ViewMenu"
 
 Page {
 	id: page
 	Layout.fillWidth: true
 	Layout.fillHeight: true
 
-	title: "Recently Played"
+	property int loader
 
 	background: Item { }
 
@@ -18,7 +20,7 @@ Page {
 		text: title
 		elide: Text.ElideRight
 		horizontalAlignment: Text.AlignHCenter
-		font.pointSize: Extras.mediumFont
+		font.pointSize: ExtraControls.mediumFont
 
 		background: Rectangle {
 			color: Material.primary
@@ -28,10 +30,10 @@ Page {
 	ListView {
 		id: view
 		anchors.fill: parent
-		emptyText: "Nothing Played Recently!"
+		emptyText: "Nothing Found!"
 
-		model: RecentModel {
-			modelType: false
+		model: SubSearchModel {
+			loader: page.loader
 
 			onMenuRequested: {
 				menu.x = x-view.contentX
@@ -39,6 +41,11 @@ Page {
 				menu.currentInd = index
 				menu.open()
 			}
+		}
+
+		ViewMenu {
+			id: menu
+			type: page.loader
 		}
 	}
 }

@@ -7,7 +7,7 @@ SectionGridView {
 	sectionTextIndex: 0
 
 	cellWidth: width/2
-	cellHeight: 20 + ExtraControls.textSize*3
+	cellHeight: 20 + consts.textSize*3
 
 	model: SongViewModel {
 		onMenuRequested: {

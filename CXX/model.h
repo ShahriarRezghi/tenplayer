@@ -2,6 +2,7 @@
 #define MODEL_H
 
 #include <QHash>
+#include <QDebug>
 #include <QStandardItemModel>
 #include <initializer_list>
 #define Add(N) std::make_pair(N, QmlModel::fixRoleName(#N).toUtf8())

@@ -1,4 +1,5 @@
 #include "artistloader.h"
+#include "trackmanager.h"
 
 ArtistLoader::ArtistLoader(QObject *parent) : Loader(parent)
 {
@@ -36,6 +37,11 @@ void ArtistLoader::load()
 	}
 
 	sortModel(ArtistRole);
+}
+
+void ArtistLoader::clicked(const int &index)
+{
+	Track->showItems(getSubItems(m_model->item(index)));
 }
 
 QList<QStandardItem *> ArtistLoader::getSubItems(QStandardItem *item)

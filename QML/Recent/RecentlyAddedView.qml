@@ -18,7 +18,7 @@ Page {
 		text: title
 		elide: Text.ElideRight
 		horizontalAlignment: Text.AlignHCenter
-		font.pointSize: ExtraControls.mediumFont
+		font.pointSize: Extras.mediumFont
 
 		background: Rectangle {
 			color: Material.primary

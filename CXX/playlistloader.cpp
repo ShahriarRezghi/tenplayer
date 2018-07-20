@@ -1,4 +1,5 @@
 #include "playlistloader.h"
+#include "trackmanager.h"
 
 PlaylistLoader::PlaylistLoader(QObject *parent) : Loader(parent)
 {
@@ -21,6 +22,11 @@ void PlaylistLoader::load()
 	}
 
 	sortModel(TitleRole);
+}
+
+void PlaylistLoader::clicked(const int &index)
+{
+	Track->showItems(getSubItems(m_model->item(index)));
 }
 
 void PlaylistLoader::addPlaylist(const QString &name)

@@ -38,4 +38,10 @@ ToolBar {
 			PropertyChanges { target: control; y: y }
 		}
 	]
+
+	 contentItem: BottomBarContents {
+		title: ActiveInfo.titleInfo
+		artist: ActiveInfo.artistInfo
+		artwork: ActiveInfo.artworkInfo ? "file://" + ActiveInfo.artworkInfo:""
+	 }
 }

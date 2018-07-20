@@ -1,6 +1,14 @@
 #include "trackmanager.h"
+#include "queueloader.h"
 
-TrackManager::TrackManager(QObject *parent) : Loader(parent) {}
+TrackManager::TrackManager(QObject *parent) : Loader(parent)
+{
+	m_model = new QmlModel(this);
+	m_model->addRoles({Add(AlbumRole), Add(ArtistRole), Add(AlbumartistRole),
+					   Add(GenreRole), Add(YearRole), Add(IDRole),
+					   Add(TrackRole), Add(TitleRole), Add(PathRole),
+					   Add(ArtworkRole)});
+}
 
 void TrackManager::showItems(const QList<QStandardItem *> &items)
 {
@@ -25,6 +33,11 @@ void TrackManager::savePlaylistTrackRows()
 	Query->bindValue(1, ids);
 	qDebug() << Query->execBatch();
 	qDebug() << Query->exec("COMMIT;");
+}
+
+void TrackManager::clicked(const int &index)
+{
+	Queue->playRootItem(m_model->invisibleRootItem(), index);
 }
 
 void TrackManager::sortTracksByRow() { sortModel(RowRole); }

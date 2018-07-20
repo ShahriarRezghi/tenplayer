@@ -8,7 +8,6 @@ import "../Tools"
 Popup {
 	id: popup
 	modal: true
-	dim: false
 	padding: 20
 
 	x: (parent.width-width)/2

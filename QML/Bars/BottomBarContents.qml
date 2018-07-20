@@ -10,12 +10,12 @@ Item {
 	property string title
 	property string artist
 
-	Slider {
-		id: slider
-		z: 1
-		width: parent.width
-		anchors.top: parent.top
-	}
+//	Slider {
+//		id: slider
+//		z: 1
+//		width: parent.width
+//		anchors.top: parent.top
+//	}
 
 	RowLayout {
 		id: rowLayout

@@ -1,7 +1,5 @@
 #include "mainmanager.h"
 
-#include <QTime>  // TODO remove
-
 void MainManager::clearAll()
 {
 	for (auto loader : Loaders) loader->clear();
@@ -34,14 +32,12 @@ void MainManager::load()
 
 	DatabaseMgr->import(QSize(500, 500), files);  // TODO size hardcoded
 	Status->setLoading(false);
+
 	refresh();
 }
 
 void MainManager::refresh()
 {
-	QTime T;
-	T.start();
-
 	Status->setRefreshing(true);
 
 	Status->setStatus("Refreshing");
@@ -51,8 +47,6 @@ void MainManager::refresh()
 
 	for (auto loader : Loaders) loader->load();
 	Status->setRefreshing(false);
-
-	qDebug() << T.elapsed();
 }
 
 void MainManager::loadDir(const QString &dir)
