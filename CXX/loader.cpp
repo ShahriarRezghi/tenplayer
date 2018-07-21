@@ -13,9 +13,40 @@ RecentlyPlayedLoader *Loader::RecentlyPlayed = nullptr;
 
 Loader::Loader(QObject *parent) : QObject(parent) { m_model = nullptr; }
 
+QmlModel *Loader::searchModel() const { return m_searchModel; }
+
+void Loader::search(const QString &text)
+{
+	m_searchModel->clear();
+
+	if (text.isEmpty()) return;
+
+	QModelIndexList found =
+		m_model->match(m_model->index(0, 0), m_searchRole,
+					   QVariant::fromValue(text), -1, Qt::MatchContains);
+
+	for (const QModelIndex &index : found)
+	{
+		QStandardItem *I = m_model->itemFromIndex(index)->clone();
+		I->setData(m_model->itemFromIndex(index)->row(), Qt::UserRole);
+		m_searchModel->appendRow(I);
+	}
+}
+
+void Loader::createSearchModel(int searchRole)
+{
+	m_searchRole = searchRole;
+	m_searchModel = new QmlModel(this);
+
+	m_searchModel->addRoles({Add(AlbumRole), Add(ArtistRole),
+							 Add(AlbumartistRole), Add(GenreRole),
+							 Add(YearRole), Add(IDRole), Add(TrackRole),
+							 Add(TitleRole), Add(PathRole), Add(ArtworkRole)});
+}
+
 void Loader::sortModel(int role, bool asc)
 {
-    if (m_model)
+	if (m_model)
 	{
 		m_model->setSortRole(role);
 		m_model->sort(0, asc ? Qt::AscendingOrder : Qt::DescendingOrder);

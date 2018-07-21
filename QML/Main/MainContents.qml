@@ -2,6 +2,7 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 
 import "../Bars"
+import "../Queue"
 
 Page {
 	id: page
@@ -55,7 +56,22 @@ Page {
 
 	BottomBar {
 		id: appBottomBar
-		z: 1
+		z: 2
 		width: parent.width
+	}
+
+	Item {
+		z: 1
+		clip: true
+		width: parent.width
+		anchors.bottom: parent.bottom
+		anchors.top: appBottomBar.bottom
+
+		ActiveView {
+			id: activeView
+			anchors.centerIn: parent
+			width: page.width
+			height: page.height-appBottomBar.height
+		}
 	}
 }

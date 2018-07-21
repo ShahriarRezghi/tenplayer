@@ -3,9 +3,9 @@ import "../Tools"
 
 VisualDataModel {
 	id: vdmodel
-	model: loader == albumLoader ? AlbumSearchModel:
-			(loader == artistLoader ? ArtistSearchModel:
-				(loader == songLoader ? SongSearchModel:null))
+	model: loader == consts.albumLoader ? AlbumSearchModel:
+			(loader == consts.artistLoader ? ArtistSearchModel:
+				(loader == consts.songLoader ? SongSearchModel:null))
 
 	property int loader
 
@@ -16,9 +16,9 @@ VisualDataModel {
 		image: artworkRole ? "file://" + artworkRole:"qrc:/Images/Note.png"
 
 		model: {
-			loader == albumLoader ? [albumRole]:
-				(loader == artistLoader ? [artistRole]:
-					(loader == songLoader ? [titleRole]:null))
+			loader == consts.albumLoader ? [albumRole]:
+				(loader == consts.artistLoader ? [artistRole]:
+					(loader == consts.songLoader ? [titleRole]:null))
 		}
 
 		onMenuRequested: vdmodel.menuRequested(xx+x, yy+y, index)

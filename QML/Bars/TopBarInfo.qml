@@ -17,8 +17,8 @@ RowLayout {
 		Image {
 			source: control.infoImage
 			anchors.fill: parent
-			sourceSize.width: width
-			sourceSize.height: height
+//			sourceSize.width: width
+//			sourceSize.height: height
 			visible: status == Image.Ready
 		}
 	}

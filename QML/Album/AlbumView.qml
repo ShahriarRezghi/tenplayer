@@ -13,7 +13,7 @@ SectionGridView {
 		return W/Math.max(Math.floor(W*7/DW), 5)
 	}
 
-	cellHeight: cellWidth+6+consts.textSize*2
+	cellHeight: (cellWidth - 24) + 6 + consts.textSize * 2 + 32
 
 	model: AlbumViewModel {
 		onMenuRequested: {

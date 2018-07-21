@@ -66,8 +66,8 @@ GridLayout {
 					width: delegateWidth
 					colorized: true
 					color: Material.foreground
-					sourceSize.width: width
-					sourceSize.height: height
+//					sourceSize.width: width
+//					sourceSize.height: height
 					anchors.horizontalCenter: parent.horizontalCenter
 				}
 

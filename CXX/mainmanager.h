@@ -66,6 +66,8 @@ public slots:
 	void loaderSearchActionTriggered(const int &loader, const int &type,
 									 const int &index,
 									 const QVariant &extra = QVariant());
+
+	void search(const QString &text);
 };
 
 #endif  // MAINMANAGER_H

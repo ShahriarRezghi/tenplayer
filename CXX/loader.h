@@ -19,10 +19,13 @@ class Loader : public QObject
 {
 	Q_OBJECT
 
+	int m_searchRole;
+
 protected:
 	QmlModel *m_model;
 	QmlModel *m_searchModel;
 
+	void createSearchModel(int searchRole);
 	void sortModel(int role, bool asc = true);
 	static QStandardItem *recordToItem(const QSqlRecord &record);
 	QString getArtwork(const QString &album, const QString &albumArtist);
@@ -49,6 +52,8 @@ public:
 public:
 	explicit Loader(QObject *parent = nullptr);
 
+	virtual void search(const QString &text);
+
 	virtual void load() = 0;
 	virtual void clear();
 	virtual void clicked(const int &index) = 0;
@@ -62,6 +67,7 @@ public:
 	void searchClicked(const int &index);
 
 	QmlModel *model() const;
+	QmlModel *searchModel() const;
 };
 
 #endif  // LOADER_H

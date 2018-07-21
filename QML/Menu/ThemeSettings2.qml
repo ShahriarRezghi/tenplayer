@@ -57,8 +57,8 @@ ColumnLayout {
 		Layout.fillWidth: true
 		Layout.bottomMargin: 12
 
-		currentIndex: model.indexOf(theme.background)
-		onCurrentColorChanged: theme.background = currentColor
+		currentIndex: model.indexOf(appSettings.background)
+		onCurrentColorChanged: appSettings.background = currentColor
 	}
 
 	ColorSelector {
@@ -66,7 +66,7 @@ ColumnLayout {
 		text: "Accent Color"
 		Layout.fillWidth: true
 
-		currentIndex: model.indexOf(theme.accent)
-		onCurrentColorChanged: theme.accent = currentColor
+		currentIndex: model.indexOf(appSettings.accent)
+		onCurrentColorChanged: appSettings.accent = currentColor
 	}
 }

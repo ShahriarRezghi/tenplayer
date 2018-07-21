@@ -41,8 +41,8 @@ Item {
 				width: height
 				height: parent.height
 
-				sourceSize.width: width
-				sourceSize.height: height
+//				sourceSize.width: width
+//				sourceSize.height: height
 			}
 		}
 
@@ -75,6 +75,7 @@ Item {
 				ImageButton {
 					source: MusicPlayer.volume == 0 ? "qrc:/Images/Volume(mute).png":
 													  "qrc:/Images/Volume(max).png"
+
 					onClicked: MusicPlayer.volume = MusicPlayer.volume == 0 ? 50:0
 				}
 
@@ -97,6 +98,7 @@ Item {
 
 				ImageButton {
 					source: "qrc:/Images/Min(on).png"
+
 					onClicked: {
 						applicationWindow.visibility = ApplicationWindow.Windowed
 						appStack.replace(minView)
@@ -106,6 +108,7 @@ Item {
 				ImageButton {
 					checkable: true
 					source: "qrc:/Images/FullScreen(off).png"
+
 					onClicked: applicationWindow.visibility = checked ?
 								   ApplicationWindow.FullScreen:
 								   ApplicationWindow.Windowed
@@ -137,21 +140,23 @@ Item {
 
 				ImageButton {
 					Layout.alignment: Qt.AlignVCenter
-					onClicked: MusicPlayer.prev()
+					onClicked: MusicPlaylist.previous()
 					source: "qrc:/Images/Previous.png"
 				}
 
 				ImageButton {
 					Layout.alignment: Qt.AlignVCenter
+
 					source: MusicPlayer.state == 1 ? "qrc:/Images/Pause.png":
 													 "qrc:/Images/Play.png"
+
 					onClicked: MusicPlayer.state == 1 ? MusicPlayer.pause():
 														MusicPlayer.play()
 				}
 
 				ImageButton {
 					Layout.alignment: Qt.AlignVCenter
-					onClicked: MusicPlayer.next()
+					onClicked: MusicPlaylist.next()
 					source: "qrc:/Images/Next.png"
 				}
 			}

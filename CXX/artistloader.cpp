@@ -5,6 +5,8 @@ ArtistLoader::ArtistLoader(QObject *parent) : Loader(parent)
 {
 	m_model = new QmlModel(this);
 	m_model->addRoles({Add(ArtistRole), Add(ArtworkRole)});
+
+	createSearchModel(ArtistRole);
 }
 
 void ArtistLoader::load()

@@ -3,6 +3,7 @@ import QtQuick.Controls 2.3
 
 import "../Playlist"
 import "../Track"
+import "../Search"
 
 StackView {
 	id: stack
@@ -32,6 +33,11 @@ StackView {
 	Component {
 		id: trackView
 		TrackView { }
+	}
+
+	Component {
+		id: searchView
+		SearchView { }
 	}
 
 	Component {

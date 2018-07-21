@@ -2,6 +2,7 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
 import STools.Extras 1.0
+import STools.Utils 1.0
 
 import "Main"
 
@@ -34,19 +35,34 @@ ApplicationWindow {
 
 	Theme {
 		id: theme
-		accent: MaterialTheme.red
-		primary: MaterialTheme.primary
-		foreground: "black"
-		background: MaterialTheme.teal
+		primary: appSettings.primary
+		foreground: appSettings.foreground
+
+		accent: !appSettings.colorFromArtwork || !ActiveInfo.artworkInfo
+				? appSettings.accent:colorExtractor.secondColor
+
+		background: !appSettings.colorFromArtwork || !ActiveInfo.artworkInfo
+					? appSettings.background:colorExtractor.firstColor
 	}
 
 	Settings {
 		id: appSettings
 
-		property alias accent: theme.accent
-		property alias primary: theme.primary
-		property alias background: theme.background
-		property alias foreground: theme.foreground
+		property color foreground: "black"
+		property color accent: MaterialTheme.purple
+		property color primary: MaterialTheme.primary
+		property color background: MaterialTheme.teal
+	}
+
+	Connections {
+		target: ActiveInfo
+
+		onRowChanged: if (appSettings.backgroundFromArtwork && ActiveInfo.artworkInfo)
+								colorExtractor.extractImage(ActiveInfo.artworkInfo)
+	}
+
+	ColorExtractor {
+		id: colorExtractor
 	}
 
 	MainView {

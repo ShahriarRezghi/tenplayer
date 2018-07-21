@@ -8,6 +8,7 @@ ToolBar {
 
 	MouseArea {
 		id: mouseArea
+		parent: background
 		anchors.fill: parent
 		drag.axis: Drag.YAxis
 		drag.target: control
@@ -36,6 +37,31 @@ ToolBar {
 		State {
 			name: "held"
 			PropertyChanges { target: control; y: y }
+		}
+	]
+
+	transitions: [
+		Transition {
+			from: "held"
+			to: "up"
+
+			NumberAnimation {
+				property: "y"
+				target: control
+				duration: 400
+				easing.type: Easing.OutCubic
+			}
+		},
+		Transition {
+			from: "held"
+			to: "down"
+
+			NumberAnimation {
+				property: "y"
+				target: control
+				duration: 400
+				easing.type: Easing.OutCubic
+			}
 		}
 	]
 

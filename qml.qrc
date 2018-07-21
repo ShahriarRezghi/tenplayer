@@ -77,5 +77,10 @@
         <file>QML/Search/SearchView.qml</file>
         <file>QML/Search/SubSearchModel.qml</file>
         <file>QML/Search/SubSearchView.qml</file>
+        <file>QML/Queue/ActiveView.qml</file>
+        <file>QML/Queue/QueueListView.qml</file>
+        <file>QML/Queue/QueueListViewModel.qml</file>
+        <file>QML/Queue/QueueView.qml</file>
+        <file>QML/Queue/QueueViewModel.qml</file>
     </qresource>
 </RCC>

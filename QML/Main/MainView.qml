@@ -5,9 +5,21 @@ import QtQuick.Dialogs 1.2
 
 import "../Bars"
 import "../Menu"
+import "../Tools"
 
 Page {
 	id: page
+
+	background: BackgroundImage {
+		id: backgroundImage
+		opacity: appSettings.imageOpacity
+		anchors.fill: parent
+
+		source: appSettings.backgroundFromArtwork && ActiveInfo.artworkInfo ?
+					"file://"+ActiveInfo.artworkInfo:
+					appSettings.backgroundSource
+	}
+
 
 	contentItem: MainContents {	}
 

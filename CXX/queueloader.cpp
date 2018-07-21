@@ -3,15 +3,16 @@
 
 QueueLoader::QueueLoader(QObject *parent) : Loader(parent)
 {
+	m_model = new QmlModel(this);
 	m_player = new QMediaPlayer(this);
 	m_playlist = new QMediaPlaylist(this);
-	m_model = new QmlModel(this);
 
 	m_player->setPlaylist(m_playlist);
 
-	m_model->addRoles({Add(AlbumRole), Add(AlbumartistRole), Add(GenreRole),
-					   Add(YearRole), Add(IDRole), Add(TrackRole),
-					   Add(TitleRole), Add(PathRole), Add(ArtworkRole)});
+	m_model->addRoles({Add(AlbumRole), Add(ArtistRole), Add(AlbumartistRole),
+					   Add(GenreRole), Add(YearRole), Add(IDRole),
+					   Add(TrackRole), Add(TitleRole), Add(PathRole),
+					   Add(ArtworkRole)});
 
 	connect(m_playlist, &QMediaPlaylist::currentIndexChanged, this,
 			&QueueLoader::changeActiveRow);

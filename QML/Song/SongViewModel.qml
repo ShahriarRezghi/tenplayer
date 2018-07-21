@@ -15,7 +15,6 @@ VisualDataModel {
 		image: artworkRole ? "file://"+artworkRole:"qrc:/Images/Note.png"
 
 		onMenuRequested: vdmodel.menuRequested(xx+x, yy+y, index)
-
 		onClicked: MainManager.loaderClicked(consts.songLoader, index)
 	}
 }

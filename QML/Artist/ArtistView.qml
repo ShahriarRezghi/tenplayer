@@ -6,8 +6,8 @@ SectionGridView {
 	id: view
 	sectionTextIndex: 0
 
-	cellHeight: 68
-	cellWidth: width/3
+	cellHeight: 64
+	cellWidth: width / 3
 
 	model: ArtistViewModel {
 		onMenuRequested: {

@@ -28,6 +28,13 @@ int main(int argc, char *argv[])
 	RC->setContextProperty("PlaylistModel", M.Loaders[PlaylistLdr]->model());
 	RC->setContextProperty("TrackModel", M.TrackMgr->model());
 
+	RC->setContextProperty("AlbumSearchModel",
+						   M.Loaders[AlbumLdr]->searchModel());
+	RC->setContextProperty("ArtistSearchModel",
+						   M.Loaders[ArtistLdr]->searchModel());
+	RC->setContextProperty("SongSearchModel",
+						   M.Loaders[SongLdr]->searchModel());
+
 	RC->setContextProperty("RecentlyAddedModel",
 						   M.Loaders[RecentlyAddedLdr]->model());
 	RC->setContextProperty("RecentlyPlayedModel",

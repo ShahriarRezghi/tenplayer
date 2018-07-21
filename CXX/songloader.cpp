@@ -7,6 +7,8 @@ SongLoader::SongLoader(QObject *parent) : Loader(parent)
 					   Add(GenreRole), Add(YearRole), Add(IDRole),
 					   Add(TrackRole), Add(TitleRole), Add(PathRole),
 					   Add(ArtworkRole)});
+
+	createSearchModel(TitleRole);
 }
 
 void SongLoader::load()

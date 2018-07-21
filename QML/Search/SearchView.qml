@@ -12,7 +12,7 @@ RowLayout {
 
 	SubSearchView {
 		title: "Album"
-		loader: albumLoader
+		loader: consts.albumLoader
 	}
 
 	Rectangle {
@@ -23,7 +23,7 @@ RowLayout {
 
 	SubSearchView {
 		title: "Artist"
-		loader: artistLoader
+		loader: consts.artistLoader
 	}
 
 	Rectangle {
@@ -34,6 +34,6 @@ RowLayout {
 
 	SubSearchView {
 		title: "Song"
-		loader: songLoader
+		loader: consts.songLoader
 	}
 }

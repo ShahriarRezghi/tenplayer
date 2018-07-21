@@ -4,8 +4,6 @@ import QtQuick.Controls.Material 2.3
 import ExtraControls 1.0
 import QtQuick.Layouts 1.3
 
-import "../ViewMenu"
-
 Page {
 	id: page
 	Layout.fillWidth: true
@@ -41,11 +39,6 @@ Page {
 				menu.currentInd = index
 				menu.open()
 			}
-		}
-
-		ViewMenu {
-			id: menu
-			type: page.loader
 		}
 	}
 }

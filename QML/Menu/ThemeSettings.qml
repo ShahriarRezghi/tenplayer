@@ -16,12 +16,12 @@ ColumnLayout {
 
 	CheckBox {
 		text: "Dark Theme"
-		checked: ColorAlt.lightness(theme.primary) < .5
+		checked: ColorAlt.lightness(appSettings.primary) < .5
 
 		onClicked: {
 			var prim = checked ? MaterialTheme.primaryDark:MaterialTheme.primary
-			theme.foreground = checked ? "white":"black"
-			theme.primary = prim
+			appSettings.foreground = checked ? "white":"black"
+			appSettings.primary = prim
 		}
 	}
 

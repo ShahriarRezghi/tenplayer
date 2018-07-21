@@ -93,3 +93,10 @@ void MainManager::loaderSearchActionTriggered(const int &loader,
 {
 	Loaders[loader]->searchActionTriggered(type, index, extra);
 }
+
+void MainManager::search(const QString &text)
+{
+	Loaders[AlbumLdr]->search(text);
+	Loaders[ArtistLdr]->search(text);
+	Loaders[SongLdr]->search(text);
+}

@@ -30,8 +30,8 @@ ItemDelegate {
 			source: useTrack ? "":control.image
 			width: height
 			height: parent.height
-			sourceSize.width: width
-			sourceSize.height: height
+//			sourceSize.width: width
+//			sourceSize.height: height
 
 			Label {
 				text: track
