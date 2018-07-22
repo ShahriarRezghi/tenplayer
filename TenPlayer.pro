@@ -29,7 +29,8 @@ SOURCES += main.cpp \
     CXX/trackmanager.cpp \
     CXX/mainmanager.cpp \
     CXX/tagdata.cpp \
-    CXX/library.cpp
+    CXX/library.cpp \
+    CXX/detailsmanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -63,4 +64,5 @@ HEADERS += \
     CXX/statusmanager.h \
     CXX/trackmanager.h \
     CXX/mainmanager.h \
-    CXX/tagdata.h
+    CXX/tagdata.h \
+    CXX/detailsmanager.h

@@ -51,4 +51,8 @@ Page {
 	LoadDialog {
 		id: loadDialog
 	}
+
+	DetailsDialog {
+		id: detailsDialog
+	}
 }

@@ -1,4 +1,5 @@
 #include "playlistloader.h"
+#include "queueloader.h"
 #include "trackmanager.h"
 
 PlaylistLoader::PlaylistLoader(QObject *parent) : Loader(parent)
@@ -27,6 +28,23 @@ void PlaylistLoader::load()
 void PlaylistLoader::clicked(const int &index)
 {
 	Track->showItems(getSubItems(m_model->item(index)));
+}
+
+void PlaylistLoader::actionTriggered(const int &type, const int &index,
+									 const QVariant &extra)
+{
+	Q_UNUSED(extra)
+
+	QList<QStandardItem *> items = getSubItems(m_model->item(index));
+
+	if (type == Play)
+		Queue->playItems(items, 0);
+	else if (type == AddToQueue)
+		Queue->addItems(items);
+	else if (type == ShowDetails)
+		Details->showItems(items);
+	else if (type == Remove)
+		deletePlaylist(index);
 }
 
 void PlaylistLoader::addPlaylist(const QString &name)

@@ -4,6 +4,8 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
 import STools.Extras 1.0
 
+import "../ViewMenu"
+
 Page {
 	id: page
 	Layout.fillWidth: true
@@ -40,5 +42,10 @@ Page {
 				menu.open()
 			}
 		}
+	}
+
+	ViewMenu {
+		id: menu
+		type: consts.recentlyPlayedLoader
 	}
 }

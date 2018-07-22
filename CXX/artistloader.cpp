@@ -1,4 +1,6 @@
 #include "artistloader.h"
+#include "playlistloader.h"
+#include "queueloader.h"
 #include "trackmanager.h"
 
 ArtistLoader::ArtistLoader(QObject *parent) : Loader(parent)
@@ -44,6 +46,38 @@ void ArtistLoader::load()
 void ArtistLoader::clicked(const int &index)
 {
 	Track->showItems(getSubItems(m_model->item(index)));
+}
+
+void ArtistLoader::actionTriggered(const int &type, const int &index,
+								   const QVariant &extra)
+{
+	if (type == Remove)
+	{
+		deleteArtist(m_model->item(index));
+		m_model->removeRow(index);
+		Status->setNeedsRefresh(true);
+		return;
+	}
+
+	QList<QStandardItem *> items = getSubItems(m_model->item(index));
+
+	if (type == Play)
+		Queue->playItems(items, 0);
+	else if (type == AddToQueue)
+		Queue->addItems(items);
+	else if (type == AddToPlaylist)
+		Playlist->addItems(extra.toInt(), items);
+	else if (type == ShowDetails)
+		Details->showItems(items);
+}
+
+void ArtistLoader::deleteArtist(QStandardItem *item)
+{
+	QVariant artist = item->data(ArtistRole);
+
+	Query->prepare("DELETE FROM music WHERE artist=?;");
+	Query->bindValue(0, artist);
+	qDebug() << Query->exec();
 }
 
 QList<QStandardItem *> ArtistLoader::getSubItems(QStandardItem *item)

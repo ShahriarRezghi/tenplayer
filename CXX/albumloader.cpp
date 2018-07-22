@@ -1,4 +1,6 @@
 #include "albumloader.h"
+#include "playlistloader.h"
+#include "queueloader.h"
 #include "trackmanager.h"
 
 AlbumLoader::AlbumLoader(QObject *parent) : Loader(parent)
@@ -8,6 +10,17 @@ AlbumLoader::AlbumLoader(QObject *parent) : Loader(parent)
 					   Add(YearRole), Add(ArtworkRole)});
 
 	createSearchModel(AlbumRole);
+}
+
+void AlbumLoader::deleteAlbum(QStandardItem *item)
+{
+	QVariant album = item->data(AlbumRole);
+	QVariant albumArtist = item->data(AlbumartistRole);
+
+	Query->prepare("DELETE FROM music WHERE album=?, albumartist=?;");
+	Query->bindValue(0, album);
+	Query->bindValue(1, albumArtist);
+	qDebug() << Query->exec();
 }
 
 void AlbumLoader::load()
@@ -48,6 +61,29 @@ void AlbumLoader::load()
 void AlbumLoader::clicked(const int &index)
 {
 	Track->showItems(getSubItems(m_model->item(index)));
+}
+
+void AlbumLoader::actionTriggered(const int &type, const int &index,
+								  const QVariant &extra)
+{
+	if (type == Remove)
+	{
+		deleteAlbum(m_model->item(index));
+		m_model->removeRow(index);
+		Status->setNeedsRefresh(true);
+		return;
+	}
+
+	QList<QStandardItem *> items = getSubItems(m_model->item(index));
+
+	if (type == Play)
+		Queue->playItems(items, 0);
+	else if (type == AddToQueue)
+		Queue->addItems(items);
+	else if (type == AddToPlaylist)
+		Playlist->addItems(extra.toInt(), items);
+	else if (type == ShowDetails)
+		Details->showItems(items);
 }
 
 QList<QStandardItem *> AlbumLoader::getSubItems(QStandardItem *item)

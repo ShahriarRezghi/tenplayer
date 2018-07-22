@@ -1,6 +1,7 @@
 import QtQuick 2.10
 
 import "../Tools"
+import "../ViewMenu"
 
 SectionGridView {
 	id: view
@@ -16,5 +17,10 @@ SectionGridView {
 			menu.currentInd = index
 			menu.open()
 		}
+	}
+
+	ViewMenu {
+		id: menu
+		type: consts.songLoader
 	}
 }

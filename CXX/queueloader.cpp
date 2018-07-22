@@ -1,4 +1,5 @@
 #include "queueloader.h"
+#include "playlistloader.h"
 #include "recentlyplayedloader.h"
 
 QueueLoader::QueueLoader(QObject *parent) : Loader(parent)
@@ -36,7 +37,8 @@ void QueueLoader::smartSet(const int &row)
 	}
 
 	QList<QStandardItem *> items;
-	for (int i = 0; i < m_model->rowCount(); ++i) items << m_model->takeItem(0);
+	for (int i = 0; i < m_model->rowCount(); ++i)
+		items << m_model->takeRow(0).first();
 
 	QStandardItem *currentItem = items[row];
 	std::random_shuffle(items.begin(), items.end());
@@ -175,6 +177,27 @@ void QueueLoader::clear()
 	m_playlist->setCurrentIndex(-1);
 }
 
+void QueueLoader::clicked(const int &index)
+{
+	m_playlist->setCurrentIndex(index);
+}
+
+void QueueLoader::actionTriggered(const int &type, const int &index,
+								  const QVariant &extra)
+{
+	if (type == Play)
+		m_playlist->setCurrentIndex(index);
+	else if (type == ShowDetails)
+		Details->showItem(m_model->item(index));
+	else if (type == AddToPlaylist)
+		Playlist->addItem(extra.toInt(), m_model->item(index));
+	else if (type == Remove)
+	{
+		m_model->removeRow(index);
+		m_playlist->removeMedia(index);
+	}
+}
+
 void QueueLoader::songPlayed()
 {
 	int row = m_playlist->currentIndex();
@@ -199,6 +222,7 @@ void QueueLoader::changeActiveRow(const int &row)
 	}
 	else
 	{
+		qDebug() << m_model->item(row);
 		Active->setTitleInfo(m_model->item(row)->data(TitleRole).toString());
 		Active->setAlbumInfo(m_model->item(row)->data(AlbumRole).toString());
 		Active->setArtistInfo(m_model->item(row)->data(ArtistRole).toString());

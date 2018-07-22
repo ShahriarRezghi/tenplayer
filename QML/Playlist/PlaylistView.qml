@@ -2,6 +2,8 @@ import QtQuick 2.10
 import QtQuick.Window 2.2
 
 import "../Tools"
+import "../ViewMenu"
+
 SectionGridView {
 	id: view
 	emptyText: "Nothing Here"
@@ -21,5 +23,10 @@ SectionGridView {
 			menu.currentInd = index
 			menu.open()
 		}
+	}
+
+	ViewMenu {
+		id: menu
+		type: consts.playlistLoader
 	}
 }

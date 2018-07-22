@@ -7,7 +7,7 @@ PathView {
 	pathItemCount: 7
 	currentIndex: ActiveInfo.queueRow
 	onCurrentIndexChanged: if (flicking)
-							   MainManager.loaderClicked(queueLoader, currentIndex)
+							   MainManager.loaderClicked(consts.queueLoader, currentIndex)
 
 	property bool minView: false
 

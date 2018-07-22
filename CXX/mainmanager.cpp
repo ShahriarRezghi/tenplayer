@@ -10,16 +10,20 @@ void MainManager::setupLoaders()
 	DatabaseMgr = new DatabaseManager(this);
 	Queue = new QueueLoader(this);
 	Status = new StatusManager(this);
+	DetailsMgr = new DetailsManager(this);
 
 	Loaders << new AlbumLoader(this) << new ArtistLoader(this)
 			<< new SongLoader(this) << Queue << new RecentlyAddedLoader(this)
 			<< new RecentlyPlayedLoader(this) << new PlaylistLoader(this);
 
 	Loader::Queue = Queue;
+	Loader::Path = PathMgr;
 	Loader::Status = Status;
 	Loader::Active = Active;
 	Loader::Track = TrackMgr;
+	Loader::Details = DetailsMgr;
 	Loader::Query = DatabaseMgr->query();
+	Loader::Playlist = static_cast<PlaylistLoader *>(Loaders[PlaylistLdr]);
 	Loader::RecentlyPlayed =
 		static_cast<RecentlyPlayedLoader *>(Loaders[RecentlyPlayedLdr]);
 

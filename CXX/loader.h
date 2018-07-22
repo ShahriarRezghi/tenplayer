@@ -2,6 +2,7 @@
 #define LOADER_H
 
 #include "activeinfo.h"
+#include "detailsmanager.h"
 #include "model.h"
 #include "pathmanager.h"
 #include "statusmanager.h"
@@ -13,6 +14,7 @@
 
 class QueueLoader;
 class TrackManager;
+class PlaylistLoader;
 class RecentlyPlayedLoader;
 
 class Loader : public QObject
@@ -24,6 +26,8 @@ class Loader : public QObject
 protected:
 	QmlModel *m_model;
 	QmlModel *m_searchModel;
+
+	void deleteSong(const QVariant &id);
 
 	void createSearchModel(int searchRole);
 	void sortModel(int role, bool asc = true);
@@ -44,9 +48,11 @@ public:
 
 	static PathManager *Path;
 	static StatusManager *Status;
+	static DetailsManager *Details;
 
 	static QueueLoader *Queue;
 	static TrackManager *Track;
+	static PlaylistLoader *Playlist;
 	static RecentlyPlayedLoader *RecentlyPlayed;
 
 public:

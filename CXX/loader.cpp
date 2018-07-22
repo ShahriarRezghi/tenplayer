@@ -6,12 +6,18 @@ ActiveInfo *Loader::Active = nullptr;
 
 PathManager *Loader::Path = nullptr;
 StatusManager *Loader::Status = nullptr;
+DetailsManager *Loader::Details = nullptr;
 
 QueueLoader *Loader::Queue = nullptr;
 TrackManager *Loader::Track = nullptr;
+PlaylistLoader *Loader::Playlist = nullptr;
 RecentlyPlayedLoader *Loader::RecentlyPlayed = nullptr;
 
-Loader::Loader(QObject *parent) : QObject(parent) { m_model = nullptr; }
+Loader::Loader(QObject *parent) : QObject(parent)
+{
+	m_model = nullptr;
+	m_searchModel = nullptr;
+}
 
 QmlModel *Loader::searchModel() const { return m_searchModel; }
 
@@ -31,6 +37,13 @@ void Loader::search(const QString &text)
 		I->setData(m_model->itemFromIndex(index)->row(), Qt::UserRole);
 		m_searchModel->appendRow(I);
 	}
+}
+
+void Loader::deleteSong(const QVariant &id)
+{
+	Query->prepare("DELETE FROM music WHERE rowid=?;");
+	Query->bindValue(0, id);
+	qDebug() << Query->exec();
 }
 
 void Loader::createSearchModel(int searchRole)
@@ -93,6 +106,7 @@ Loader::getCompareFunction(int role)
 void Loader::clear()
 {
 	if (m_model) m_model->clear();
+	if (m_searchModel) m_searchModel->clear();
 }
 
 void Loader::searchClicked(const int &index)

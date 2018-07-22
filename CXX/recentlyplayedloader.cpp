@@ -1,4 +1,6 @@
 #include "recentlyplayedloader.h"
+#include "playlistloader.h"
+#include "queueloader.h"
 
 RecentlyPlayedLoader::RecentlyPlayedLoader(QObject *parent) : Loader(parent)
 {
@@ -68,4 +70,30 @@ void RecentlyPlayedLoader::load()
 
 		m_model->appendRow(recordToItem(Query->record()));
 	}
+}
+
+void RecentlyPlayedLoader::clicked(const int &index)
+{
+	Queue->playRootItem(m_model->invisibleRootItem(), index);
+}
+
+void RecentlyPlayedLoader::actionTriggered(const int &type, const int &index,
+										   const QVariant &extra)
+{
+	if (type == Remove)
+	{
+		deleteSong(m_model->item(index)->data(IDRole));
+		m_model->removeRow(index);
+		Status->setNeedsRefresh(true);
+		return;
+	}
+
+	if (type == Play)
+		Queue->playRootItem(m_model->invisibleRootItem(), index);
+	else if (type == AddToQueue)
+		Queue->addItem(m_model->item(index));
+	else if (type == ShowDetails)
+		Details->showItem(m_model->item(index));
+	else if (type == AddToPlaylist)
+		Playlist->addItem(extra.toInt(), m_model->item(index));
 }

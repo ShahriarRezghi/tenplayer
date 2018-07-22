@@ -82,5 +82,9 @@
         <file>QML/Queue/QueueListViewModel.qml</file>
         <file>QML/Queue/QueueView.qml</file>
         <file>QML/Queue/QueueViewModel.qml</file>
+        <file>QML/ViewMenu/SearchMenu.qml</file>
+        <file>QML/ViewMenu/TrackMenu.qml</file>
+        <file>QML/ViewMenu/ViewMenu.qml</file>
+        <file>QML/Menu/DetailsDialog.qml</file>
     </qresource>
 </RCC>

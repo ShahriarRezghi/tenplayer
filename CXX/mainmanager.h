@@ -41,9 +41,12 @@ class MainManager : public QObject
 public:
 	ActiveInfo *Active;
 	QueueLoader *Queue;
+
+	PathManager *PathMgr;
 	StatusManager *Status;
 	TrackManager *TrackMgr;
-	PathManager *PathMgr;
+	DetailsManager *DetailsMgr;
+
 	QVector<Loader *> Loaders;
 	DatabaseManager *DatabaseMgr;
 

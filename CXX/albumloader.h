@@ -7,6 +7,7 @@ class AlbumLoader : public Loader
 {
 	Q_OBJECT
 
+	void deleteAlbum(QStandardItem *item);
 	QList<QStandardItem *> getSubItems(QStandardItem *item);
 
 public:
@@ -19,9 +20,7 @@ public:
 	virtual void clicked(const int &index);
 
 	virtual void actionTriggered(const int &type, const int &index,
-								 const QVariant &extra = QVariant())
-	{
-	}
+								 const QVariant &extra = QVariant());
 };
 
 #endif  // ALBUMLOADER_H

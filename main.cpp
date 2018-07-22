@@ -45,6 +45,8 @@ int main(int argc, char *argv[])
 	RC->setContextProperty("ActiveInfo", M.Active);
 	RC->setContextProperty("StatusManager", M.Status);
 	RC->setContextProperty("PathManager", M.PathMgr);
+	RC->setContextProperty("DetailsManager", M.DetailsMgr);
+	RC->setContextProperty("DetailsModel", M.DetailsMgr->model());
 
 	RC->setContextProperty("MainManager", &M);
 

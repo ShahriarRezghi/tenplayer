@@ -1,6 +1,8 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 
+import "../ViewMenu"
+
 GridView {
 	id: view
 
@@ -18,5 +20,10 @@ GridView {
 			menu.currentInd = index
 			menu.open()
 		}
+	}
+
+	property var menu: TrackMenu {
+		id: menu
+		type: view.type
 	}
 }

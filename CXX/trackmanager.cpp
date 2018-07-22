@@ -1,4 +1,5 @@
 #include "trackmanager.h"
+#include "playlistloader.h"
 #include "queueloader.h"
 
 TrackManager::TrackManager(QObject *parent) : Loader(parent)
@@ -38,6 +39,29 @@ void TrackManager::savePlaylistTrackRows()
 void TrackManager::clicked(const int &index)
 {
 	Queue->playRootItem(m_model->invisibleRootItem(), index);
+}
+
+void TrackManager::actionTriggered(const int &type, const int &index,
+								   const QVariant &extra)
+{
+	Q_UNUSED(extra)
+
+	if (type == Remove)
+	{
+		deleteSong(m_model->item(index)->data(IDRole));
+		m_model->removeRow(index);
+		Status->setNeedsRefresh(true);
+		return;
+	}
+
+	if (type == Play)
+		clicked(index);
+	else if (type == AddToQueue)
+		Queue->addItem(m_model->item(index));
+	else if (type == AddToPlaylist)
+		Playlist->addItem(extra.toInt(), m_model->item(index));
+	else if (type == ShowDetails)
+		Details->showItem(m_model->item(index));
 }
 
 void TrackManager::sortTracksByRow() { sortModel(RowRole); }
