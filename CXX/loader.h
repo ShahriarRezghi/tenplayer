@@ -32,7 +32,7 @@ protected:
 	void createSearchModel(int searchRole);
 	void sortModel(int role, bool asc = true);
 	static QStandardItem *recordToItem(const QSqlRecord &record);
-	QString getArtwork(const QString &album, const QString &albumArtist);
+	static QString getArtwork(const QString &album, const QString &albumArtist);
 	static bool sortItemsByRole(int role, QStandardItem *I1, QStandardItem *I2);
 
 	static void sortItemList(std::initializer_list<int> roles,

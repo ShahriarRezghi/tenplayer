@@ -8,7 +8,7 @@ SectionGridView {
 	sectionTextIndex: 0
 
 	cellWidth: width/2
-	cellHeight: 13 + consts.textSize * 3
+	cellHeight: 100
 
 	model: SongViewModel {
 		onMenuRequested: {

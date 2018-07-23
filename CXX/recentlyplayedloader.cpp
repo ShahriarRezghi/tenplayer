@@ -11,6 +11,8 @@ RecentlyPlayedLoader::RecentlyPlayedLoader(QObject *parent) : Loader(parent)
 					   Add(GenreRole), Add(YearRole), Add(IDRole),
 					   Add(TrackRole), Add(TitleRole), Add(PathRole),
 					   Add(ArtworkRole)});
+
+	read();
 }
 
 void RecentlyPlayedLoader::save()

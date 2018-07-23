@@ -14,6 +14,10 @@ VisualDataModel {
 		model: [artistRole]
 		image: artworkRole ? "file://"+artworkRole:"qrc:/Images/Note.png"
 
+		topPadding: 12
+		bottomPadding: 12
+		contentItem.implicitHeight: 100
+
 		onMenuRequested: vdmodel.menuRequested(xx+x, yy+y, index)
 
 		onClicked: {

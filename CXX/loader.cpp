@@ -70,37 +70,34 @@ QStandardItem *Loader::recordToItem(const QSqlRecord &record)
 {
 	auto *item = new QStandardItem;
 
+	auto album = record.value("album");
+	auto albumArtist = record.value("albumartist");
+
+	item->setData(album, AlbumRole);
+	item->setData(albumArtist, AlbumartistRole);
+
 	item->setData(record.value("rowid"), IDRole);
 	item->setData(record.value("title"), TitleRole);
-	item->setData(record.value("album"), AlbumRole);
 	item->setData(record.value("artist"), ArtistRole);
-	item->setData(record.value("albumartist"), AlbumartistRole);
 	item->setData(record.value("track"), TrackRole);
 	item->setData(record.value("genre"), GenreRole);
 	item->setData(record.value("year"), YearRole);
 	item->setData(record.value("path"), PathRole);
 
-	return item;
-}
+	item->setData(getArtwork(album.toString(), albumArtist.toString()),
+				  ArtworkRole);
 
-bool Loader::sortItemsByRole(int role, QStandardItem *I1, QStandardItem *I2)
-{
-	return I1->data(role) < I2->data(role);
+	return item;
 }
 
 void Loader::sortItemList(std::initializer_list<int> roles,
 						  QList<QStandardItem *> &items)
 {
 	for (auto role : roles)
-		std::sort(items.begin(), items.end(), getCompareFunction(role));
-}
-
-std::function<bool(QStandardItem *, QStandardItem *)>
-Loader::getCompareFunction(int role)
-{
-	return [&role](QStandardItem *I1, QStandardItem *I2) {
-		return Loader::sortItemsByRole(role, I1, I2);
-	};
+		std::sort(items.begin(), items.end(),
+				  [&role](QStandardItem *I1, QStandardItem *I2) {
+					  return I1->data(role) < I2->data(role);
+				  });
 }
 
 void Loader::clear()

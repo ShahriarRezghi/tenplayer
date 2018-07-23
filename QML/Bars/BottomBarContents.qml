@@ -76,15 +76,14 @@ Item {
 					source: MusicPlayer.volume == 0 ? "qrc:/Images/Volume(mute).png":
 													  "qrc:/Images/Volume(max).png"
 
-					onClicked: MusicPlayer.volume = MusicPlayer.volume == 0 ? 50:0
+					onClicked: MusicPlayer.realVolume = MusicPlayer.realVolume == 0 ? 50:0
 				}
 
 				Slider {
 					from: 0
 					to: 100
-					value: MusicPlayer.volume
-					onPositionChanged: if (pressed)
-										   MusicPlayer.setVolume(position*to)
+					value: MusicPlayer.realVolume
+					onValueChanged: MusicPlayer.realVolume = value
 				}
 			}
 		}

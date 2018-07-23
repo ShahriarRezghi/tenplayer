@@ -2,8 +2,8 @@
 #define QUEUELOADER_H
 
 #include "loader.h"
+#include "mediaplayer.h"
 
-#include <QMediaPlayer>
 #include <QMediaPlaylist>
 
 class QueueLoader : public Loader
@@ -14,7 +14,7 @@ class QueueLoader : public Loader
 	void smartSet(const int &row);
 	void smartPlay(const int &row);
 
-	QMediaPlayer *m_player;
+	MediaPlayer *m_player;
 	QMediaPlaylist *m_playlist;
 
 private slots:

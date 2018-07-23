@@ -5,7 +5,7 @@
 QueueLoader::QueueLoader(QObject *parent) : Loader(parent)
 {
 	m_model = new QmlModel(this);
-	m_player = new QMediaPlayer(this);
+	m_player = new MediaPlayer(this);
 	m_playlist = new QMediaPlaylist(this);
 
 	m_player->setPlaylist(m_playlist);

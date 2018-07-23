@@ -1,5 +1,11 @@
 #include "activeinfo.h"
 
+ActiveInfo::ActiveInfo(QObject *parent) : QObject(parent)
+{
+	setRepeatable(false);
+	setShufflable(false);
+}
+
 void ActiveInfo::setTitleInfo(const QString &titleInfo)
 {
 	m_titleInfo = titleInfo;
@@ -21,8 +27,6 @@ void ActiveInfo::setArtworkInfo(const QString &artworkInfo)
 }
 
 void ActiveInfo::setQueueRow(int queueRow) { m_queueRow = queueRow; }
-
-ActiveInfo::ActiveInfo(QObject *parent) : QObject(parent) {}
 
 int ActiveInfo::queueRow() const { return m_queueRow; }
 

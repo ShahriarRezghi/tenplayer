@@ -72,7 +72,6 @@
         <file>QML/Menu/ThemeSettings.qml</file>
         <file>QML/Menu/ThemeSettings2.qml</file>
         <file>QML/Tools/ColorSelector.qml</file>
-        <file>QML/Settings.qml</file>
         <file>QML/Menu/LoadDialog.qml</file>
         <file>QML/Search/SearchView.qml</file>
         <file>QML/Search/SubSearchModel.qml</file>
@@ -89,5 +88,7 @@
         <file>QML/Min/MinBottomBar.qml</file>
         <file>QML/Min/MinSubView.qml</file>
         <file>QML/Min/MinView.qml</file>
+        <file>QML/Menu/PlaylistDialog.qml</file>
+        <file>QML/AppSettings.qml</file>
     </qresource>
 </RCC>

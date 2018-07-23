@@ -12,8 +12,8 @@ Page {
 
 	background: BackgroundImage {
 		id: backgroundImage
-		opacity: appSettings.imageOpacity
 		anchors.fill: parent
+		opacity: appSettings.imageOpacity
 
 		source: appSettings.backgroundFromArtwork && ActiveInfo.artworkInfo ?
 					"file://"+ActiveInfo.artworkInfo:
@@ -54,5 +54,9 @@ Page {
 
 	DetailsDialog {
 		id: detailsDialog
+	}
+
+	PlaylistDialog {
+		id: playlistDialog
 	}
 }

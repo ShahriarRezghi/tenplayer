@@ -3,6 +3,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
 import STools.Extras 1.0
 import STools.Utils 1.0
+import Qt.labs.settings 1.0
 
 import "Main"
 import "Min"
@@ -44,13 +45,29 @@ ApplicationWindow {
 					? appSettings.background:colorExtractor.firstColor
 	}
 
-	Settings {
+	AppSettings {
 		id: appSettings
 
 		property color foreground: "black"
 		property color accent: MaterialTheme.purple
 		property color primary: MaterialTheme.primary
 		property color background: MaterialTheme.teal
+	}
+
+	Settings {
+		property alias imageOpacity: appSettings.imageOpacity
+		property alias minViewSize: appSettings.minViewSize
+
+		property alias iconFromAccent: appSettings.iconFromAccent
+		property alias colorFromArtwork: appSettings.colorFromArtwork
+		property alias backgroundFromArtwork: appSettings.backgroundFromArtwork
+
+		property alias backgroundSource: appSettings.backgroundSource
+
+		property alias foreground: appSettings.foreground
+		property alias accent: appSettings.accent
+		property alias primary: appSettings.primary
+		property alias background: appSettings.background
 	}
 
 	Connections {

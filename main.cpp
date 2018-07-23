@@ -5,6 +5,8 @@
 
 #include <CXX/mainmanager.h>
 
+// TODO put a slider so that the user can scale delegate sizes
+
 int main(int argc, char *argv[])
 {
 #if defined(Q_OS_WIN)

@@ -108,5 +108,8 @@ QList<QStandardItem *> AlbumLoader::getSubItems(QStandardItem *item)
 	}
 
 	sortItemList({TitleRole, TrackRole}, items);
+
+	for (auto I : items) qDebug() << I->data(TrackRole).toString();
+
 	return items;
 }

@@ -30,7 +30,8 @@ SOURCES += main.cpp \
     CXX/mainmanager.cpp \
     CXX/tagdata.cpp \
     CXX/library.cpp \
-    CXX/detailsmanager.cpp
+    CXX/detailsmanager.cpp \
+    CXX/mediaplayer.cpp
 
 RESOURCES += qml.qrc
 
@@ -65,4 +66,5 @@ HEADERS += \
     CXX/trackmanager.h \
     CXX/mainmanager.h \
     CXX/tagdata.h \
-    CXX/detailsmanager.h
+    CXX/detailsmanager.h \
+    CXX/mediaplayer.h

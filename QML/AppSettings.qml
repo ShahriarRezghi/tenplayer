@@ -1,7 +1,7 @@
 import QtQuick 2.10
-import Qt.labs.settings 1.0 as S
 
-S.Settings {
+Item {
+	id: item
 	property real imageOpacity: .2
 	property int minViewSize
 
