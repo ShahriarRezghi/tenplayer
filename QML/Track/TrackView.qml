@@ -11,7 +11,7 @@ GridView {
 	ScrollBar.vertical: ScrollBar { }
 
 	cellWidth: width/2
-	cellHeight: 20 + Math.max(consts.textSize*2, 48)
+	cellHeight: 16 + Math.max(consts.textSize*2, 48)
 
 	model: TrackViewModel {
 		onMenuRequested: {

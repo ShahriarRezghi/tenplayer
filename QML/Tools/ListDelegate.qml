@@ -17,6 +17,8 @@ ItemDelegate {
 
 	signal menuRequested(real xx, real yy)
 
+	onPressAndHold: menuRequested(width/2, height/2)
+
 	contentItem.implicitWidth: 200
 	contentItem.implicitHeight: Math.max(column.implicitHeight, 48)
 

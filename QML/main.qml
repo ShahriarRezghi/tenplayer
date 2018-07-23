@@ -5,12 +5,11 @@ import STools.Extras 1.0
 import STools.Utils 1.0
 
 import "Main"
+import "Min"
 
 ApplicationWindow {
 	id: applicationWindow
 	visible: true
-	width: 600*16/9
-	height: 600
 	title: qsTr("Ten Player")
 
 	// TODO find out where this function is used in the prev version
@@ -65,8 +64,35 @@ ApplicationWindow {
 		id: colorExtractor
 	}
 
-	MainView {
-		id: mainView
+	StackView {
+		id: appStack
+		visible: !busy
 		anchors.fill: parent
+		initialItem: mainView
+
+		Component {
+			id: mainView
+			MainView { objectName: "Main" }
+		}
+
+		Component {
+			id: minView
+			MinView { objectName: "Min" }
+		}
 	}
+
+	BusyIndicator {
+		running: appStack.busy
+		anchors.centerIn: appStack
+	}
+
+	property bool isInMin: appStack.currentItem.objectName == "Min"
+	flags: isInMin ? Qt.Window | Qt.FramelessWindowHint:Qt.Window
+	property real minModeSize: 300
+
+	height: isInMin ? minModeSize:600
+	width: isInMin ? minModeSize:600*16/9
+
+	minimumWidth: isInMin ? minModeSize:480
+	minimumHeight: isInMin ? minModeSize:360
 }

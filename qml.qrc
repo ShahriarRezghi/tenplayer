@@ -86,5 +86,8 @@
         <file>QML/ViewMenu/TrackMenu.qml</file>
         <file>QML/ViewMenu/ViewMenu.qml</file>
         <file>QML/Menu/DetailsDialog.qml</file>
+        <file>QML/Min/MinBottomBar.qml</file>
+        <file>QML/Min/MinSubView.qml</file>
+        <file>QML/Min/MinView.qml</file>
     </qresource>
 </RCC>

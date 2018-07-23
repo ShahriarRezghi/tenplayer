@@ -13,6 +13,8 @@ E.GridDelegate {
 
 	signal menuRequested(real xx, real yy)
 
+	onPressAndHold: menuRequested(width/2, height/2)
+
 	MouseArea {
 		id: ma
 		parent: control

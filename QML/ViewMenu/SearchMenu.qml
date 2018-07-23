@@ -5,7 +5,6 @@ import ".."
 Menu {
 	id: control
 	modal: true
-	dim: false
 
 	property int type: 0
 	property int currentIndex: -1

@@ -17,9 +17,15 @@ VisualDataModel {
 
 		onClicked: {
 			MainManager.loaderClicked(consts.albumLoader, index)
+
+			var albumArtist =
+					"Artist: " + (albumartistRole ? albumartistRole:"Unknown")
+
+			var genre = "Genre: " + (genreRole ? genreRole:"Unknown")
+			var year = "Year: " + (yearRole ? yearRole:"Unknown")
+
 			openTrackView(artworkRole, "Album: " + albumRole,
-						  "Artist: " + albumartistRole, "Genre: " + genreRole,
-						  "Year: " + yearRole, consts.albumLoader)
+						  albumArtist, genre, year, consts.albumLoader)
 		}
 	}
 }

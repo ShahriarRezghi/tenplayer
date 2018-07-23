@@ -6,5 +6,5 @@ import STools.Extras 1.0 as E
 E.ImageButton {
 	id: control
 	padding: 8
-	color: Material.foreground
+	color: appSettings.iconFromAccent ? theme.accent:Material.foreground
 }
