@@ -43,7 +43,7 @@ void Loader::deleteSong(const QVariant &id)
 {
 	Query->prepare("DELETE FROM music WHERE rowid=?;");
 	Query->bindValue(0, id);
-	qDebug() << Query->exec();
+	Query->exec();
 }
 
 void Loader::createSearchModel(int searchRole)

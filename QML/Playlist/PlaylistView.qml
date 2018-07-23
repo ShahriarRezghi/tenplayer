@@ -1,5 +1,7 @@
 import QtQuick 2.10
 import QtQuick.Window 2.2
+import QtQuick.Controls 2.3
+import QtQuick.Controls.Material 2.3
 
 import "../Tools"
 import "../ViewMenu"
@@ -28,5 +30,21 @@ SectionGridView {
 	ViewMenu {
 		id: menu
 		type: consts.playlistLoader
+	}
+
+	RoundButton {
+		id: addButton
+		icon.source: "qrc:/Images/Plus.png"
+		Material.background: theme.background
+
+		implicitWidth: 80
+		implicitHeight: 80
+
+		anchors.rightMargin: 50
+		anchors.bottomMargin: 50
+		anchors.right: parent.right
+		anchors.bottom: parent.bottom
+
+		onClicked: addPlaylistDialog.open()
 	}
 }

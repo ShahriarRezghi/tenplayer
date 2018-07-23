@@ -20,14 +20,14 @@ void AlbumLoader::deleteAlbum(QStandardItem *item)
 	Query->prepare("DELETE FROM music WHERE album=?, albumartist=?;");
 	Query->bindValue(0, album);
 	Query->bindValue(1, albumArtist);
-	qDebug() << Query->exec();
+	Query->exec();
 }
 
 void AlbumLoader::load()
 {
 	clear();
 
-	qDebug() << Query->exec(
+	Query->exec(
 		"SELECT album, albumartist, "
 		"group_concat(genre), group_concat(year) "
 		"FROM music GROUP BY album, albumartist;");
@@ -98,7 +98,7 @@ QList<QStandardItem *> AlbumLoader::getSubItems(QStandardItem *item)
 		"SELECT rowid, * FROM music where album=? AND albumartist=?;");
 	Query->bindValue(0, album);
 	Query->bindValue(1, albumArtist);
-	qDebug() << Query->exec();
+	Query->exec();
 
 	while (Query->next())
 	{
@@ -108,8 +108,5 @@ QList<QStandardItem *> AlbumLoader::getSubItems(QStandardItem *item)
 	}
 
 	sortItemList({TitleRole, TrackRole}, items);
-
-	for (auto I : items) qDebug() << I->data(TrackRole).toString();
-
 	return items;
 }

@@ -16,8 +16,7 @@ void RecentlyAddedLoader::load()
 {
 	clear();
 
-	qDebug() << Query->exec(
-		"SELECT rowid, * FROM music ORDER BY rowid DESC LIMIT 100;");
+	Query->exec("SELECT rowid, * FROM music ORDER BY rowid DESC LIMIT 100;");
 
 	while (Query->next()) m_model->appendRow(recordToItem(Query->record()));
 }

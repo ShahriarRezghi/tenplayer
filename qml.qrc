@@ -90,5 +90,6 @@
         <file>QML/Min/MinView.qml</file>
         <file>QML/Menu/PlaylistDialog.qml</file>
         <file>QML/AppSettings.qml</file>
+        <file>QML/Menu/AddPlaylistDialog.qml</file>
     </qresource>
 </RCC>

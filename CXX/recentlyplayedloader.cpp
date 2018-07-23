@@ -61,7 +61,7 @@ void RecentlyPlayedLoader::load()
 	{
 		Query->prepare("SELECT rowid, * FROM music WHERE rowid=?");
 		Query->bindValue(0, m_playedIds[i]);
-		qDebug() << Query->exec();
+		Query->exec();
 
 		if (!Query->first())
 		{

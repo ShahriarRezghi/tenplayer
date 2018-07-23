@@ -59,4 +59,8 @@ Page {
 	PlaylistDialog {
 		id: playlistDialog
 	}
+
+	AddPlaylistDialog {
+		id: addPlaylistDialog
+	}
 }

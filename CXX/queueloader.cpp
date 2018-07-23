@@ -222,7 +222,6 @@ void QueueLoader::changeActiveRow(const int &row)
 	}
 	else
 	{
-		qDebug() << m_model->item(row);
 		Active->setTitleInfo(m_model->item(row)->data(TitleRole).toString());
 		Active->setAlbumInfo(m_model->item(row)->data(AlbumRole).toString());
 		Active->setArtistInfo(m_model->item(row)->data(ArtistRole).toString());

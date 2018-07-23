@@ -71,6 +71,7 @@ public slots:
 									 const QVariant &extra = QVariant());
 
 	void search(const QString &text);
+	void addPlaylist(const QString &name);
 };
 
 #endif  // MAINMANAGER_H

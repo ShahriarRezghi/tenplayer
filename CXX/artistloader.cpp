@@ -15,7 +15,7 @@ void ArtistLoader::load()
 {
 	clear();
 
-	qDebug() << Query->exec(
+	Query->exec(
 		"SELECT artist, group_concat(album), group_concat(albumartist) from "
 		"music GROUP BY artist;");
 
@@ -77,7 +77,7 @@ void ArtistLoader::deleteArtist(QStandardItem *item)
 
 	Query->prepare("DELETE FROM music WHERE artist=?;");
 	Query->bindValue(0, artist);
-	qDebug() << Query->exec();
+	Query->exec();
 }
 
 QList<QStandardItem *> ArtistLoader::getSubItems(QStandardItem *item)
@@ -89,7 +89,7 @@ QList<QStandardItem *> ArtistLoader::getSubItems(QStandardItem *item)
 
 	Query->prepare("SELECT rowid, * FROM music where artist=?;");
 	Query->bindValue(0, artist);
-	qDebug() << Query->exec();
+	Query->exec();
 
 	while (Query->next())
 	{

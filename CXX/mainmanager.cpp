@@ -104,3 +104,8 @@ void MainManager::search(const QString &text)
 	Loaders[ArtistLdr]->search(text);
 	Loaders[SongLdr]->search(text);
 }
+
+void MainManager::addPlaylist(const QString &name)
+{
+	static_cast<PlaylistLoader *>(Loaders[PlaylistLdr])->addPlaylist(name);
+}
