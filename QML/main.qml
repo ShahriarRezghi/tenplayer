@@ -23,10 +23,10 @@ ApplicationWindow {
 	}
 
 	Material.accent: theme.accent
-	Material.primary: theme.background
-	Material.background: theme.primary
+	Material.primary: theme.primary
+	Material.background: theme.background
 	Material.foreground: theme.foreground
-	Material.theme: ColorAlt.lightness(theme.primary) > .5 ?
+	Material.theme: ColorAlt.lightness(theme.background) > .5 ?
 						Material.Light:Material.Dark
 
 	Consts {
@@ -35,14 +35,14 @@ ApplicationWindow {
 
 	Theme {
 		id: theme
-		primary: appSettings.primary
+		background: appSettings.background
 		foreground: appSettings.foreground
 
 		accent: !appSettings.colorFromArtwork || !ActiveInfo.artworkInfo
 				? appSettings.accent:colorExtractor.secondColor
 
-		background: !appSettings.colorFromArtwork || !ActiveInfo.artworkInfo
-					? appSettings.background:colorExtractor.firstColor
+		primary: !appSettings.colorFromArtwork || !ActiveInfo.artworkInfo
+					? appSettings.primary:colorExtractor.firstColor
 	}
 
 	AppSettings {
@@ -50,8 +50,8 @@ ApplicationWindow {
 
 		property color foreground: "black"
 		property color accent: MaterialTheme.purple
-		property color primary: MaterialTheme.primary
-		property color background: MaterialTheme.teal
+		property color primary: MaterialTheme.teal
+		property color background: MaterialTheme.primary
 	}
 
 	Settings {

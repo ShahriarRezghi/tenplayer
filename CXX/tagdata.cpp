@@ -1,6 +1,7 @@
 #include "tagdata.h"
 
 TagData::TagData(const QString &path) { parse(path); }
+
 void TagData::imageForTagMP3(const QString &trackURL,
 							 QImage &img)  // TagLib::ID3v2::Tag *tag
 {

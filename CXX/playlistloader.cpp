@@ -49,9 +49,9 @@ void PlaylistLoader::actionTriggered(const int &type, const int &index,
 
 void PlaylistLoader::addPlaylist(const QString &name)
 {
-	Query->prepare("INSERTO INO playlist VALUES(?);");
+	Query->prepare("INSERT INTO playlist VALUES(?);");
 	Query->bindValue(0, name);
-	qDebug() << Query->exec();
+	Query->exec();
 
 	auto id = Query->lastInsertId();
 
@@ -67,8 +67,11 @@ QList<QStandardItem *> PlaylistLoader::getSubItems(QStandardItem *item)
 	auto pid = item->data(IDRole);
 
 	Query->prepare(
-		"SELECT mpjoim.row, music.* FROM music, mpjoin "
-		"WHERE music.rowid=mpjoin.mid AND mpjoin.pid=?;");
+		"SELECT *, row FROM music, mpjoin "
+		"WHERE music.rowid=mpjoin.mid AND mpjoin.pid=?;");  // TODO select
+															// mpjoin.row,
+															// music. returns
+															// false
 	Query->bindValue(0, pid);
 	qDebug() << Query->exec();
 

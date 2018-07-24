@@ -31,10 +31,6 @@ Page {
 		id: libraryDialog
 	}
 
-	SettingsDialog {
-		id: settingsDialog
-	}
-
 	AboutDialog {
 		id: aboutDialog
 	}
@@ -62,5 +58,17 @@ Page {
 
 	AddPlaylistDialog {
 		id: addPlaylistDialog
+	}
+
+//	SettingsDialog {
+//		id: settingsDialog
+//	}
+
+	ZSettingsDialog {
+		id: settingsDialog
+	}
+
+	ZThemeDialog {
+		id: themeDialog
 	}
 }

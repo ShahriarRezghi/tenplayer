@@ -6,6 +6,7 @@
 #include <CXX/mainmanager.h>
 
 // TODO put a slider so that the user can scale delegate sizes
+// TODO models don't get updated after reloading
 
 int main(int argc, char *argv[])
 {
@@ -13,7 +14,7 @@ int main(int argc, char *argv[])
 	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
 
-	//	qRegisterMetaType<QQmlChangeSet>("QQmlChangeSet"); // TODO register this
+	// qRegisterMetaType<QQmlChangeSet>("QQmlChangeSet");  // TODO register this
 
 	QGuiApplication app(argc, argv);
 	QQuickStyle::setStyle("Material");

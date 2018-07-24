@@ -27,7 +27,11 @@ Popup {
 
 		ImageButton {
 			source: "qrc:/Images/Plus.png"
-			onClicked: MainManager.addPlaylist(field.text)
+
+			onClicked: {
+				popup.close()
+				MainManager.addPlaylist(field.text)
+			}
 		}
 	}
 }

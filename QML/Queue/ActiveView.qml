@@ -34,7 +34,7 @@ Page {
 	footer: TabBar {
 		id: tabbar
 		position: TabBar.Footer
-		Material.background: theme.background
+		Material.background: theme.primary
 
 		Rectangle {
 			height: 1

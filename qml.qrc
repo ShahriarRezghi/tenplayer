@@ -91,5 +91,8 @@
         <file>QML/Menu/PlaylistDialog.qml</file>
         <file>QML/AppSettings.qml</file>
         <file>QML/Menu/AddPlaylistDialog.qml</file>
+        <file>QML/Menu/ZSettingsDialog.qml</file>
+        <file>QML/Menu/ZThemeDialog.qml</file>
+        <file>QML/Menu/ThemeMainView.qml</file>
     </qresource>
 </RCC>

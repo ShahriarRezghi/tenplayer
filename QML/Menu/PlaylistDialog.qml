@@ -28,34 +28,38 @@ Popup {
 		type = t
 		currentIndex = i
 		open()
+
+		// TODO this is here because the model is empty when opened. needs to be
+		// reset but this is not a good fix
+		view.model = null
+		view.model = PlaylistModel
 	}
 
 	contentItem: ColumnLayout {
 		spacing: 0
 
 		ListView {
+			id: view
 			emptyText: "You Have No Playlists"
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 
-			model: VisualDataModel {
-				model: PlaylistModel
+			model: PlaylistModel
 
-				delegate: ListDelegate {
-					width: parent.width
-					model: [titleRole]
-					image: artworkRole ? artworkRole:""
+			delegate: ListDelegate {
+				width: parent.width
+				model: [titleRole]
+				image: artworkRole ? "file://" + artworkRole:"qrc:/Images/Note.png"
 
-					onClicked: {
-						popup.close()
+				onClicked: {
+					popup.close()
 
-						if (cat == 1)
-							MainManager.loaderActionTriggered(type, 3, currentIndex, index)
-						else if (cat == 2)
-							MainManager.trackActionTriggered(type, 3, currentIndex, index)
-						else if (cat == 3)
-							MainManager.loaderSearchActionTriggered(type, 3, currentIndex, index)
-					}
+					if (cat == 1)
+						MainManager.loaderActionTriggered(type, 3, currentIndex, index)
+					else if (cat == 2)
+						MainManager.trackActionTriggered(type, 3, currentIndex, index)
+					else if (cat == 3)
+						MainManager.loaderSearchActionTriggered(type, 3, currentIndex, index)
 				}
 			}
 		}

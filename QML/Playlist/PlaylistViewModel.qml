@@ -17,7 +17,8 @@ VisualDataModel {
 
 		onClicked: {
 			MainManager.loaderClicked(consts.playlistLoader, index)
-			openTrackView(artworkRole, "Title: " + titleRole) // TODO right?
+			openTrackView(artworkRole, "Title: " + titleRole,
+						  "", "", "", consts.playlistLoader)
 		}
 	}
 }

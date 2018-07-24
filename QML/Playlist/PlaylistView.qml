@@ -35,7 +35,7 @@ SectionGridView {
 	RoundButton {
 		id: addButton
 		icon.source: "qrc:/Images/Plus.png"
-		Material.background: theme.background
+		Material.background: theme.primary
 
 		implicitWidth: 80
 		implicitHeight: 80
