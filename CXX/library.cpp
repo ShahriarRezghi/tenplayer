@@ -7,7 +7,7 @@ void MainManager::clearAll()
 
 void MainManager::eraseAll()
 {
-	clearAll();
+	emit clearAllSignal();
 
 	QDir(QString(Loader::ArtworkPath)
 			 .remove(Loader::ArtworkPath.length() - 1, 1))
@@ -23,6 +23,9 @@ void MainManager::load()
 	Status->setStatus("Erasing All");
 
 	eraseAll();
+
+	Status->setTop(0);
+	Status->setValue(0);
 	Status->setStatus("Listing Files");
 
 	QStringList files = PathMgr->getAllFiles();
@@ -30,7 +33,7 @@ void MainManager::load()
 
 	Status->setStatus("Importing To Database");
 
-	DatabaseMgr->import(QSize(500, 500), files);  // TODO size hardcoded
+	DatabaseMgr->import(ArtworkSize, files);
 	Status->setLoading(false);
 
 	refresh();
@@ -40,9 +43,10 @@ void MainManager::refresh()
 {
 	Status->setRefreshing(true);
 
-	Status->setStatus("Refreshing");
 	Status->setTop(0);
 	Status->setValue(0);
+	Status->setStatus("Refreshing");
+
 	Status->setFile("");
 
 	for (auto loader : Loaders) loader->load();
@@ -52,8 +56,10 @@ void MainManager::refresh()
 void MainManager::loadDir(const QString &dir)
 {
 	Status->setLoading(true);
-	clearAll();
+	emit clearAllSignal();
 
+	Status->setTop(0);
+	Status->setValue(0);
 	Status->setStatus("Listing Files");
 
 	PathMgr->addDir(dir);
@@ -62,7 +68,7 @@ void MainManager::loadDir(const QString &dir)
 	QStringList files = PathMgr->filesInDirectory(dir);
 	Status->setStatus("Importing To Database");
 
-	DatabaseMgr->import(QSize(500, 500), files);
+	DatabaseMgr->import(ArtworkSize, files);
 	Status->setLoading(false);
 	refresh();
 }
@@ -70,8 +76,10 @@ void MainManager::loadDir(const QString &dir)
 void MainManager::loadFiles(const QStringList &files)
 {
 	Status->setLoading(true);
-	clearAll();
+	emit clearAllSignal();
 
+	Status->setTop(0);
+	Status->setValue(0);
 	Status->setStatus("Listing Files");
 
 	QStringList fileList = PathMgr->addFiles(files);
@@ -79,7 +87,7 @@ void MainManager::loadFiles(const QStringList &files)
 
 	Status->setStatus("Importing To Database");
 
-	DatabaseMgr->import(QSize(500, 500), fileList);
+	DatabaseMgr->import(ArtworkSize, fileList);
 	Status->setLoading(false);
 	refresh();
 }

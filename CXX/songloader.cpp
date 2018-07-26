@@ -2,6 +2,12 @@
 #include "playlistloader.h"
 #include "queueloader.h"
 
+void SongLoader::addItemsToModel(const QList<QStandardItem *> &items)
+{
+	Loader::addItemsToModel(items);
+	sortModel(TitleRole);
+}
+
 SongLoader::SongLoader(QObject *parent) : Loader(parent)
 {
 	m_model = new QmlModel(this);
@@ -15,10 +21,12 @@ SongLoader::SongLoader(QObject *parent) : Loader(parent)
 
 void SongLoader::load()
 {
-	clear();
+	QList<QStandardItem *> items;
+
 	Query->exec("SELECT rowid, * FROM music;");
-	while (Query->next()) m_model->appendRow(recordToItem(Query->record()));
-	sortModel(TitleRole);
+	while (Query->next()) items << recordToItem(Query->record());
+
+	emit addItemsToModelFromThread(items);
 }
 
 void SongLoader::clicked(const int &index)

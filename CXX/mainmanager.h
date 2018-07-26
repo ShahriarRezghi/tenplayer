@@ -16,8 +16,11 @@
 #include "statusmanager.h"
 
 #include <QObject>
+#include <QStandardPaths>
 #include <QVector>
 #include <QtConcurrent/QtConcurrent>
+
+using QSP = QStandardPaths;
 
 class MainManager : public QObject
 {
@@ -25,7 +28,6 @@ class MainManager : public QObject
 
 	void setupLoaders();
 
-	void clearAll();
 	void eraseAll();
 
 	void load();
@@ -38,7 +40,12 @@ class MainManager : public QObject
 	static void loadDirStatic(MainManager *manager, const QString &path);
 	static void loadFilesStatic(MainManager *manager, const QStringList &list);
 
+private slots:
+	void clearAll();
+
 public:
+	QSize ArtworkSize;
+
 	ActiveInfo *Active;
 	QueueLoader *Queue;
 
@@ -51,6 +58,8 @@ public:
 	DatabaseManager *DatabaseMgr;
 
 	explicit MainManager(QObject *parent = nullptr);
+
+	bool playFromArguements(QStringList files);
 
 public slots:
 	void safeLoad();
@@ -72,6 +81,9 @@ public slots:
 
 	void search(const QString &text);
 	void addPlaylist(const QString &name);
+
+signals:
+	void clearAllSignal();
 };
 
 #endif  // MAINMANAGER_H

@@ -1,5 +1,6 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
+import QtQuick.Controls.Material 2.3
 import QtQuick.Layouts 1.3
 
 Popup {
@@ -25,6 +26,8 @@ Popup {
 			Layout.fillWidth: true
 			to: StatusManager.top
 			value: StatusManager.value
+			indeterminate: StatusManager.top == 0 && StatusManager.value == 0
+			Material.accent: theme.accent == theme.background ? theme.primary:theme.accent
 		}
 
 		Label {

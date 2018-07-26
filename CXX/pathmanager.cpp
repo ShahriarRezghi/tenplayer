@@ -42,9 +42,7 @@ void PathManager::filterFiles(QStringList &files)
 		list << files.filter(rx);
 	}
 
-	// TODO
-	//	qDebug() << "Removed " << list.removeDuplicates() << " Files!";
-
+	list.removeDuplicates();
 	files = list;
 }
 

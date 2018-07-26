@@ -8,8 +8,10 @@ VisualDataModel {
 	signal menuRequested(real x, real y, int index)
 
 	delegate: ListDelegate {
-		useTrack: true
 		track: trackRole != 0 ? trackRole:"?"
+		useTrack: view.type == consts.albumLoader
+		image: artworkRole ? "file://"+artworkRole:"qrc:/Images/Note.png"
+
 		width: parent.width/2
 		model: [titleRole, artistRole]
 

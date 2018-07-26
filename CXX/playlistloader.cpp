@@ -10,19 +10,19 @@ PlaylistLoader::PlaylistLoader(QObject *parent) : Loader(parent)
 
 void PlaylistLoader::load()
 {
-	clear();
+	QList<QStandardItem *> items;
 
-	qDebug() << Query->exec("SELECT rowid, name FROM playlist;");
+	Query->exec("SELECT rowid, name FROM playlist;");
 
 	while (Query->next())
 	{
 		auto *item = new QStandardItem;
 		item->setData(Query->value(0), IDRole);
 		item->setData(Query->value(1), TitleRole);
-		m_model->appendRow(item);
+		items << item;
 	}
 
-	sortModel(TitleRole);
+	emit addItemsToModelFromThread(items);
 }
 
 void PlaylistLoader::clicked(const int &index)
@@ -73,7 +73,7 @@ QList<QStandardItem *> PlaylistLoader::getSubItems(QStandardItem *item)
 															// music. returns
 															// false
 	Query->bindValue(0, pid);
-	qDebug() << Query->exec();
+	Query->exec();
 
 	while (Query->next())
 	{
@@ -90,7 +90,7 @@ int PlaylistLoader::lastRowInPlaylist(const QVariant &pid)
 	Query->prepare(
 		"SELECT row FROM mpjoin WHERE pid=? ORDER BY row DESC LIMIT 1;");
 	Query->bindValue(0, pid);
-	qDebug() << Query->exec();
+	Query->exec();
 
 	if (Query->first())
 		return Query->value(0).toInt();
@@ -105,11 +105,17 @@ void PlaylistLoader::deletePlaylist(const int &index)
 
 	Query->prepare("DELETE FROM playlist WHERE rowid=?;");
 	Query->bindValue(0, id);
-	qDebug() << Query->exec();
+	Query->exec();
 
 	Query->prepare("DELETE FROM mpjoin WHERE pid=?;");
 	Query->bindValue(0, id);
-	qDebug() << Query->exec();
+	Query->exec();
+}
+
+void PlaylistLoader::addItemsToModel(const QList<QStandardItem *> &items)
+{
+	Loader::addItemsToModel(items);
+	sortModel(TitleRole);
 }
 
 void PlaylistLoader::addItem(const int &row, QStandardItem *item)
@@ -124,7 +130,7 @@ void PlaylistLoader::addItem(const int &row, QStandardItem *item)
 	Query->bindValue(0, playlistid);
 	Query->bindValue(1, itemid);
 	Query->bindValue(2, lastRow);
-	qDebug() << Query->exec();
+	Query->exec();
 }
 
 void PlaylistLoader::addItems(const int &row, QList<QStandardItem *> &items)
@@ -146,11 +152,11 @@ void PlaylistLoader::addItems(const int &row, QList<QStandardItem *> &items)
 		delete item;  // TODO nessesary?
 	}
 
-	qDebug() << Query->exec("BEGIN TRANSACTION");
+	Query->exec("BEGIN TRANSACTION");
 	Query->prepare("INSERT INTO mpjoin VALUES(?, ?, ?);");
 	Query->bindValue(0, playlistids);
 	Query->bindValue(1, musicids);
 	Query->bindValue(2, rows);
-	qDebug() << Query->execBatch();
-	qDebug() << Query->exec("COMMIT;");
+	Query->execBatch();
+	Query->exec("COMMIT;");
 }

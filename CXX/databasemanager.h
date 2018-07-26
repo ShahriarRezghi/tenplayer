@@ -20,7 +20,8 @@ class DatabaseManager : public QObject
 	void createDatabase();
 
 public:
-	explicit DatabaseManager(QObject *parent = nullptr);
+	explicit DatabaseManager(const QString &databasePath,
+							 QObject *parent = nullptr);
 	~DatabaseManager();
 
 	void import(const QSize &artworkSize, const QStringList &files);

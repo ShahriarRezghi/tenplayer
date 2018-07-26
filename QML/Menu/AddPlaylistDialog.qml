@@ -1,12 +1,18 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
+import QtQuick.Controls.Material 2.3
 
 import "../Tools"
 
 Popup {
 	id: popup
 	modal: true
+
+	topPadding: 12
+	bottomPadding: 12
+	leftPadding: 18
+	rightPadding: 18
 
 	x: (parent.width-width)/2
 	y: (parent.height-height)/2
@@ -22,11 +28,13 @@ Popup {
 			id: field
 			implicitWidth: 250
 			Layout.fillWidth: true
-			placeholderText: "Add Playlist"
+			placeholderText: "Playlist Name"
+			Material.accent: theme.background == theme.accent ? theme.primary:theme.accent
 		}
 
-		ImageButton {
-			source: "qrc:/Images/Plus.png"
+		Button {
+			text: "Add"
+			flat: true
 
 			onClicked: {
 				popup.close()

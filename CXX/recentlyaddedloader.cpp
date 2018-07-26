@@ -14,11 +14,12 @@ RecentlyAddedLoader::RecentlyAddedLoader(QObject *parent) : Loader(parent)
 
 void RecentlyAddedLoader::load()
 {
-	clear();
+	QList<QStandardItem *> items;
 
 	Query->exec("SELECT rowid, * FROM music ORDER BY rowid DESC LIMIT 100;");
+	while (Query->next()) items << recordToItem(Query->record());
 
-	while (Query->next()) m_model->appendRow(recordToItem(Query->record()));
+	emit addItemsToModelFromThread(items);
 }
 
 void RecentlyAddedLoader::clicked(const int &index)

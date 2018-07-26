@@ -11,7 +11,7 @@ SectionGridView {
 	cellWidth: {
 		var DW = Screen.width
 		var W = width
-		return W/Math.max(Math.floor(W*7/DW), 5)
+		return W/Math.max(Math.floor(W*8/DW), 5)
 	}
 
 	cellHeight: (cellWidth - 24) + 6 + consts.textSize * 2 + 32

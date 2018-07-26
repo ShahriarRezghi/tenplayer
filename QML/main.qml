@@ -48,6 +48,8 @@ ApplicationWindow {
 	AppSettings {
 		id: appSettings
 
+		onCurrentLoaderChanged: print(currentLoader)
+
 		property color foreground: "black"
 		property color accent: MaterialTheme.purple
 		property color primary: MaterialTheme.teal
@@ -55,6 +57,8 @@ ApplicationWindow {
 	}
 
 	Settings {
+		property alias currentLoader: appSettings.currentLoader
+
 		property alias imageOpacity: appSettings.imageOpacity
 		property alias minViewSize: appSettings.minViewSize
 

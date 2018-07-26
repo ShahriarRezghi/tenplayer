@@ -6,7 +6,7 @@ import "../ViewMenu"
 GridView {
 	id: view
 
-	property int type
+	property int type: stack.trackType
 
 	ScrollBar.vertical: ScrollBar { }
 

@@ -6,7 +6,11 @@ import QtQuick.Controls.Material 2.3
 Popup {
 	id: popup
 	modal: true
-	padding: 0
+
+	topPadding: 8
+	bottomPadding: 8
+	leftPadding: 0
+	rightPadding: 0
 
 	width: parent.width/2
 	height: parent.height*3/4
@@ -28,6 +32,14 @@ Popup {
 			}
 		}
 
+		Rectangle {
+			height: 1
+			Layout.fillWidth: true
+			Layout.leftMargin: 12
+			Layout.rightMargin: 12
+			color: theme.background == theme.accent ? theme.primary:theme.accent
+		}
+
 		LibraryComponent {
 			title: "Files"
 			model: PathManager.files
@@ -40,15 +52,13 @@ Popup {
 		}
 
 		RowLayout {
-			Layout.leftMargin: 6
-			Layout.rightMargin: 6
-			Layout.bottomMargin: 6
+			Layout.rightMargin: 18
 			Layout.fillHeight: false
+			Layout.alignment: Qt.AlignRight
 
 			Button {
+				flat: true
 				text: "Reload"
-				Layout.fillWidth: true
-				Material.background: Material.primary
 
 				onClicked: {
 					popup.close()
@@ -57,9 +67,9 @@ Popup {
 			}
 
 			Button {
+				flat: true
 				text: "Confirm"
-				Layout.fillWidth: true
-				Material.background: Material.primary
+
 				onClicked: popup.close()
 			}
 		}

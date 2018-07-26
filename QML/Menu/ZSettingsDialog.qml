@@ -2,38 +2,37 @@ import QtQuick 2.10
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
+import STools.Extras 1.0
 
 Popup {
 	id: popup
 	modal: true
+	topPadding: 8
+	bottomPadding: 8
+	leftPadding: 24
+	rightPadding: 24
 
 	x: (parent.width-width)/2
 	y: (parent.height-height)/2
+
+	Material.accent: {
+		var p = MaterialTheme.primary
+		var pd = MaterialTheme.primaryDark
+
+		var x = (p == theme.accent) || (pd == theme.accent)
+		var y = (p == theme.primary) || (pd == theme.primary)
+
+		x ? (y ? "grey":theme.primary):theme.accent
+	}
 
 	contentItem: RowLayout {
 		spacing: 15
 
 		ColumnLayout {
-			CheckBox {
-				text: "Color From Artwork"
-				checked: appSettings.colorFromArtwork
-				onClicked: appSettings.colorFromArtwork = checked
-			}
-
-			CheckBox {
-				text: "Background From Artwork"
-				checked: appSettings.backgroundFromArtwork
-				onClicked: appSettings.backgroundFromArtwork = checked
-			}
-
-			CheckBox {
-				text: "Icons Color From Accent"
-				checked: appSettings.iconFromAccent
-				onClicked: appSettings.iconFromAccent = checked
-			}
-
 			ColumnLayout {
-				Layout.fillHeight: false
+				spacing: 15
+				Layout.topMargin: 8
+				Layout.bottomMargin: 8
 
 				RowLayout {
 					Layout.fillHeight: false
@@ -89,10 +88,16 @@ Popup {
 					}
 				}
 
+				Item {
+					Layout.fillWidth: true
+					Layout.fillHeight: true
+				}
+
 				Button {
-					flat: true
 					text: "Change Theme"
 					Layout.fillWidth: true
+					Material.background: theme.primary
+					implicitWidth: 200
 
 					onClicked: themeDialog.open()
 				}
@@ -100,7 +105,7 @@ Popup {
 		}
 
 		Rectangle {
-			color: theme.accent
+			color: popup.Material.accent
 			width: 1
 			Layout.fillHeight: true
 			Layout.topMargin: 10
@@ -108,6 +113,24 @@ Popup {
 		}
 
 		ColumnLayout {
+			CheckBox {
+				text: "Color From Artwork"
+				checked: appSettings.colorFromArtwork
+				onClicked: appSettings.colorFromArtwork = checked
+			}
+
+			CheckBox {
+				text: "Background From Artwork"
+				checked: appSettings.backgroundFromArtwork
+				onClicked: appSettings.backgroundFromArtwork = checked
+			}
+
+			CheckBox {
+				text: "Icons Color From Accent"
+				checked: appSettings.iconFromAccent
+				onClicked: appSettings.iconFromAccent = checked
+			}
+
 			RowLayout {
 				Layout.fillHeight: false
 
@@ -148,7 +171,8 @@ Popup {
 			Button {
 				flat: true
 				text: "Close"
-				Layout.fillWidth: true
+				Layout.alignment: Qt.AlignRight
+
 				onClicked: popup.close()
 			}
 		}

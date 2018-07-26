@@ -10,6 +10,7 @@ RowLayout {
 	TabBar {
 		background: null
 		Layout.fillWidth: true
+		currentIndex: control.currentTab
 		onCurrentIndexChanged: control.currentTab = currentIndex
 
 		Repeater {

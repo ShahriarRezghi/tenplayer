@@ -1,16 +1,62 @@
 #include "mainmanager.h"
 
-MainManager::MainManager(QObject *parent) : QObject(parent) { setupLoaders(); }
+MainManager::MainManager(QObject *parent) : QObject(parent)
+{
+	setupLoaders();
+	connect(this, &MainManager::clearAllSignal, this, &MainManager::clearAll);
+}
+
+bool MainManager::playFromArguements(QStringList files)
+{
+	//	files << "/run/media/shahriar/MyFiles/All Music/Beta Music/Extreme –
+	// More Than Words.mp3";
+
+	files.removeFirst();
+	if (files.isEmpty()) return false;
+
+	auto toBeImportedFiles = PathMgr->addFiles(files);
+	PathMgr->save();
+
+	DatabaseMgr->import(ArtworkSize, toBeImportedFiles);
+
+	QList<QStandardItem *> items;
+	auto Query = DatabaseMgr->query();
+
+	QString cmd = "SELECT rowid, * FROM music WHERE path IN (";
+	for (int i = 0; i < files.size(); ++i) cmd += "?, ";
+	cmd.remove(cmd.size() - 2, 2);
+	cmd += ");";
+
+	Query->prepare(cmd);
+	for (const auto &file : files) Query->addBindValue(file);
+	Query->exec();
+
+	while (Query->next()) items << Loader::recordToItem(Query->record());
+	Queue->addItems(items);
+
+	return true;
+}
 
 void MainManager::setupLoaders()
 {
+	auto sep = QDir::separator();
+	auto dataPath = QSP::writableLocation(QSP::AppDataLocation);
+
+	ArtworkSize = QSize(512, 512);
+
+	QString artworkPath = dataPath + sep + "artworks";
+	QString databasePath = dataPath + sep + "database";
+
+	if (!QDir(artworkPath).exists() && !QDir().mkdir(artworkPath))
+		qDebug() << "failed to create artworks directory";
+
 	Active = new ActiveInfo(this);
-	PathMgr = new PathManager(this);
-	TrackMgr = new TrackManager(this);
-	DatabaseMgr = new DatabaseManager(this);
 	Queue = new QueueLoader(this);
+	PathMgr = new PathManager(this);
 	Status = new StatusManager(this);
+	TrackMgr = new TrackManager(this);
 	DetailsMgr = new DetailsManager(this);
+	DatabaseMgr = new DatabaseManager(databasePath, this);
 
 	Loaders << new AlbumLoader(this) << new ArtistLoader(this)
 			<< new SongLoader(this) << Queue << new RecentlyAddedLoader(this)
@@ -27,10 +73,7 @@ void MainManager::setupLoaders()
 	Loader::RecentlyPlayed =
 		static_cast<RecentlyPlayedLoader *>(Loaders[RecentlyPlayedLdr]);
 
-	QString artworkPath = QDir::currentPath() + QDir::separator() + "artworks";
-	Loader::ArtworkPath = artworkPath + QDir::separator();  // TODO hardcoded
-	if (!QDir(artworkPath).exists() && !QDir().mkdir(artworkPath))
-		qDebug() << "failed to create artworks directory";
+	Loader::ArtworkPath = artworkPath + QDir::separator();
 }
 
 void MainManager::loadStatic(MainManager *manager) { manager->load(); }

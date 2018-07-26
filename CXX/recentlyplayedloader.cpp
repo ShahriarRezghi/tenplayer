@@ -57,6 +57,8 @@ void RecentlyPlayedLoader::addPlayedItem(QStandardItem *I)
 
 void RecentlyPlayedLoader::load()
 {
+	QList<QStandardItem *> items;
+
 	for (int i = 0; i < m_playedIds.count(); ++i)
 	{
 		Query->prepare("SELECT rowid, * FROM music WHERE rowid=?");
@@ -70,8 +72,10 @@ void RecentlyPlayedLoader::load()
 			continue;
 		}
 
-		m_model->appendRow(recordToItem(Query->record()));
+		items << recordToItem(Query->record());
 	}
+
+	emit addItemsToModelFromThread(items);
 }
 
 void RecentlyPlayedLoader::clicked(const int &index)

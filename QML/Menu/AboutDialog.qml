@@ -8,7 +8,11 @@ import "../Tools"
 Popup {
 	id: popup
 	modal: true
-	padding: 20
+
+	topPadding: 12
+	bottomPadding: 24
+	leftPadding: 24
+	rightPadding: 24
 
 	x: (parent.width-width)/2
 	y: (parent.height-height)/2
@@ -29,9 +33,9 @@ My Email address is shahriar25.ss@gmail.com"
 
 			Label {
 				text: "About"
-				color: Material.accent
 				font.pointSize: consts.largeFont
 				anchors.horizontalCenter: parent.horizontalCenter
+				color: theme.accent == theme.background ? theme.primary:theme.accent
 			}
 
 			Label {

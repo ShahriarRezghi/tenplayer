@@ -22,24 +22,41 @@ Popup {
 		MaterialTheme.primary, MaterialTheme.primaryDark
 	]
 
-	property var modelPrimary: [
+	// primary
+	property var modelPrimary1: [
+		MaterialTheme.primary,
 		MaterialTheme.amber, MaterialTheme.blue, MaterialTheme.blueGrey,
 		MaterialTheme.brown, MaterialTheme.cyan, MaterialTheme.deepOrange,
 		MaterialTheme.deepPurple, MaterialTheme.green, MaterialTheme.grey,
 		MaterialTheme.indigo, MaterialTheme.lightBlue, MaterialTheme.lightGreen,
 		MaterialTheme.lime, MaterialTheme.orange, MaterialTheme.pink,
-		MaterialTheme.purple, MaterialTheme.red, MaterialTheme.teal,
-		MaterialTheme.yellow, MaterialTheme.primary, MaterialTheme.primaryDark
+		MaterialTheme.purple, MaterialTheme.red, MaterialTheme.teal
 	]
 
-	property var modelAccent: [
+	// primary dark
+	property var modelPrimary2: [
+		MaterialTheme.yellow, MaterialTheme.primaryDark,
+		MaterialTheme.amber, MaterialTheme.blue, MaterialTheme.blueGrey,
+		MaterialTheme.brown, MaterialTheme.cyan, MaterialTheme.deepOrange,
+		MaterialTheme.deepPurple, MaterialTheme.green, MaterialTheme.grey,
+		MaterialTheme.indigo, MaterialTheme.lightBlue, MaterialTheme.lightGreen,
+		MaterialTheme.lime, MaterialTheme.orange, MaterialTheme.pink,
+		MaterialTheme.purple, MaterialTheme.red, MaterialTheme.teal
+	]
+
+	// non-primary primary color
+	property var modelAccent1: [
+		MaterialTheme.primary, MaterialTheme.primaryDark
+	]
+
+	// primary primary color
+	property var modelAccent2: [
 		MaterialTheme.amber, MaterialTheme.blue, MaterialTheme.blueGrey,
 		MaterialTheme.brown, MaterialTheme.cyan, MaterialTheme.deepOrange,
 		MaterialTheme.deepPurple, MaterialTheme.green, MaterialTheme.grey,
 		MaterialTheme.indigo, MaterialTheme.lightBlue, MaterialTheme.lightGreen,
 		MaterialTheme.lime, MaterialTheme.orange, MaterialTheme.pink,
 		MaterialTheme.purple, MaterialTheme.red, MaterialTheme.teal,
-		MaterialTheme.yellow, MaterialTheme.primary, MaterialTheme.primaryDark
 	]
 
 	onClosed: swipe.currentIndex = 0
@@ -65,21 +82,33 @@ Popup {
 			onClicked: {
 				selectedBackground = c
 				swipe.currentIndex = 1
+
+				if (c == MaterialTheme.primary)
+					primarySelector.model = modelPrimary1
+				else if (c == MaterialTheme.primaryDark)
+					primarySelector.model = modelPrimary2
 			}
 		}
 
 		ThemeMainView {
-			model: modelPrimary
+			id: primarySelector
 			topText: "Select Primary Color"
 
 			onClicked: {
 				selectedPrimary = c
 				swipe.currentIndex = 2
+
+				if (c == MaterialTheme.primary)
+					accentSelector.model = modelAccent2
+				else if (c == MaterialTheme.primaryDark)
+					accentSelector.model = modelAccent2
+				else
+					accentSelector.model = modelAccent1
 			}
 		}
 
 		ThemeMainView {
-			model: modelAccent
+			id: accentSelector
 			topText: "Select Accent Color"
 
 			onClicked: {

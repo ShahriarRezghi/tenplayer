@@ -13,7 +13,7 @@ ArtistLoader::ArtistLoader(QObject *parent) : Loader(parent)
 
 void ArtistLoader::load()
 {
-	clear();
+	QList<QStandardItem *> items;
 
 	Query->exec(
 		"SELECT artist, group_concat(album), group_concat(albumartist) from "
@@ -37,10 +37,10 @@ void ArtistLoader::load()
 
 		item->setData(artist, ArtistRole);
 		item->setData(artwork, ArtworkRole);
-		m_model->appendRow(item);
+		items << item;
 	}
 
-	sortModel(ArtistRole);
+	emit addItemsToModelFromThread(items);
 }
 
 void ArtistLoader::clicked(const int &index)
@@ -85,7 +85,6 @@ QList<QStandardItem *> ArtistLoader::getSubItems(QStandardItem *item)
 	QList<QStandardItem *> items;
 
 	auto artist = item->data(ArtistRole);
-	auto artwork = item->data(ArtworkRole);
 
 	Query->prepare("SELECT rowid, * FROM music where artist=?;");
 	Query->bindValue(0, artist);
@@ -94,10 +93,15 @@ QList<QStandardItem *> ArtistLoader::getSubItems(QStandardItem *item)
 	while (Query->next())
 	{
 		auto *item = recordToItem(Query->record());
-		item->setData(artwork, ArtworkRole);
 		items << item;
 	}
 
-	sortItemList({TitleRole}, items);
+	sortItemList({TitleRole, TrackRole, AlbumRole}, items);
 	return items;
+}
+
+void ArtistLoader::addItemsToModel(const QList<QStandardItem *> &items)
+{
+	Loader::addItemsToModel(items);
+	sortModel(ArtistRole);
 }

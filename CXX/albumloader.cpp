@@ -25,7 +25,7 @@ void AlbumLoader::deleteAlbum(QStandardItem *item)
 
 void AlbumLoader::load()
 {
-	clear();
+	QList<QStandardItem *> items;
 
 	Query->exec(
 		"SELECT album, albumartist, "
@@ -52,10 +52,10 @@ void AlbumLoader::load()
 		item->setData(genre, GenreRole);
 		item->setData(year, YearRole);
 
-		m_model->appendRow(item);
+		items << item;
 	}
 
-	sortModel(AlbumartistRole);
+	emit addItemsToModelFromThread(items);
 }
 
 void AlbumLoader::clicked(const int &index)
@@ -109,4 +109,10 @@ QList<QStandardItem *> AlbumLoader::getSubItems(QStandardItem *item)
 
 	sortItemList({TitleRole, TrackRole}, items);
 	return items;
+}
+
+void AlbumLoader::addItemsToModel(const QList<QStandardItem *> &items)
+{
+	Loader::addItemsToModel(items);
+	sortModel(AlbumartistRole);
 }

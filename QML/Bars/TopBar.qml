@@ -5,7 +5,10 @@ import QtQuick.Controls 2.3
 ToolBar {
 	id: control
 
-	property int currentTab
+	// TODO this does not work. find out why
+	property int currentTab: appSettings.currentLoader
+	onCurrentTabChanged: appSettings.currentLoader = currentTab
+
 	property int stackIndex
 	property var tabs: ["Albums", "Artists", "Songs", "Recent", "Playlists"]
 

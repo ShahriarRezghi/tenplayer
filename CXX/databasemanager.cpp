@@ -1,8 +1,10 @@
 #include "databasemanager.h"
+#include <QTime>
 
-DatabaseManager::DatabaseManager(QObject *parent) : QObject(parent)
+DatabaseManager::DatabaseManager(const QString &databasePath, QObject *parent)
+	: QObject(parent)
 {
-	m_databasePath = "Database";  // TODO set properly
+	m_databasePath = databasePath;
 
 	createDatabase();
 	createTables();
@@ -51,6 +53,11 @@ void DatabaseManager::clearTables()
 
 void DatabaseManager::import(const QSize &artworkSize, const QStringList &files)
 {
+	if (files.isEmpty()) return;
+
+	QTime T;
+	T.start();
+
 	QVariantList title;
 	QVariantList album;
 	QVariantList artist;
@@ -60,23 +67,25 @@ void DatabaseManager::import(const QSize &artworkSize, const QStringList &files)
 	QVariantList year;
 	QVariantList path;
 
-	QStringList artworks =
-		QDir(Loader::ArtworkPath).entryList(QStringList(), QDir::Files);
+	QVector<QString> artworks = QDir(Loader::ArtworkPath)
+									.entryList(QStringList(), QDir::Files)
+									.toVector();
 
 	Loader::Status->setTop(files.count() - 1);
 
-	int count = 0;
+	long count = 0;
 
 	for (const QString &file : files)
 	{
+		TagData T;
+		if (!T.parse(file)) continue;
+
 		Loader::Status->setFile(file);
 		Loader::Status->setValue(count++);
 
-		TagData T(file);
-
-		QByteArray artworkName = (T.album + " " + T.albumArtist)
-									 .toUtf8()
-									 .toBase64(QByteArray::Base64UrlEncoding);
+		QString artworkName = (T.album + " " + T.albumArtist)
+								  .toUtf8()
+								  .toBase64(QByteArray::Base64UrlEncoding);
 
 		if (!artworks.contains(artworkName))
 		{
@@ -92,8 +101,7 @@ void DatabaseManager::import(const QSize &artworkSize, const QStringList &files)
 								 Qt::SmoothTransformation);
 
 				bool x = img.save(coverPath, "PNG");
-				qDebug() << coverPath;
-				if (x) artworks += artworkName;
+				if (x) artworks.prepend(artworkName);
 			}
 		}
 
@@ -121,4 +129,6 @@ void DatabaseManager::import(const QSize &artworkSize, const QStringList &files)
 
 	m_query->execBatch();
 	m_query->exec("COMMIT;");
+
+	qDebug() << T.elapsed();
 }

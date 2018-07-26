@@ -12,6 +12,9 @@ class PlaylistLoader : public Loader
 	int lastRowInPlaylist(const QVariant &pid);
 	void deletePlaylist(const int &index);
 
+private slots:
+	void addItemsToModel(const QList<QStandardItem *> &items);
+
 public:
 	explicit PlaylistLoader(QObject *parent = nullptr);
 

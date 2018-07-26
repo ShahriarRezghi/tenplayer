@@ -10,6 +10,9 @@ class AlbumLoader : public Loader
 	void deleteAlbum(QStandardItem *item);
 	QList<QStandardItem *> getSubItems(QStandardItem *item);
 
+private slots:
+	void addItemsToModel(const QList<QStandardItem *> &items);
+
 public:
 	explicit AlbumLoader(QObject *parent = nullptr);
 

@@ -23,6 +23,8 @@ class Loader : public QObject
 
 	int m_searchRole;
 
+	friend class MainManager;
+
 protected:
 	QmlModel *m_model;
 	QmlModel *m_searchModel;
@@ -74,6 +76,12 @@ public:
 
 	QmlModel *model() const;
 	QmlModel *searchModel() const;
+
+protected slots:
+	virtual void addItemsToModel(const QList<QStandardItem *> &items);
+
+signals:
+	void addItemsToModelFromThread(const QList<QStandardItem *> &items);
 };
 
 #endif  // LOADER_H

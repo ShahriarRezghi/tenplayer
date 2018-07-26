@@ -3,7 +3,7 @@ import "../Tools"
 
 VisualDataModel {
 	id: vdmodel
-	model: AlbumModel
+	model: AlbumModel // StatusManager.refreshing ?  null:AlbumModel
 
 	signal menuRequested(real x, real y, int index)
 

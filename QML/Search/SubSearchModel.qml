@@ -26,9 +26,9 @@ VisualDataModel {
 		onClicked: {
 			MainManager.loaderSearchClicked(vdmodel.loader, index)
 
-			if (vdmodel.loader == albumLoader || vdmodel.loader == artistLoader)
+			if (vdmodel.loader == consts.albumLoader || vdmodel.loader == consts.artistLoader)
 			{
-				var tel = (vdmodel.loader == albumLoader)
+				var tel = (vdmodel.loader == consts.albumLoader)
 
 				openTrackView(artworkRole, tel ? albumRole:artistRole,
 											tel ? albumartistRole:"",

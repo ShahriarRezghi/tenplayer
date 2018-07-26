@@ -10,6 +10,9 @@ class ArtistLoader : public Loader
 	void deleteArtist(QStandardItem *item);
 	QList<QStandardItem *> getSubItems(QStandardItem *item);
 
+private slots:
+	void addItemsToModel(const QList<QStandardItem *> &items);
+
 public:
 	explicit ArtistLoader(QObject *parent = nullptr);
 

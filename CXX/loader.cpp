@@ -17,9 +17,18 @@ Loader::Loader(QObject *parent) : QObject(parent)
 {
 	m_model = nullptr;
 	m_searchModel = nullptr;
+
+	connect(this, &Loader::addItemsToModelFromThread, this,
+			&Loader::addItemsToModel);
 }
 
 QmlModel *Loader::searchModel() const { return m_searchModel; }
+
+void Loader::addItemsToModel(const QList<QStandardItem *> &items)
+{
+	clear();
+	for (auto item : items) m_model->appendRow(item);
+}
 
 void Loader::search(const QString &text)
 {

@@ -5,8 +5,12 @@
 
 #include <CXX/mainmanager.h>
 
+// TODO set boundries for colors detected from artworks
+// TODO in settings show total them colors not current theme colors
+// TODO write equalizer
+// TODO the qqmlchangeset warning may be from clear functions. investigate this
+// TODO support more file types
 // TODO put a slider so that the user can scale delegate sizes
-// TODO models don't get updated after reloading
 
 int main(int argc, char *argv[])
 {
@@ -14,12 +18,18 @@ int main(int argc, char *argv[])
 	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
 
-	// qRegisterMetaType<QQmlChangeSet>("QQmlChangeSet");  // TODO register this
+	qRegisterMetaType<QList<QStandardItem *>>("QList<QStandardItem *>");
 
 	QGuiApplication app(argc, argv);
 	QQuickStyle::setStyle("Material");
 
 	MainManager M;
+	bool x = M.playFromArguements(app.arguments());
+
+	// TODO this is the old way of finding artwork sizes
+	//	MM.setImageSize(QSize(app.primaryScreen()->geometry().width() / 5,
+	//						  app.primaryScreen()->geometry().width()
+	/// 5));
 
 	QQmlApplicationEngine engine;
 	auto *RC = engine.rootContext();
@@ -56,6 +66,7 @@ int main(int argc, char *argv[])
 	engine.load(QUrl(QStringLiteral("qrc:/QML/main.qml")));
 	if (engine.rootObjects().isEmpty()) return -1;
 
+	if (x) M.Queue->player()->play();
 	M.safeRefresh();
 
 	return app.exec();

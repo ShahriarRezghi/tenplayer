@@ -1,6 +1,6 @@
 #include "tagdata.h"
 
-TagData::TagData(const QString &path) { parse(path); }
+TagData::TagData() {}
 
 void TagData::imageForTagMP3(const QString &trackURL,
 							 QImage &img)  // TagLib::ID3v2::Tag *tag
@@ -51,12 +51,14 @@ void TagData::imageForTagFLAC(const QString &TrackURL, QImage &img)
 					 coverArt->data().size());
 }
 
-void TagData::parse(const QString &path)
+bool TagData::parse(const QString &path)
 {
 	QFileInfo info(path);
 
 	TagLib::FileRef f(path.toStdString().data());
 	TagLib::Tag *tag = f.tag();
+
+	if (!tag) return false;
 
 	title = TStringToQString(tag->title()).trimmed();
 
@@ -98,6 +100,7 @@ void TagData::parse(const QString &path)
 	}
 
 	if (albumArtist.isEmpty()) albumArtist = artist;
+	return true;
 }
 
 void TagData::getArtwork(const QString &path, QImage &image)

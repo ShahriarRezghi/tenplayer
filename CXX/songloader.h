@@ -6,6 +6,10 @@
 class SongLoader : public Loader
 {
 	Q_OBJECT
+
+private slots:
+	void addItemsToModel(const QList<QStandardItem *> &items);
+
 public:
 	explicit SongLoader(QObject *parent = nullptr);
 

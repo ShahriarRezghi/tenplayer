@@ -1,7 +1,8 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.3
 import ExtraControls 1.0
 import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.3
+import QtQuick.Controls.Material 2.3
 
 import "../Tools"
 
@@ -38,11 +39,28 @@ Popup {
 	contentItem: ColumnLayout {
 		spacing: 0
 
+		Label {
+			text: "Select A Playlist"
+			padding: 12
+			Layout.fillWidth: true
+			font.pointSize: consts.largeFont
+			horizontalAlignment: Text.AlignHCenter
+		}
+
+		Rectangle {
+			height: 1
+			opacity: .5
+			Layout.fillWidth: true
+			Layout.leftMargin: 18
+			Layout.rightMargin: 18
+			color: theme.background == theme.accent ? theme.primary:theme.accent
+		}
+
 		ListView {
 			id: view
-			emptyText: "You Have No Playlists"
 			Layout.fillWidth: true
 			Layout.fillHeight: true
+			emptyText: "You Have No Playlists"
 
 			model: PlaylistModel
 
@@ -64,6 +82,15 @@ Popup {
 			}
 		}
 
+		Rectangle {
+			height: 1
+			opacity: .5
+			Layout.fillWidth: true
+			Layout.leftMargin: 18
+			Layout.rightMargin: 18
+			color: theme.background == theme.accent ? theme.primary:theme.accent
+		}
+
 		RowLayout {
 			Layout.fillHeight: false
 			Layout.topMargin: 6
@@ -75,10 +102,12 @@ Popup {
 				id: field
 				Layout.fillWidth: true
 				placeholderText: "Add Playlist"
+				Material.accent: theme.background == theme.accent ? theme.primary:theme.accent
 			}
 
-			ImageButton {
-				source: "qrc:/Images/Plus.png"
+			Button {
+				flat: true
+				text: "Add"
 				onClicked: MainManager.addPlaylist(field.text)
 			}
 		}

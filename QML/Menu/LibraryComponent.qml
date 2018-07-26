@@ -16,33 +16,40 @@ ColumnLayout {
 	signal removeClicked(int index)
 
 	Control {
+		leftPadding: 12
+		rightPadding: 12
 		Layout.fillWidth: true
 
-		background: Rectangle {
-			color: Material.primary
-		}
-
 		contentItem: RowLayout {
+			spacing: 10
+
 			Label {
 				text: title
-				leftPadding: 6
-				rightPadding: 6
 				elide: Text.ElideMiddle
 				Layout.fillWidth: true
 				Layout.alignment: Qt.AlignVCenter
 				font.pointSize: consts.mediumFont
 			}
 
-			ImageButton {
-				source: "qrc:/Images/Plus.png"
+			Button {
+				flat: true
+				text: "Add"
 				onClicked: addClicked()
-				implicitWidth: 36
-				implicitHeight: 36
 			}
 		}
 	}
 
+	Rectangle {
+		opacity: .5
+		height: 1
+		Layout.fillWidth: true
+		Layout.leftMargin: 20
+		Layout.rightMargin: 20
+		color: theme.background == theme.accent ? theme.primary:theme.accent
+	}
+
 	ListView {
+		clip: true
 		model: column.model
 		Layout.fillWidth: true
 		Layout.fillHeight: true

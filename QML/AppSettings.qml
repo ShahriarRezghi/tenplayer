@@ -2,6 +2,9 @@ import QtQuick 2.10
 
 Item {
 	id: item
+
+	property int currentLoader: 0
+
 	property real imageOpacity: .2
 	property int minViewSize
 

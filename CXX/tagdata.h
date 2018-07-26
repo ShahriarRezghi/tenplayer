@@ -15,7 +15,6 @@
 #include <taglib/tag.h>
 #include <taglib/taglib.h>
 #include <taglib/tpropertymap.h>
-#include <taglib/tpropertymap.h>
 #include <taglib/tstring.h>
 
 #include <QDebug>
@@ -34,13 +33,13 @@ public:
 	int track;
 	int year;
 
-	TagData(const QString &path);
+	TagData();
 
 	static void imageForTagMP3(const QString &trackURL, QImage &img);
 	static void imageForTagMP4(const QString &trackURL, QImage &img);
 	static void imageForTagFLAC(const QString &TrackURL, QImage &img);
 
-	void parse(const QString &path);
+	bool parse(const QString &path);
 	void getArtwork(const QString &path, QImage &image);
 };
 
