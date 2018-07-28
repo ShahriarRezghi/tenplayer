@@ -48,7 +48,7 @@ Popup {
 
 						implicitWidth: 40
 						implicitHeight: 40
-						color: theme.background
+						color: appSettings.background
 					}
 				}
 
@@ -66,7 +66,7 @@ Popup {
 
 						implicitWidth: 40
 						implicitHeight: 40
-						color: theme.primary
+						color: appSettings.primary
 					}
 				}
 
@@ -84,7 +84,7 @@ Popup {
 
 						implicitWidth: 40
 						implicitHeight: 40
-						color: theme.accent
+						color: appSettings.accent
 					}
 				}
 

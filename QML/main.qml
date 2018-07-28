@@ -35,14 +35,19 @@ ApplicationWindow {
 
 	Theme {
 		id: theme
-		background: appSettings.background
-		foreground: appSettings.foreground
+
+		foreground: ColorAlt.lightness(theme.background) > .5 ? "black":"white"
 
 		accent: !appSettings.colorFromArtwork || !ActiveInfo.artworkInfo
-				? appSettings.accent:colorExtractor.secondColor
+				? appSettings.accent:(ColorAlt.areDistant(colorExtractor.secondColor, colorExtractor.firstColor) ?
+										  colorExtractor.secondColor:ColorAlt.toMiddle(colorExtractor.secondColor, .2))
 
 		primary: !appSettings.colorFromArtwork || !ActiveInfo.artworkInfo
 					? appSettings.primary:colorExtractor.firstColor
+
+		background: !appSettings.colorFromArtwork || !ActiveInfo.artworkInfo
+				? appSettings.background:(ColorAlt.lightness(colorExtractor.firstColor)>.5 ?
+											  MaterialTheme.primary:MaterialTheme.primaryDark)
 	}
 
 	AppSettings {
@@ -50,7 +55,6 @@ ApplicationWindow {
 
 		onCurrentLoaderChanged: print(currentLoader)
 
-		property color foreground: "black"
 		property color accent: MaterialTheme.purple
 		property color primary: MaterialTheme.teal
 		property color background: MaterialTheme.primary
@@ -68,7 +72,6 @@ ApplicationWindow {
 
 		property alias backgroundSource: appSettings.backgroundSource
 
-		property alias foreground: appSettings.foreground
 		property alias accent: appSettings.accent
 		property alias primary: appSettings.primary
 		property alias background: appSettings.background

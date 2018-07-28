@@ -5,11 +5,8 @@
 
 #include <CXX/mainmanager.h>
 
-// TODO set boundries for colors detected from artworks
-// TODO in settings show total them colors not current theme colors
-// TODO write equalizer
-// TODO the qqmlchangeset warning may be from clear functions. investigate this
 // TODO support more file types
+// TODO saving current tab doesn't work
 // TODO put a slider so that the user can scale delegate sizes
 
 int main(int argc, char *argv[])

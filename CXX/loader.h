@@ -46,7 +46,7 @@ protected:
 public:
 	static QSqlQuery *Query;
 	static ActiveInfo *Active;
-	static QString ArtworkPath;  // TODO must have separator at th end
+	static QString ArtworkPath;
 
 	static PathManager *Path;
 	static StatusManager *Status;

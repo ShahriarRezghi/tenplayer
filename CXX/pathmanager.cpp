@@ -94,7 +94,7 @@ QStringList PathManager::getAllFiles()
 	for (const QString &dir : m_dirs) files << filesInDirectory(dir);
 
 	files << m_files;
-	files.removeDuplicates();  // TODO too much?
+	files.removeDuplicates();
 	return files;
 }
 

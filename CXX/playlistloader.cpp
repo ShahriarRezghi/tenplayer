@@ -68,10 +68,8 @@ QList<QStandardItem *> PlaylistLoader::getSubItems(QStandardItem *item)
 
 	Query->prepare(
 		"SELECT *, row FROM music, mpjoin "
-		"WHERE music.rowid=mpjoin.mid AND mpjoin.pid=?;");  // TODO select
-															// mpjoin.row,
-															// music. returns
-															// false
+		"WHERE music.rowid=mpjoin.mid AND mpjoin.pid=?;");
+
 	Query->bindValue(0, pid);
 	Query->exec();
 
@@ -149,7 +147,7 @@ void PlaylistLoader::addItems(const int &row, QList<QStandardItem *> &items)
 		playlistids.append(pid);
 		musicids.append(item->data(IDRole));
 
-		delete item;  // TODO nessesary?
+		delete item;
 	}
 
 	Query->exec("BEGIN TRANSACTION");
