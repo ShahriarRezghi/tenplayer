@@ -8,6 +8,9 @@
 // TODO support more file types
 // TODO saving current tab doesn't work
 // TODO put a slider so that the user can scale delegate sizes
+// TODO setting bold font on delegates can help with their readability when
+// background is artwork
+// TODO indicate which track is playing in queue view and the others
 
 int main(int argc, char *argv[])
 {

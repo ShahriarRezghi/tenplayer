@@ -10,7 +10,11 @@ SwipeView {
 	MinSubView {
 	}
 
-	QueueView {
-		minView: true
+//	QueueView {
+//		minView: true
+//	}
+
+	QueueListView {
+		cellWidth: width
 	}
 }

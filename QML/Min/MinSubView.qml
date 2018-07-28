@@ -7,8 +7,8 @@ Item {
 
 	BackgroundImage {
 		anchors.fill: parent
-		source: ActiveInfo.activeArtworkInfo ?
-					"file://"+ActiveInfo.activeArtworkInfo:
+		source: ActiveInfo.artworkInfo ?
+					"file://"+ActiveInfo.artworkInfo:
 					appSettings.backgroundSource
 	}
 
