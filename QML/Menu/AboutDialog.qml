@@ -18,10 +18,10 @@ Popup {
 	y: (parent.height-height)/2
 
 	property string aboutText:
-		"This is an open-source software written by Shahriar Rezghi.
+        "This is an open-source software written with Qt framework.
 The github page for this project is https://shahriarss.github.io/TenPlayer/
 Any issues or suggestions are welcome.
-My Email address is shahriar25.ss@gmail.com"
+My Email: shahriar25.ss@gmail.com"
 
 	contentItem: Item {
 		implicitHeight: column.implicitHeight
