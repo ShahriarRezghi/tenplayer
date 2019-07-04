@@ -5,23 +5,22 @@
 
 class TrackManager : public Loader
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	explicit TrackManager(QObject *parent = nullptr);
+    explicit TrackManager(QObject* parent = nullptr);
 
-	void showItems(const QList<QStandardItem *> &items);
+    void showItems(const QList<QStandardItem*>& items);
 
-	void sortTracksByRow();
-	void savePlaylistTrackRows();
+    void sortTracksByRow();
+    void savePlaylistTrackRows();
 
 public:
-	// Loader interface
-	void load() {}
+    void load() {}
 
-	virtual void clicked(const int &index);
+    virtual void clicked(const int& index);
 
-	virtual void actionTriggered(const int &type, const int &index,
-								 const QVariant &extra = QVariant());
+    virtual void actionTriggered(const int& type, const int& index,
+                                 const QVariant& extra = QVariant());
 };
 
 #endif  // TRACKMANAGER_H

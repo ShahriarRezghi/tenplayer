@@ -1,14 +1,18 @@
 import QtQuick 2.10
-import STools.Extras 1.0 as E
+import "../STools" as E
 
 E.GridDelegate {
 	id: control
+	spacing: 8
+
 	topPadding: 16
 	bottomPadding: 16
+
 	leftPadding: 12
 	rightPadding: 12
 
-	spacing: 8
+	font.bold: true
+	asynchronous: true
 	horizontalAlignment: Text.AlignHCenter
 
 	signal menuRequested(real xx, real yy)

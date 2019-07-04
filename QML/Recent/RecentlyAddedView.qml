@@ -2,7 +2,7 @@ import QtQuick 2.10
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
-import STools.Extras 1.0
+import "../STools"
 
 import "../ViewMenu"
 
@@ -20,7 +20,7 @@ Page {
 		text: title
 		elide: Text.ElideRight
 		horizontalAlignment: Text.AlignHCenter
-		font.pointSize: Extras.mediumFont
+		font.pointSize: consts.mediumFont
 
 		background: Rectangle {
 			color: Material.primary

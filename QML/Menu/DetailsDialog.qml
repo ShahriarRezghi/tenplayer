@@ -2,14 +2,13 @@ import QtQuick 2.10
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
-import ExtraControls 1.0
 
 import "../Tools"
+import "../STools"
 
 Popup {
 	id: dial
-	modal: true
-	dim: false
+    modal: true
 	padding: 0
 
 	width: parent.width*.4
@@ -80,6 +79,14 @@ Popup {
 								text: col.contents[index]
 								wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 							}
+
+							Rectangle {
+								color: theme.accentAlt
+								opacity: .5
+								height: 1
+								width: parent.width - 10
+								anchors.horizontalCenter: parent.horizontalCenter
+							}
 						}
 
 						Label {
@@ -91,15 +98,18 @@ Popup {
 							verticalAlignment: Text.AlignVCenter
 							horizontalAlignment: Text.AlignHCenter
 						}
+
 					}
 				}
 			}
 		}
 
 		Button {
+			flat: true
 			text: "Close"
-			Layout.fillWidth: true
-			Material.background: Material.primary
+			Layout.bottomMargin: 6
+			Layout.rightMargin: 12
+			Layout.alignment: Qt.AlignRight
 
 			onClicked: dial.close()
 		}

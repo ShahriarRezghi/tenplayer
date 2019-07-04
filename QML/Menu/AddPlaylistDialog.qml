@@ -6,7 +6,7 @@ import QtQuick.Controls.Material 2.3
 import "../Tools"
 
 Popup {
-	id: popup
+    id: popup
 	modal: true
 
 	topPadding: 12
@@ -29,7 +29,7 @@ Popup {
 			implicitWidth: 250
 			Layout.fillWidth: true
 			placeholderText: "Playlist Name"
-			Material.accent: theme.background == theme.accent ? theme.primary:theme.accent
+			Material.accent: theme.accentAlt
 		}
 
 		Button {

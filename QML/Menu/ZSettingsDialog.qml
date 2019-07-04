@@ -2,10 +2,9 @@ import QtQuick 2.10
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
-import STools.Extras 1.0
 
 Popup {
-	id: popup
+    id: popup
 	modal: true
 	topPadding: 8
 	bottomPadding: 8
@@ -16,8 +15,8 @@ Popup {
 	y: (parent.height-height)/2
 
 	Material.accent: {
-		var p = MaterialTheme.primary
-		var pd = MaterialTheme.primaryDark
+		var p = consts.primaryColor
+		var pd = consts.primaryDarkColor
 
 		var x = (p == theme.accent) || (pd == theme.accent)
 		var y = (p == theme.primary) || (pd == theme.primary)
@@ -158,8 +157,29 @@ Popup {
 
 				Slider {
 					Layout.fillWidth: true
+					from: 0
+					to: 400
 					value: appSettings.minViewSize
 					onValueChanged: appSettings.minViewSize = value
+				}
+			}
+
+			RowLayout {
+				Layout.fillHeight: false
+
+				Label {
+					padding: 6
+					Layout.fillWidth: true
+					text: "Delegates Scale"
+				}
+
+				Slider {
+					Layout.fillWidth: true
+					from: .75
+					to: 1.25
+					stepSize: .125
+					value: appSettings.delegatesScale
+					onValueChanged: appSettings.delegatesScale = value
 				}
 			}
 

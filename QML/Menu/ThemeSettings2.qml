@@ -1,7 +1,7 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
-import STools.Extras 1.0
+import "../STools"
 
 import "../Tools"
 
@@ -16,7 +16,7 @@ ColumnLayout {
 		MaterialTheme.indigo, MaterialTheme.lightBlue, MaterialTheme.lightGreen,
 		MaterialTheme.lime, MaterialTheme.orange, MaterialTheme.pink,
 		MaterialTheme.purple, MaterialTheme.red, MaterialTheme.teal,
-		MaterialTheme.yellow, MaterialTheme.primary, MaterialTheme.primaryDark
+		MaterialTheme.yellow, consts.primaryColor, consts.primaryDarkColor
 	]
 
 	RowLayout {

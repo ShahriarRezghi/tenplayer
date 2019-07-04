@@ -45,7 +45,7 @@ ColumnLayout {
 		Layout.fillWidth: true
 		Layout.leftMargin: 20
 		Layout.rightMargin: 20
-		color: theme.background == theme.accent ? theme.primary:theme.accent
+		color: theme.accentAlt
 	}
 
 	ListView {

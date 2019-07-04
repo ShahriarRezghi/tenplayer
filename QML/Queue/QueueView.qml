@@ -1,5 +1,5 @@
 import QtQuick 2.10
-import ExtraControls 1.0
+import "../STools"
 
 PathView {
 	id: view

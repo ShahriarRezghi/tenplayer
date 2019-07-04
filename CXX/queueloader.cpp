@@ -213,8 +213,11 @@ void QueueLoader::changeActiveRow(const int &row)
 		return;
 	}
 
+	bool fileFound = true;
+
 	if (row < 0 || row >= m_model->rowCount())
 	{
+		Active->setIdInfo(-1);
 		Active->setTitleInfo("");
 		Active->setAlbumInfo("");
 		Active->setArtistInfo("");
@@ -222,11 +225,24 @@ void QueueLoader::changeActiveRow(const int &row)
 	}
 	else
 	{
+		if (!QFile(m_model->item(row)->data(PathRole).toString()).exists())
+		{
+			Active->showMessage(0);
+			fileFound = false;
+		}
+
+		Active->setIdInfo(m_model->item(row)->data(IDRole).toLongLong());
 		Active->setTitleInfo(m_model->item(row)->data(TitleRole).toString());
 		Active->setAlbumInfo(m_model->item(row)->data(AlbumRole).toString());
 		Active->setArtistInfo(m_model->item(row)->data(ArtistRole).toString());
 		Active->setArtworkInfo(
 			m_model->item(row)->data(ArtworkRole).toString());
+	}
+
+	if (!fileFound)
+	{
+		m_playlist->next();
+		return;
 	}
 
 	Active->setQueueRow(row);

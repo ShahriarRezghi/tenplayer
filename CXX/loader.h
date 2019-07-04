@@ -19,69 +19,70 @@ class RecentlyPlayedLoader;
 
 class Loader : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	int m_searchRole;
+    int m_searchRole;
 
-	friend class MainManager;
+    friend class MainManager;
 
 protected:
-	QmlModel *m_model;
-	QmlModel *m_searchModel;
+    QmlModel *m_model;
+    QmlModel *m_searchModel;
 
-	void deleteSong(const QVariant &id);
+    void deleteSong(const QVariant &id);
 
-	void createSearchModel(int searchRole);
-	void sortModel(int role, bool asc = true);
-	static QStandardItem *recordToItem(const QSqlRecord &record);
-	static QString getArtwork(const QString &album, const QString &albumArtist);
-	static bool sortItemsByRole(int role, QStandardItem *I1, QStandardItem *I2);
+    void createSearchModel(int searchRole);
+    void sortModel(int role, bool asc = true);
+    static QStandardItem *recordToItem(const QSqlRecord &record);
+    static QString getArtwork(const QString &album, const QString &albumArtist);
 
-	static void sortItemList(std::initializer_list<int> roles,
-							 QList<QStandardItem *> &items);
+    static void sortItemList(std::initializer_list<int> roles,
+                             QList<QStandardItem *> &items);
 
-	static std::function<bool(QStandardItem *, QStandardItem *)>
-	getCompareFunction(int role);
+    static void sortTrackList(QList<QStandardItem *> &items);
 
-public:
-	static QSqlQuery *Query;
-	static ActiveInfo *Active;
-	static QString ArtworkPath;
-
-	static PathManager *Path;
-	static StatusManager *Status;
-	static DetailsManager *Details;
-
-	static QueueLoader *Queue;
-	static TrackManager *Track;
-	static PlaylistLoader *Playlist;
-	static RecentlyPlayedLoader *RecentlyPlayed;
+    static std::function<bool(QStandardItem *, QStandardItem *)>
+    getCompareFunction(int role);
 
 public:
-	explicit Loader(QObject *parent = nullptr);
+    static QSqlQuery *Query;
+    static ActiveInfo *Active;
+    static QString ArtworkPath;
 
-	virtual void search(const QString &text);
+    static PathManager *Path;
+    static StatusManager *Status;
+    static DetailsManager *Details;
 
-	virtual void load() = 0;
-	virtual void clear();
-	virtual void clicked(const int &index) = 0;
+    static QueueLoader *Queue;
+    static TrackManager *Track;
+    static PlaylistLoader *Playlist;
+    static RecentlyPlayedLoader *RecentlyPlayed;
 
-	virtual void actionTriggered(const int &type, const int &index,
-								 const QVariant &extra = QVariant()) = 0;
+public:
+    explicit Loader(QObject *parent = nullptr);
 
-	virtual void searchActionTriggered(const int &type, const int &index,
-									   const QVariant &extra);
+    virtual void search(const QString &text);
 
-	void searchClicked(const int &index);
+    virtual void load() = 0;
+    virtual void clear();
+    virtual void clicked(const int &index) = 0;
 
-	QmlModel *model() const;
-	QmlModel *searchModel() const;
+    virtual void actionTriggered(const int &type, const int &index,
+                                 const QVariant &extra = QVariant()) = 0;
+
+    virtual void searchActionTriggered(const int &type, const int &index,
+                                       const QVariant &extra);
+
+    void searchClicked(const int &index);
+
+    QmlModel *model() const;
+    QmlModel *searchModel() const;
 
 protected slots:
-	virtual void addItemsToModel(const QList<QStandardItem *> &items);
+    virtual void addItemsToModel(const QList<QStandardItem *> &items);
 
 signals:
-	void addItemsToModelFromThread(const QList<QStandardItem *> &items);
+    void addItemsToModelFromThread(const QList<QStandardItem *> &items);
 };
 
 #endif  // LOADER_H

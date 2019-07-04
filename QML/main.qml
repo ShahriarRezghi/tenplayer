@@ -1,8 +1,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
-import STools.Extras 1.0
-import STools.Utils 1.0
+import ColorExtractor 1.0
 import Qt.labs.settings 1.0
 
 import "Main"
@@ -22,9 +21,9 @@ ApplicationWindow {
 		}
 	}
 
-	Material.accent: theme.accent
-	Material.primary: theme.primary
-	Material.background: theme.background
+    Material.accent: theme.accent
+    Material.primary: theme.primary
+    Material.background: theme.background
 	Material.foreground: theme.foreground
 	Material.theme: ColorAlt.lightness(theme.background) > .5 ?
 						Material.Light:Material.Dark
@@ -40,27 +39,22 @@ ApplicationWindow {
 
 		accent: !appSettings.colorFromArtwork || !ActiveInfo.artworkInfo
 				? appSettings.accent:(ColorAlt.areDistant(colorExtractor.secondColor, colorExtractor.firstColor) ?
-										  colorExtractor.secondColor:ColorAlt.toMiddle(colorExtractor.secondColor, .2))
+										  colorExtractor.secondColor:ColorAlt.invert(colorExtractor.secondColor)) // TODO is inverting the answer?
 
 		primary: !appSettings.colorFromArtwork || !ActiveInfo.artworkInfo
 					? appSettings.primary:colorExtractor.firstColor
 
 		background: !appSettings.colorFromArtwork || !ActiveInfo.artworkInfo
 				? appSettings.background:(ColorAlt.lightness(colorExtractor.firstColor)>.5 ?
-											  MaterialTheme.primary:MaterialTheme.primaryDark)
+											  consts.primaryColor:consts.primaryDarkColor)
 	}
 
 	AppSettings {
 		id: appSettings
-
-		onCurrentLoaderChanged: print(currentLoader)
-
-		property color accent: MaterialTheme.purple
-		property color primary: MaterialTheme.teal
-		property color background: MaterialTheme.primary
 	}
 
 	Settings {
+		property alias delegatesScale: appSettings.delegatesScale
 		property alias currentLoader: appSettings.currentLoader
 
 		property alias imageOpacity: appSettings.imageOpacity
@@ -75,6 +69,12 @@ ApplicationWindow {
 		property alias accent: appSettings.accent
 		property alias primary: appSettings.primary
 		property alias background: appSettings.background
+
+		property alias x: applicationWindow.x
+		property alias y: applicationWindow.y
+
+        property alias width: appSettings.appWidth
+        property alias height: appSettings.appHeight
 	}
 
 	Connections {
@@ -111,12 +111,14 @@ ApplicationWindow {
 	}
 
 	property bool isInMin: appStack.currentItem.objectName == "Min"
-	flags: isInMin ? Qt.Window | Qt.FramelessWindowHint:Qt.Window
-	property real minModeSize: 300
+//    flags: isInMin ? Qt.Window | Qt.FramelessWindowHint:Qt.Window
 
-	height: isInMin ? minModeSize:600
-	width: isInMin ? minModeSize:600*16/9
+    width: isInMin ? appSettings.minViewSize:appSettings.appWidth
+    height: isInMin ? appSettings.minViewSize:appSettings.appHeight
 
-	minimumWidth: isInMin ? minModeSize:480
-	minimumHeight: isInMin ? minModeSize:360
+    onWidthChanged: if (!isInMin) appSettings.appWidth = width
+    onHeightChanged: if (!isInMin) appSettings.appHeight = height
+
+    minimumWidth: isInMin ? appSettings.minViewSize:480
+    minimumHeight: isInMin ? appSettings.minViewSize:360
 }

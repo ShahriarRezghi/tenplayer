@@ -10,12 +10,14 @@ RowLayout {
 
 	TextField {
 		id: searchField
-		Layout.fillWidth: true
+		implicitWidth: width
 		Layout.leftMargin: 10
+		Layout.fillWidth: true
 		placeholderText: "Enter Title, Album Or Artist To Search"
 
 		onTextChanged: MainManager.search(text)
 	}
+
 
 	ImageButton {
 		source: "qrc:/Images/Close.png"

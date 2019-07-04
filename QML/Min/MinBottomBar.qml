@@ -1,7 +1,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
-import ExtraControls 1.0
+import "../STools"
 import QtQuick.Layouts 1.3
 
 import "../Tools"
@@ -33,7 +33,6 @@ Control {
 
 	contentItem: RowLayout {
 		id: row
-		width: parent.width
 
 		ImageButton {
 			source: "qrc:/Images/Min(off).png"

@@ -31,7 +31,9 @@ SOURCES += main.cpp \
     CXX/tagdata.cpp \
     CXX/library.cpp \
     CXX/detailsmanager.cpp \
-    CXX/mediaplayer.cpp
+    CXX/mediaplayer.cpp \
+    CXX/coloralt.cpp \
+    CXX/colorextractor.cpp
 
 RESOURCES += qml.qrc
 
@@ -65,4 +67,6 @@ HEADERS += \
     CXX/mainmanager.h \
     CXX/tagdata.h \
     CXX/detailsmanager.h \
-    CXX/mediaplayer.h
+    CXX/mediaplayer.h \
+    CXX/coloralt.h \
+    CXX/colorextractor.h

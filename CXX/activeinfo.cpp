@@ -26,7 +26,11 @@ void ActiveInfo::setArtworkInfo(const QString &artworkInfo)
 	m_artworkInfo = artworkInfo;
 }
 
+void ActiveInfo::setIdInfo(const qint64 &idInfo) { m_idInfo = idInfo; }
+
 void ActiveInfo::setQueueRow(int queueRow) { m_queueRow = queueRow; }
+
+qint64 ActiveInfo::idInfo() const { return m_idInfo; }
 
 int ActiveInfo::queueRow() const { return m_queueRow; }
 

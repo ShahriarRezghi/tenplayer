@@ -1,8 +1,10 @@
 import QtQuick 2.10
+import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
 
 import "../Tools"
+import "../Bars"
 
 Page {
 	id: page
@@ -12,7 +14,6 @@ Page {
 		parent: page.background
 		source: backgroundImage.source
 		opacity: appSettings.imageOpacity
-
 	}
 
 	contentItem: StackView {
@@ -30,6 +31,8 @@ Page {
 			QueueListView { }
 		}
 	}
+
+	header: MainSliderView { }
 
 	footer: TabBar {
 		id: tabbar

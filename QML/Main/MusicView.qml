@@ -9,10 +9,10 @@ import "../Playlist"
 
 StackView {
 	id: stack
-	initialItem: currentView()
+	initialItem: stackIndex == 0 ? currentView():null
 //	onCurrentItemChanged: applicationWindow.refresh() TODO uncomment
 
-	property int stackIndex: appTopBar.currentTab
+	property int stackIndex: appSettings.currentLoader
 	property int previousIndex
 
 	function currentView() {

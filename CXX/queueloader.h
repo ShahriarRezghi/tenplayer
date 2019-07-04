@@ -8,42 +8,41 @@
 
 class QueueLoader : public Loader
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	void smartAdd();
-	void smartSet(const int &row);
-	void smartPlay(const int &row);
+    void smartAdd();
+    void smartSet(const int& row);
+    void smartPlay(const int& row);
 
-	MediaPlayer *m_player;
-	QMediaPlaylist *m_playlist;
+    MediaPlayer* m_player;
+    QMediaPlaylist* m_playlist;
 
 private slots:
-	void songPlayed();
-	void changeActiveRow(const int &row);
+    void songPlayed();
+    void changeActiveRow(const int& row);
 
 public:
-	explicit QueueLoader(QObject *parent = nullptr);
+    explicit QueueLoader(QObject* parent = nullptr);
 
-	QMediaPlayer *player() const;
-	QMediaPlaylist *playlist() const;
+    QMediaPlayer* player() const;
+    QMediaPlaylist* playlist() const;
 
-	void playItems(QList<QStandardItem *> &items, const int &index);
-	void playRootItem(QStandardItem *item, const int &index);
+    void playItems(QList<QStandardItem*>& items, const int& index);
+    void playRootItem(QStandardItem* item, const int& index);
 
-	void addItems(const QList<QStandardItem *> &items);
-	void addRootItem(QStandardItem *item);
+    void addItems(const QList<QStandardItem*>& items);
+    void addRootItem(QStandardItem* item);
 
-	void addItem(QStandardItem *item);
+    void addItem(QStandardItem* item);
 
 public:
-	// Loader interface
-	void clear();
-	void load() {}
+    void clear();
+    void load() {}
 
-	virtual void clicked(const int &index);
+    virtual void clicked(const int& index);
 
-	virtual void actionTriggered(const int &type, const int &index,
-								 const QVariant &extra = QVariant());
+    virtual void actionTriggered(const int& type, const int& index,
+                                 const QVariant& extra = QVariant());
 };
 
 #endif  // QUEUELOADER_H

@@ -6,7 +6,7 @@ import QtQuick.Controls.Material 2.3
 import "../Tools"
 
 Popup {
-	id: popup
+    id: popup
 	modal: true
 
 	topPadding: 12
@@ -17,7 +17,8 @@ Popup {
 	x: (parent.width-width)/2
 	y: (parent.height-height)/2
 
-	property string aboutText: "This is an open-source software written by Shahriar Rezghi.
+	property string aboutText:
+		"This is an open-source software written by Shahriar Rezghi.
 The github page for this project is https://shahriarss.github.io/TenPlayer/
 Any issues or suggestions are welcome.
 My Email address is shahriar25.ss@gmail.com"
@@ -35,7 +36,7 @@ My Email address is shahriar25.ss@gmail.com"
 				text: "About"
 				font.pointSize: consts.largeFont
 				anchors.horizontalCenter: parent.horizontalCenter
-				color: theme.accent == theme.background ? theme.primary:theme.accent
+				color: theme.accentAlt
 			}
 
 			Label {

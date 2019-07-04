@@ -14,9 +14,8 @@ VisualDataModel {
 		model: [titleRole, albumRole, artistRole]
 		image: artworkRole ? "file://"+artworkRole:"qrc:/Images/Note.png"
 
-		topPadding: 10
-		bottomPadding: 10
 		contentItem.implicitHeight: 80
+		playingNow: ActiveInfo.idInfo == idRole
 
 		onMenuRequested: vdmodel.menuRequested(xx+x, yy+y, index)
 		onClicked: MainManager.loaderClicked(consts.songLoader, index)

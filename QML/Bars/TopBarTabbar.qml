@@ -10,8 +10,8 @@ RowLayout {
 	TabBar {
 		background: null
 		Layout.fillWidth: true
-		currentIndex: control.currentTab
-		onCurrentIndexChanged: control.currentTab = currentIndex
+		currentIndex: appSettings.currentLoader
+		onCurrentIndexChanged: appSettings.currentLoader = currentIndex
 
 		Repeater {
 			model: tabs

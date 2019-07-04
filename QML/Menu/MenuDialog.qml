@@ -3,7 +3,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
 
 Popup {
-	id: popup
+    id: popup
 	modal: true
 	padding: 20
 

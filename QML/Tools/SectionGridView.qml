@@ -1,5 +1,7 @@
 import QtQuick 2.10
-import STools.Extras 1.0 as M
+import QtQuick.Controls.Material 2.0
+
+import "../STools" as M
 
 M.SectionGridView {
 	sectionBackgroundColor: theme.primary

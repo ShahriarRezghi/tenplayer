@@ -4,7 +4,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
 
 Popup {
-	id: popup
+    id: popup
 	modal: true
 
 	topPadding: 8
@@ -30,6 +30,8 @@ Popup {
 				fileDialog.selectMultiple = false
 				fileDialog.open()
 			}
+
+			onRemoveClicked: PathManager.removeDir(index)
 		}
 
 		Rectangle {
@@ -37,7 +39,7 @@ Popup {
 			Layout.fillWidth: true
 			Layout.leftMargin: 12
 			Layout.rightMargin: 12
-			color: theme.background == theme.accent ? theme.primary:theme.accent
+			color: theme.accentAlt
 		}
 
 		LibraryComponent {
@@ -49,6 +51,8 @@ Popup {
 				fileDialog.selectMultiple = true
 				fileDialog.open()
 			}
+
+			onRemoveClicked: PathManager.removeFile(index)
 		}
 
 		RowLayout {
@@ -68,7 +72,7 @@ Popup {
 
 			Button {
 				flat: true
-				text: "Confirm"
+				text: "Close"
 
 				onClicked: popup.close()
 			}

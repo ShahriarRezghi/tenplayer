@@ -94,5 +94,21 @@
         <file>QML/Menu/ZSettingsDialog.qml</file>
         <file>QML/Menu/ZThemeDialog.qml</file>
         <file>QML/Menu/ThemeMainView.qml</file>
+        <file>QML/Bars/MainSliderView.qml</file>
+        <file>QML/STools/ColoredImage.qml</file>
+        <file>QML/STools/BoxShadow.qml</file>
+        <file>QML/STools/ElevationEffect.qml</file>
+        <file>QML/STools/GridDelegate.qml</file>
+        <file>QML/STools/GridView.qml</file>
+        <file>QML/STools/ImageButton.qml</file>
+        <file>QML/STools/ListView.qml</file>
+        <file>QML/STools/MessageBar.qml</file>
+        <file>QML/STools/PathView.qml</file>
+        <file>QML/STools/RectangularGlow.qml</file>
+        <file>QML/STools/SectionGridView.qml</file>
+        <file>QML/Bars/BottomBarSeekView.qml</file>
+        <file>QML/Bars/TrackInfoView.qml</file>
+        <file>QML/Bars/BottomBarController.qml</file>
+        <file>Images/change.png</file>
     </qresource>
 </RCC>

@@ -1,12 +1,13 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
+import QtQuick.Controls.Material 2.3
 
 import "../Bars"
 import "../Queue"
 
 Page {
-	id: page
-	background: null
+    id: page
+    background: null
 
 	function openTrackView(artwork, text1, text2, text3, text4, type) {
 		var A = artwork ? "file://" + artwork:""
@@ -47,11 +48,24 @@ Page {
 		width: parent.width
 	}
 
-	MainStackView {
-		id: mainStack
+	Item {
 		anchors.fill: parent
 		anchors.topMargin: appTopBar.height
 		anchors.bottomMargin: appBottomBar.height
+
+		property bool loading: StatusManager.refreshing
+
+		BusyIndicator {
+			running: parent.loading
+			anchors.centerIn: parent
+			Material.accent: theme.accentAlt
+		}
+
+		MainStackView {
+			id: mainStack
+			anchors.fill: parent
+			visible: !parent.loading
+		}
 	}
 
 	BottomBar {

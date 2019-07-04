@@ -3,6 +3,9 @@ import QtQuick 2.10
 QtObject {
 	id: root
 
+	property color primaryColor: "#e5e5e5"
+	property color primaryDarkColor: "#303030"
+
 	property Text text: Text { text: "Hi" }
 	property real textSize: text.height
 

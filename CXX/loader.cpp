@@ -89,6 +89,7 @@ QStandardItem *Loader::recordToItem(const QSqlRecord &record)
 	item->setData(record.value("title"), TitleRole);
 	item->setData(record.value("artist"), ArtistRole);
 	item->setData(record.value("track"), TrackRole);
+	item->setData(record.value("disc"), DiscRole);
 	item->setData(record.value("genre"), GenreRole);
 	item->setData(record.value("year"), YearRole);
 	item->setData(record.value("path"), PathRole);
@@ -107,6 +108,35 @@ void Loader::sortItemList(std::initializer_list<int> roles,
 				  [&role](QStandardItem *I1, QStandardItem *I2) {
 					  return I1->data(role) < I2->data(role);
 				  });
+}
+
+void Loader::sortTrackList(QList<QStandardItem *> &items)
+{
+	auto comp = [](QStandardItem *I1, QStandardItem *I2) {
+		auto disc1 = I1->data(DiscRole).toInt();
+		auto disc2 = I2->data(DiscRole).toInt();
+
+		if (disc1 != disc2) return disc1 < disc2;
+
+		auto track1 = I1->data(TrackRole).toInt();
+		auto track2 = I2->data(TrackRole).toInt();
+
+		if (!track1 && track2)
+			return true;
+		else if (track1 && !track2)
+			return false;
+		else if (track1 && track2)
+			return track1 < track2;
+		else
+		{
+			auto title1 = I1->data(TitleRole).toString();
+			auto title2 = I2->data(TitleRole).toString();
+
+			return title1 < title2;
+		}
+	};
+
+	std::sort(items.begin(), items.end(), comp);
 }
 
 void Loader::clear()

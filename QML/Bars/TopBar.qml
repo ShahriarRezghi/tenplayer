@@ -2,12 +2,10 @@ import QtQuick 2.10
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 
+import "../Tools"
+
 ToolBar {
 	id: control
-
-	// TODO this does not work. find out why
-	property int currentTab: appSettings.currentLoader
-	onCurrentTabChanged: appSettings.currentLoader = currentTab
 
 	property int stackIndex
 	property var tabs: ["Albums", "Artists", "Songs", "Recent", "Playlists"]
@@ -28,6 +26,12 @@ ToolBar {
 	}
 
 	contentItem: RowLayout {
+		visible: opacity
+
+		Behavior on opacity {
+			NumberAnimation { }
+		}
+
 		spacing: 0
 
 		StackView {
@@ -69,12 +73,53 @@ ToolBar {
 			}
 		}
 
-		ToolButton {
-			text: "Menu"
-			leftPadding: 12
-			rightPadding: 12
-			Layout.fillHeight: true
+		ImageButton {
+			source: "qrc:/Images/Menu.png"
 			onClicked: mainMenu.open()
 		}
+	}
+
+	property string dialMessage
+
+	Label {
+		id: dial
+		opacity: 0
+		visible: opacity
+		text: dialMessage
+		font.pointSize: consts.mediumFont
+
+		parent: control
+		anchors.fill: parent
+
+		horizontalAlignment: Text.AlignHCenter
+		verticalAlignment: Text.AlignVCenter
+
+		Behavior on opacity {
+			NumberAnimation { }
+		}
+	}
+
+	Timer {
+		id: timer
+		interval: 1500
+		repeat: false
+		running: false
+
+		onTriggered: {
+			dial.opacity = 0
+			control.contentItem.opacity = 1
+		}
+	}
+
+	function showMessage(type) {
+		timer.restart()
+		dialMessage = "Track File Not Found!"
+		dial.opacity = 1
+		control.contentItem.opacity = 0
+	}
+
+	Connections {
+		target: ActiveInfo
+		onShowMessage: showMessage(value)
 	}
 }

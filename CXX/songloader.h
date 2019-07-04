@@ -5,22 +5,21 @@
 
 class SongLoader : public Loader
 {
-	Q_OBJECT
+    Q_OBJECT
 
 private slots:
-	void addItemsToModel(const QList<QStandardItem *> &items);
+    void addItemsToModel(const QList<QStandardItem*>& items);
 
 public:
-	explicit SongLoader(QObject *parent = nullptr);
+    explicit SongLoader(QObject* parent = nullptr);
 
-	// Loader interface
 public:
-	void load();
+    void load();
 
-	virtual void clicked(const int &index);
+    virtual void clicked(const int& index);
 
-	virtual void actionTriggered(const int &type, const int &index,
-								 const QVariant &extra = QVariant());
+    virtual void actionTriggered(const int& type, const int& index,
+                                 const QVariant& extra = QVariant());
 };
 
 #endif  // SONGLOADER_H

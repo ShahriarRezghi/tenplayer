@@ -1,4 +1,5 @@
 import QtQuick 2.10
+import QtGraphicalEffects 1.0
 
 Item {
 	id: item
@@ -16,5 +17,14 @@ Item {
 
 		width: parent.width
 		height: parent.height
+
+//		visible: false
 	}
+
+//	GaussianBlur {
+//		anchors.fill: parent
+//		source: img
+//		radius: 8
+//		samples: 16
+//	}
 }

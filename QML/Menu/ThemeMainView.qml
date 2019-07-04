@@ -12,6 +12,7 @@ ColumnLayout {
 	property string topText
 
 	Label {
+        id: label
 		padding: 8
 		text: topText
 		elide: Text.ElideRight
@@ -19,7 +20,17 @@ ColumnLayout {
 		Layout.fillWidth: true
 		verticalAlignment: Text.AlignVCenter
 		horizontalAlignment: Text.AlignHCenter
-	}
+
+    }
+
+    Rectangle {
+        opacity: .5
+        height: 1
+        Layout.fillWidth: true
+        Layout.leftMargin: 10
+        Layout.rightMargin: 10
+        color: theme.accentAlt
+    }
 
 	Flickable {
 		clip: true
@@ -50,7 +61,7 @@ ColumnLayout {
 						border.color: "grey"
 					}
 
-					onClicked: column.clicked(modelData)
+                    onClicked: label.parent.clicked(modelData)
 				}
 			}
 		}

@@ -36,12 +36,13 @@ SectionGridView {
 		id: addButton
 		icon.source: "qrc:/Images/Plus.png"
 		Material.background: theme.primary
+		Material.foreground: appSettings.iconFromAccent ? theme.accent:Material.foreground
 
-		implicitWidth: 80
-		implicitHeight: 80
+		implicitWidth: 75
+		implicitHeight: 75
 
-		anchors.rightMargin: 50
-		anchors.bottomMargin: 50
+		anchors.rightMargin: 45
+		anchors.bottomMargin: 45
 		anchors.right: parent.right
 		anchors.bottom: parent.bottom
 

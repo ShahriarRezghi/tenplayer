@@ -2,24 +2,24 @@ import QtQuick 2.10
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Dialogs 1.2
+import QtGraphicalEffects 1.0
 
 import "../Bars"
 import "../Menu"
 import "../Tools"
 
 Page {
-	id: page
+    id: page
 
-	background: BackgroundImage {
-		id: backgroundImage
-		anchors.fill: parent
-		opacity: appSettings.imageOpacity
+    background: BackgroundImage {
+        id: backgroundImage
+        anchors.fill: parent
+        opacity: appSettings.imageOpacity
 
-		source: appSettings.backgroundFromArtwork && ActiveInfo.artworkInfo ?
-					"file://"+ActiveInfo.artworkInfo:
-					appSettings.backgroundSource
-	}
-
+        source: appSettings.backgroundFromArtwork && ActiveInfo.artworkInfo ?
+                    "file://"+ActiveInfo.artworkInfo:
+                    appSettings.backgroundSource
+    }
 
 	contentItem: MainContents {	}
 
@@ -40,7 +40,10 @@ Page {
 
 		onAccepted: {
 			if (selectFolder) PathManager.addDir(folder)
-			else PathManager.addFiles(fileUrls)
+			else {
+				if (fileUrls.length == 1) PathManager.addFiles([fileUrls])
+				else PathManager.addFiles(fileUrls)
+			}
 		}
 	}
 
@@ -64,9 +67,9 @@ Page {
 //		id: settingsDialog
 //	}
 
-	ZSettingsDialog {
-		id: settingsDialog
-	}
+    ZSettingsDialog {
+        id: settingsDialog
+    }
 
 	ZThemeDialog {
 		id: themeDialog

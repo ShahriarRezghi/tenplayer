@@ -5,25 +5,24 @@
 
 class ArtistLoader : public Loader
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	void deleteArtist(QStandardItem *item);
-	QList<QStandardItem *> getSubItems(QStandardItem *item);
+    void deleteArtist(QStandardItem* item);
+    QList<QStandardItem*> getSubItems(QStandardItem* item);
 
 private slots:
-	void addItemsToModel(const QList<QStandardItem *> &items);
+    void addItemsToModel(const QList<QStandardItem*>& items);
 
 public:
-	explicit ArtistLoader(QObject *parent = nullptr);
+    explicit ArtistLoader(QObject* parent = nullptr);
 
-	// Loader interface
 public:
-	void load();
+    void load();
 
-	virtual void clicked(const int &index);
+    virtual void clicked(const int& index);
 
-	virtual void actionTriggered(const int &type, const int &index,
-								 const QVariant &extra = QVariant());
+    virtual void actionTriggered(const int& type, const int& index,
+                                 const QVariant& extra = QVariant());
 };
 
 #endif  // ARTISTLOADER_H

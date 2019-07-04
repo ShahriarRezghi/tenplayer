@@ -61,6 +61,8 @@ public:
 
 	bool playFromArguements(QStringList files);
 
+	void setArtworkSize(const QSize &value);
+
 public slots:
 	void safeLoad();
 	void safeRefresh();

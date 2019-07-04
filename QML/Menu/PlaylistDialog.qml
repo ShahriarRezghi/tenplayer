@@ -1,5 +1,5 @@
 import QtQuick 2.10
-import ExtraControls 1.0
+import "../STools"
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
@@ -8,8 +8,7 @@ import "../Tools"
 
 Popup {
 	id: popup
-	modal: true
-	dim: false
+    modal: true
 	padding: 0
 	rightPadding: -1
 
@@ -53,7 +52,7 @@ Popup {
 			Layout.fillWidth: true
 			Layout.leftMargin: 18
 			Layout.rightMargin: 18
-			color: theme.background == theme.accent ? theme.primary:theme.accent
+			color: theme.accentAlt
 		}
 
 		ListView {
@@ -88,7 +87,7 @@ Popup {
 			Layout.fillWidth: true
 			Layout.leftMargin: 18
 			Layout.rightMargin: 18
-			color: theme.background == theme.accent ? theme.primary:theme.accent
+			color: theme.accentAlt
 		}
 
 		RowLayout {
@@ -102,7 +101,7 @@ Popup {
 				id: field
 				Layout.fillWidth: true
 				placeholderText: "Add Playlist"
-				Material.accent: theme.background == theme.accent ? theme.primary:theme.accent
+				Material.accent: theme.accentAlt
 			}
 
 			Button {

@@ -5,28 +5,27 @@
 
 class RecentlyPlayedLoader : public Loader
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	QStringList m_playedIds;
+    QStringList m_playedIds;
 
-	int m_maxRowCount;
+    int m_maxRowCount;
 
-	void save();
-	void read();
+    void save();
+    void read();
 
 public:
-	explicit RecentlyPlayedLoader(QObject *parent = nullptr);
+    explicit RecentlyPlayedLoader(QObject* parent = nullptr);
 
-	void addPlayedItem(QStandardItem *I);
+    void addPlayedItem(QStandardItem* I);
 
-	// Loader interface
 public:
-	void load();
+    void load();
 
-	virtual void clicked(const int &index);
+    virtual void clicked(const int& index);
 
-	virtual void actionTriggered(const int &type, const int &index,
-								 const QVariant &extra = QVariant());
+    virtual void actionTriggered(const int& type, const int& index,
+                                 const QVariant& extra = QVariant());
 };
 
 #endif  // RECENTLYPLAYEDLOADER_H

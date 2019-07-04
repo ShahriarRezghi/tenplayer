@@ -10,6 +10,8 @@ VisualDataModel {
 		model: [titleRole, artistRole, albumRole]
 		image: artworkRole ? "file://"+artworkRole:"qrc:/Images/Note.png"
 
-		onClicked: MainManager.loaderClicked(queueLoader, index)
+		playingNow: ActiveInfo.idInfo == idRole
+
+		onClicked: MainManager.loaderClicked(consts.queueLoader, index)
 	}
 }

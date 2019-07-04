@@ -15,6 +15,8 @@ VisualDataModel {
 
 		contentItem.implicitHeight: 80
 
+		playingNow: ActiveInfo.idInfo == idRole
+
 		onMenuRequested: vdmodel.menuRequested(xx+x, yy+y, index)
 		onClicked: MainManager.loaderClicked(
 					   modelType ? consts.recentlyAddedLoader:consts.recentlyPlayedLoader, index)

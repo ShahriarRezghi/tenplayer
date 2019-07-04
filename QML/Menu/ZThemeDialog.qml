@@ -2,10 +2,9 @@ import QtQuick 2.10
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
-import STools.Extras 1.0
 
 Popup {
-	id: popup
+    id: popup
 	modal: true
 
 	width: 300
@@ -14,49 +13,53 @@ Popup {
 	x: (parent.width-width)/2
 	y: (parent.height-height)/2
 
+	function c(c) {
+		return Material.color(c)
+	}
+
 	property color selectedAccent
 	property color selectedPrimary
 	property color selectedBackground
 
 	property var modelBackground: [
-		MaterialTheme.primary, MaterialTheme.primaryDark
+		consts.primaryColor, consts.primaryDarkColor
 	]
 
 	// primary
 	property var modelPrimary1: [
-		MaterialTheme.primary,
-		MaterialTheme.amber, MaterialTheme.blue, MaterialTheme.blueGrey,
-		MaterialTheme.brown, MaterialTheme.cyan, MaterialTheme.deepOrange,
-		MaterialTheme.deepPurple, MaterialTheme.green, MaterialTheme.grey,
-		MaterialTheme.indigo, MaterialTheme.lightBlue, MaterialTheme.lightGreen,
-		MaterialTheme.lime, MaterialTheme.orange, MaterialTheme.pink,
-		MaterialTheme.purple, MaterialTheme.red, MaterialTheme.teal
+		consts.primaryColor,
+		c(Material.Amber), c(Material.Blue), c(Material.BlueGrey),
+		c(Material.Brown), c(Material.Cyan), c(Material.DeepOrange),
+		c(Material.DeepPurple), c(Material.Green), c(Material.Grey),
+		c(Material.Indigo), c(Material.LightBlue), c(Material.LightGreen),
+		c(Material.Lime), c(Material.Orange), c(Material.Pink),
+		c(Material.Purple), c(Material.Red), c(Material.Teal)
 	]
 
 	// primary dark
 	property var modelPrimary2: [
-		MaterialTheme.yellow, MaterialTheme.primaryDark,
-		MaterialTheme.amber, MaterialTheme.blue, MaterialTheme.blueGrey,
-		MaterialTheme.brown, MaterialTheme.cyan, MaterialTheme.deepOrange,
-		MaterialTheme.deepPurple, MaterialTheme.green, MaterialTheme.grey,
-		MaterialTheme.indigo, MaterialTheme.lightBlue, MaterialTheme.lightGreen,
-		MaterialTheme.lime, MaterialTheme.orange, MaterialTheme.pink,
-		MaterialTheme.purple, MaterialTheme.red, MaterialTheme.teal
+		c(Material.Yellow), consts.primaryDarkColor,
+		c(Material.Amber), c(Material.Blue), c(Material.BlueGrey),
+		c(Material.Brown), c(Material.Cyan), c(Material.DeepOrange),
+		c(Material.DeepPurple), c(Material.Green), c(Material.Grey),
+		c(Material.Indigo), c(Material.LightBlue), c(Material.LightGreen),
+		c(Material.Lime), c(Material.Orange), c(Material.Pink),
+		c(Material.Purple), c(Material.Red), c(Material.Teal)
 	]
 
 	// non-primary primary color
 	property var modelAccent1: [
-		MaterialTheme.primary, MaterialTheme.primaryDark
+		consts.primaryColor, consts.primaryDarkColor
 	]
 
 	// primary primary color
 	property var modelAccent2: [
-		MaterialTheme.amber, MaterialTheme.blue, MaterialTheme.blueGrey,
-		MaterialTheme.brown, MaterialTheme.cyan, MaterialTheme.deepOrange,
-		MaterialTheme.deepPurple, MaterialTheme.green, MaterialTheme.grey,
-		MaterialTheme.indigo, MaterialTheme.lightBlue, MaterialTheme.lightGreen,
-		MaterialTheme.lime, MaterialTheme.orange, MaterialTheme.pink,
-		MaterialTheme.purple, MaterialTheme.red, MaterialTheme.teal,
+		c(Material.Amber), c(Material.Blue), c(Material.BlueGrey),
+		c(Material.Brown), c(Material.Cyan), c(Material.DeepOrange),
+		c(Material.DeepPurple), c(Material.Green), c(Material.Grey),
+		c(Material.Indigo), c(Material.LightBlue), c(Material.LightGreen),
+		c(Material.Lime), c(Material.Orange), c(Material.Pink),
+		c(Material.Purple), c(Material.Red), c(Material.Teal),
 	]
 
 	onClosed: swipe.currentIndex = 0
@@ -67,7 +70,6 @@ Popup {
 		appSettings.accent = selectedAccent
 		appSettings.primary = selectedPrimary
 		appSettings.background = selectedBackground
-		appSettings.foreground = selectedBackground == MaterialTheme.primaryDark ? "white":"black"
 	}
 
 	contentItem: SwipeView {
@@ -83,9 +85,9 @@ Popup {
 				selectedBackground = c
 				swipe.currentIndex = 1
 
-				if (c == MaterialTheme.primary)
+				if (c == consts.primaryColor)
 					primarySelector.model = modelPrimary1
-				else if (c == MaterialTheme.primaryDark)
+				else if (c == consts.primaryDarkColor)
 					primarySelector.model = modelPrimary2
 			}
 		}
@@ -98,9 +100,9 @@ Popup {
 				selectedPrimary = c
 				swipe.currentIndex = 2
 
-				if (c == MaterialTheme.primary)
+				if (c == consts.primaryColor)
 					accentSelector.model = modelAccent2
-				else if (c == MaterialTheme.primaryDark)
+				else if (c == consts.primaryDarkColor)
 					accentSelector.model = modelAccent2
 				else
 					accentSelector.model = modelAccent1

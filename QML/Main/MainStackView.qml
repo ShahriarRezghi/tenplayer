@@ -8,7 +8,7 @@ import "../Search"
 StackView {
 	id: stack
 	initialItem: musicView
-//	onCurrentItemChanged: applicationWindow.refresh() TODO uncomment
+	//	onCurrentItemChanged: applicationWindow.refresh() TODO uncomment
 
 	property int trackType
 	property int stackIndex

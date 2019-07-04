@@ -1,6 +1,8 @@
 import QtQuick 2.10
 
 Item {
+	property color accentAlt: theme.accent == theme.background ? theme.primary:theme.accent
+
 	property color accent
 	property color primary
 	property color background

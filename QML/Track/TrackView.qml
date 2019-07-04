@@ -7,11 +7,12 @@ GridView {
 	id: view
 
 	property int type: stack.trackType
+	property bool isAlbumType : type == consts.albumLoader
 
 	ScrollBar.vertical: ScrollBar { }
 
 	cellWidth: width/2
-	cellHeight: 16 + Math.max(consts.textSize*2, 48)
+	cellHeight: (isAlbumType ? 48:80) + 20
 
 	model: TrackViewModel {
 		onMenuRequested: {

@@ -5,17 +5,16 @@
 
 class RecentlyAddedLoader : public Loader
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit RecentlyAddedLoader(QObject *parent = nullptr);
+    explicit RecentlyAddedLoader(QObject* parent = nullptr);
 
-	// Loader interface
 public:
-	void load();
-	virtual void clicked(const int &index);
-	virtual void actionTriggered(const int &type, const int &index,
-								 const QVariant &extra = QVariant());
+    void load();
+    virtual void clicked(const int& index);
+    virtual void actionTriggered(const int& type, const int& index,
+                                 const QVariant& extra = QVariant());
 };
 
 #endif  // RECENTLYADDEDLOADER_H

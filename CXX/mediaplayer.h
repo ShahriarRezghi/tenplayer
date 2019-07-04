@@ -4,30 +4,39 @@
 #include <QMediaPlayer>
 #include <QSettings>
 
-class MediaPlayer : public QMediaPlayer
-{
-	Q_OBJECT
+class MediaPlayer : public QMediaPlayer {
+  Q_OBJECT
 
-	Q_PROPERTY(int realVolume READ realVolume WRITE setRealVolume NOTIFY
-				   realVolumeChanged)
+  Q_PROPERTY(int realVolume READ realVolume WRITE setRealVolume NOTIFY
+				 realVolumeChanged)
 
-	int m_realVolume;
+  Q_PROPERTY(QString durationString READ durationString NOTIFY durationStringChanged)
+  Q_PROPERTY(QString positionString READ positionString NOTIFY positionStringChanged)
+
+  int m_realVolume;
 
 private slots:
-	void save();
-	void read();
+  void save();
+  void read();
 
 public:
-	MediaPlayer(QObject *parent = nullptr);
-	~MediaPlayer();
+  MediaPlayer(QObject *parent = nullptr);
+  ~MediaPlayer();
 
-	int realVolume() const;
+  QString posToTime(const qint64 &time) const;
+
+  int realVolume() const;
+  QString durationString() const;
+  QString positionString() const;
 
 public slots:
-	void setRealVolume(int realVolume);
+  void setRealVolume(int realVolume);
 
 signals:
-	void realVolumeChanged(int realVolume);
+  void realVolumeChanged(int realVolume);
+
+  void durationStringChanged();
+  void positionStringChanged();
 };
 
-#endif  // MEDIAPLAYER_H
+#endif // MEDIAPLAYER_H

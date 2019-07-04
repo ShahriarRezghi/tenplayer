@@ -1,8 +1,29 @@
 #include "mediaplayer.h"
+#include <QTime>
 
-MediaPlayer::MediaPlayer(QObject *parent) : QMediaPlayer(parent) { read(); }
+MediaPlayer::MediaPlayer(QObject *parent) : QMediaPlayer(parent)
+{
+	read();
+	connect(this, &MediaPlayer::positionChanged, this, &MediaPlayer::positionStringChanged);
+	connect(this, &MediaPlayer::durationChanged, this, &MediaPlayer::durationStringChanged);
+}
 
 MediaPlayer::~MediaPlayer() { save(); }
+
+QString MediaPlayer::posToTime(const qint64 &time) const
+{
+	QTime t = QTime::fromMSecsSinceStartOfDay(time);
+	QString ts;
+
+	if (t.hour() > 0)
+		ts = t.toString("h:mm:ss");
+	else
+		ts = t.toString("mm:ss");
+
+	if (ts.isEmpty()) ts = "00:00";
+
+	return ts;
+}
 
 void MediaPlayer::save()
 {
@@ -21,6 +42,16 @@ void MediaPlayer::read()
 }
 
 int MediaPlayer::realVolume() const { return m_realVolume; }
+
+QString MediaPlayer::durationString() const
+{
+	return posToTime(duration());
+}
+
+QString MediaPlayer::positionString() const
+{
+	return posToTime(position());
+}
 
 void MediaPlayer::setRealVolume(int realVolume)
 {

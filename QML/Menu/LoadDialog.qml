@@ -27,7 +27,7 @@ Popup {
 			to: StatusManager.top
 			value: StatusManager.value
 			indeterminate: StatusManager.top == 0 && StatusManager.value == 0
-			Material.accent: theme.accent == theme.background ? theme.primary:theme.accent
+			Material.accent: theme.accentAlt
 		}
 
 		Label {

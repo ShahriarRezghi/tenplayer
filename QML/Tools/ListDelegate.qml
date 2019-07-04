@@ -4,8 +4,15 @@ import QtQuick.Controls 2.3
 ItemDelegate {
 	id: control
 	spacing: 10
-	padding: 10
+	font.bold: true
 	onTextChanged: text = ""
+
+	topPadding: 10
+	bottomPadding: 10
+	leftPadding: 10
+	rightPadding: 10
+
+	property bool playingNow: false
 
 	property string track
 	property bool useTrack: false
@@ -29,11 +36,10 @@ ItemDelegate {
 
 		Image {
 			id: img
+			asynchronous: true
 			source: useTrack ? "":control.image
 			width: height
 			height: parent.height
-//			sourceSize.width: width
-//			sourceSize.height: height
 
 			Label {
 				text: track
@@ -48,7 +54,7 @@ ItemDelegate {
 			id: column
 			spacing: innerSpacing
 			anchors.verticalCenter: parent.verticalCenter
-			width: parent.width - img.width - parent.spacing
+			width: parent.width - img.width - parent.spacing - (ldr.active ? (parent.spacing + ldr.width):0)
 
 			Repeater {
 				model: control.model
@@ -60,6 +66,19 @@ ItemDelegate {
 					elide: Text.ElideRight
 					horizontalAlignment: control.horizontalAlignment
 				}
+			}
+		}
+
+		Loader {
+			id: ldr
+			visible: active
+			active: playingNow
+			anchors.verticalCenter: parent.verticalCenter
+
+			sourceComponent: ImageButton {
+				enabled: false
+				source: "qrc:/Images/Play.png"
+				icon.color: theme.accentAlt
 			}
 		}
 	}

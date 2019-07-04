@@ -4,6 +4,7 @@ import ".."
 
 Menu {
 	id: control
+	dim: false
 	modal: true
 
 	property int type: 0

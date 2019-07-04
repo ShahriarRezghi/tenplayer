@@ -62,12 +62,70 @@ ToolBar {
 				duration: 400
 				easing.type: Easing.OutCubic
 			}
+		},
+		Transition {
+			from: "up"
+			to: "down"
+
+			NumberAnimation {
+				property: "y"
+				target: control
+				duration: 400
+				easing.type: Easing.OutCubic
+			}
+		},
+		Transition {
+			from: "down"
+			to: "up"
+
+			NumberAnimation {
+				property: "y"
+				target: control
+				duration: 400
+				easing.type: Easing.OutCubic
+			}
 		}
 	]
 
-	 contentItem: BottomBarContents {
-		title: ActiveInfo.titleInfo
-		artist: ActiveInfo.artistInfo
-		artwork: ActiveInfo.artworkInfo ? "file://" + ActiveInfo.artworkInfo:""
-	 }
+	contentItem: StackView {
+		id: bottomBarStack
+		clip: true
+		initialItem: mainBar
+
+		property int stackIndex
+
+		onStackIndexChanged: {
+			if (stackIndex == 0)
+				bottomBarStack.replace(mainBar, StackView.PopTransition)
+			else if (stackIndex == 1)
+				bottomBarStack.replace(seekBar, StackView.ReplaceTransition)
+		}
+
+		popEnter: Transition {
+			NumberAnimation { property: "y"; from: -control.height; to: 0; duration: 200; easing.type: Easing.OutCubic }
+		}
+
+		popExit: Transition {
+			NumberAnimation { property: "y"; from: 0; to: control.height; duration: 200; easing.type: Easing.OutCubic }
+		}
+
+		replaceEnter: Transition {
+			NumberAnimation { property: "y"; from: control.height; to: 0; duration: 200; easing.type: Easing.OutCubic }
+		}
+
+		replaceExit: Transition {
+			NumberAnimation { property: "y"; from: 0; to: -control.height; duration: 200; easing.type: Easing.OutCubic }
+		}
+
+		Component {
+			id: mainBar
+
+			BottomBarContents { }
+		}
+
+		Component {
+			id: seekBar
+			BottomBarSeekView { }
+		}
+	}
 }
