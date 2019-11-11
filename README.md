@@ -16,3 +16,6 @@ $ make
 This project is published under GPL v3.0 license. See the [license file](LICENSE) for more details.
 
 # Screenshots
+![screenshot1](Screenshots/image1.png)
+![screenshot2](Screenshots/image2.png)
+![screenshot3](Screenshots/image3.png)
