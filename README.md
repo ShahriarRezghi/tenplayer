@@ -8,7 +8,7 @@ This project is incomplete and I don't have the time to work on it myself. If an
 If you are using qtcreator you can just load the project inside qtcreator and run the project from there. If you are not using qtcreator make sure you have qt and qmake installed on your system and run the commands below inside the project directory:
 
 ``` shell
-$ qmake QLD.pro
+$ qmake TenPlayer.pro
 $ make
 ```
 
